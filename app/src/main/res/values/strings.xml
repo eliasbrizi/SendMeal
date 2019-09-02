@@ -1,3 +1,26 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SendMeal</string>
+    <string name="nom">Nombre</string>
+    <string name="pass">Clave</string>
+    <string name="confpass">Confirmación Clave</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="tarj">Tarjeta de Crédito</string>
+    <string name="numt">Número</string>
+    <string name="ccvt">CCV</string>
+    <string name="fechat">MM/AA</string>
+    <string name="tipocu">Tipo de Cuenta</string>
+    <string name="bas">Básica</string>
+    <string name="prem">Premium</string>
+    <string name="full">Full</string>
+    <string name="cred">Crédito Inicial</string>
+    <string name="recibirnot">Recibir notificaciones por E-Mail: SI</string>
+    <string name="norecibirnot">Recibir notificaciones por E-Mail: NO</string>
+    <string name="esven">Es Vendedor</string>
+    <string name="aceptartyc">Acepto Terminos y Condiciones</string>
+    <string name="cbu">CBU</string>
+    <string name="aliascbu">Alias CBU</string>
+    <string name="reg">Registrar</string>
+
+
+
 </resources>

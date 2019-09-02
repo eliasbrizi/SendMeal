@@ -20,7 +20,7 @@
                 android:id="@+id/txtNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
+                android:text="@string/nom"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary" />
 
@@ -30,7 +30,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text=""
                 android:textAlignment="center"
                 tools:text="@tools:sample/cities" />
 
@@ -38,7 +37,7 @@
                 android:id="@+id/textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Password"
+                android:text = "@string/pass"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"/>
 
@@ -55,7 +54,7 @@
                 android:id="@+id/textPasswordConf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Confirmacion Password"
+                android:text="@string/confpass"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"/>
 
@@ -72,7 +71,7 @@
                 android:id="@+id/textEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Correo Electronico"
+                android:text="@string/correo"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"/>
 
@@ -89,7 +88,7 @@
                 android:id="@+id/textNumTarjeta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tarjeta de credito"
+                android:text="@string/tarj"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"/>
 
@@ -104,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="16"
                     android:inputType="number"
-                    android:text="Numero"
+                    android:text="@string/numt"
                     android:textColor="@color/bkgndText" />
 
                 <EditText
@@ -113,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:inputType="number"
-                    android:text="CCV"
+                    android:text="@string/ccvt"
                     android:textColor="@color/bkgndText" />
 
                 <EditText
@@ -122,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
                     android:inputType="date"
-                    android:text="MM/AA"
+                    android:text="@string/fechat"
                     android:textColor="@color/bkgndText" />
             </LinearLayout>
 
@@ -136,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Tipo de Cuenta"
+                    android:text="@string/tipocu"
                     android:textColor="@color/colorPrimary"/>
 
                 <RadioGroup
@@ -150,19 +149,19 @@
                         android:id="@+id/radioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Basica" />
+                        android:text="@string/bas" />
 
                     <RadioButton
                         android:id="@+id/radioButton2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Premium" />
+                        android:text="@string/prem" />
 
                     <RadioButton
                         android:id="@+id/radioButton3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Full" />
+                        android:text="@string/full" />
 
                 </RadioGroup>
             </LinearLayout>
@@ -171,7 +170,7 @@
                 android:id="@+id/textCreditoInicial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Credito Inicial"
+                android:text="@string/cred"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"/>
 
@@ -186,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:text="100"
                 android:textAlignment="center"
-                android:textSize="22dp"
+                android:textSize="22sp"
                 android:textColor="@color/colorAccent"/>
 
             <ToggleButton
@@ -194,8 +193,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
-                android:textOff="Recibir notificaciones por E-Mail: NO"
-                android:textOn="Recibir notificaciones por E-Mail: SI"
+                android:textOff="@string/norecibirnot"
+                android:textOn="@string/recibirnot"
                 tools:text="@tools:sample/date/day_of_week" />
 
             <LinearLayout
@@ -208,7 +207,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Es Vendedor"
+                    android:text="@string/esven"
                     android:textColor="@color/colorPrimary"/>
 
                 <Switch
@@ -244,14 +243,14 @@
                     android:id="@+id/textCBU"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CBU"
+                    android:text="@string/cbu"
                     android:textColor="@color/colorPrimary" />
 
                 <TextView
                     android:id="@+id/textAliasCBU"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Alias CBU"
+                    android:text="@string/aliascbu"
                     android:textColor="@color/colorPrimary" />
             </LinearLayout>
 
@@ -259,13 +258,13 @@
                 android:id="@+id/checkAceptoCondiciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Acepto Terminos y Condiciones" />
+                android:text="@string/aceptartyc" />
 
             <Button
                 android:id="@+id/buttonRegistrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Registrar"
+                android:text="@string/reg"
                 android:enabled="false"/>
         </LinearLayout>
     </ScrollView>

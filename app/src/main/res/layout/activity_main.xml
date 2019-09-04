@@ -90,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tarj"
                 android:textAlignment="center"
+                android:textSize="@dimen/etiqutas"
                 android:textColor="@color/colorPrimary"/>
 
             <LinearLayout

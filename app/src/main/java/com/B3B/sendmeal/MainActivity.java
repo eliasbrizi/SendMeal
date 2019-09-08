@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -25,19 +27,32 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout layoutVendedor = (LinearLayout)findViewById(R.id.layoutVendedor);
         final SeekBar seekCredito = (SeekBar)findViewById(R.id.seekCredito);
         final TextView textValorCredito = (TextView) findViewById(R.id.textValorCredito);
+        Button btnRegistrar = (Button) findViewById(R.id.buttonRegistrar);
+        /*
+        EditText
+         */
+        final EditText editNombre = (EditText) findViewById(R.id.editNombre);
+        final EditText editClave = (EditText) findViewById(R.id.editPassword);
+        final EditText editConfirmacionClave = (EditText) findViewById(R.id.editPasswordCof);
+        final EditText editEmail = (EditText) findViewById(R.id.editEmail);
+        final EditText editNumeroTarjeta = (EditText) findViewById(R.id.editNumTarjeta);
+        final EditText editCCV = (EditText) findViewById(R.id.editCCV);
+        final EditText editFechaExpira = (EditText) findViewById(R.id.editDate);
+        final EditText editAliasCBU = (EditText) findViewById(R.id.editAliasCBU);
+        final EditText editCBU = (EditText) findViewById(R.id.editCBU);
     /*
     *
     */
-        seekCredito.setMax(1400);
         sw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (sw.isChecked()){
                     layoutVendedor.setVisibility(View.VISIBLE);
                 } else layoutVendedor.setVisibility(View.GONE);
-
             }
         });
+
+        seekCredito.setMax(1400);
         seekCredito.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -54,6 +69,20 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
                 // TODO Auto-generated method stub
                 textValorCredito.setText(String.valueOf(100 + new Integer(progress)));
+            }
+        });
+
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+                Validaciones
+                 */
+                if (editNombre.getText().equals("") || editClave.getText().equals("") ||
+                        editConfirmacionClave.getText().equals("") || editEmail.getText().equals("") ||
+                        editNumeroTarjeta.getText().equals("") || editCCV.getText().equals("") ||
+                        editFechaExpira.getText().equals(""))
+                    Toast.makeText(getApplicationContext(),R.string.faltanDatos,Toast.LENGTH_LONG);
             }
         });
     }

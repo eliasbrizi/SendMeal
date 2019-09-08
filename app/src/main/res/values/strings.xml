@@ -21,6 +21,6 @@
     <string name="aliascbu">Alias CBU</string>
     <string name="reg">Registrar</string>
 
-
+    <string name="faltanDatos">Debe completar todos los campos</string>
 
 </resources>

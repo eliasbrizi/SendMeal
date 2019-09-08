@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -27,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout layoutVendedor = (LinearLayout)findViewById(R.id.layoutVendedor);
         final SeekBar seekCredito = (SeekBar)findViewById(R.id.seekCredito);
         final TextView textValorCredito = (TextView) findViewById(R.id.textValorCredito);
-        Button btnRegistrar = (Button) findViewById(R.id.buttonRegistrar);
+        final Button btnRegistrar = (Button) findViewById(R.id.buttonRegistrar);
+        final CheckBox checkCondiciones = (CheckBox) findViewById(R.id.checkAceptoCondiciones);
         /*
         EditText
          */
@@ -72,17 +74,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        checkCondiciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               btnRegistrar.setEnabled(checkCondiciones.isChecked());
+            }
+        });
+
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /*
                 Validaciones
                  */
-                if (editNombre.getText().equals("") || editClave.getText().equals("") ||
-                        editConfirmacionClave.getText().equals("") || editEmail.getText().equals("") ||
-                        editNumeroTarjeta.getText().equals("") || editCCV.getText().equals("") ||
-                        editFechaExpira.getText().equals(""))
-                    Toast.makeText(getApplicationContext(),R.string.faltanDatos,Toast.LENGTH_LONG);
+                if (editNombre.getText().toString().equals("") || editClave.getText().toString().equals("") ||
+                        editConfirmacionClave.getText().toString().equals("") || editEmail.getText().toString().equals("") ||
+                        editNumeroTarjeta.getText().toString().equals("Número") || editCCV.getText().toString().equals("CCV") ||
+                        editFechaExpira.getText().toString().equals("MM/AA"))
+                Toast.makeText(getApplicationContext(),R.string.faltanDatos,Toast.LENGTH_LONG).show();
+
             }
         });
     }

@@ -3,6 +3,7 @@ package com.B3B.sendmeal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     /*
     *   Variables de pantalla
     */
-        final Switch sw = (Switch)findViewById(R.id.switchVendedor);
+        final Switch switchVendedor = (Switch)findViewById(R.id.switchVendedor);
         final LinearLayout layoutVendedor = (LinearLayout)findViewById(R.id.layoutVendedor);
         final SeekBar seekCredito = (SeekBar)findViewById(R.id.seekCredito);
         final TextView textValorCredito = (TextView) findViewById(R.id.textValorCredito);
@@ -45,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
     /*
     *
     */
-        sw.setOnClickListener(new View.OnClickListener() {
+        switchVendedor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (sw.isChecked()){
+                if (switchVendedor.isChecked()){
                     layoutVendedor.setVisibility(View.VISIBLE);
                 } else layoutVendedor.setVisibility(View.GONE);
             }
@@ -81,6 +82,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        Borro texto por default cuando se selecciona el campo
+         */
+        //-------------------------------------------------------------------------------------------------------------------------
+        // Ver como hacer lindo esto, no funca asi y no tengo ganas de fijarme ahora
+        //--------------------------------------------------------------------------------------------------------------------------
+        /*editNumeroTarjeta.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (editNumeroTarjeta.getText().toString().equals("Número")){
+                    editNumeroTarjeta.getText().clear();
+                }
+                return false;
+            }
+        });
+        editCCV.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (editCCV.getText().toString().equals("CCV")){
+                    editCCV.getText().clear();
+                }
+                return false;
+            }
+        });
+        editFechaExpira.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.)
+                if (editFechaExpira.getText().toString().equals("MM/AA")){
+                    editFechaExpira.getText().clear();
+                }
+                return false;
+            }
+        });*/
+
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +127,16 @@ public class MainActivity extends AppCompatActivity {
                         editConfirmacionClave.getText().toString().equals("") || editEmail.getText().toString().equals("") ||
                         editNumeroTarjeta.getText().toString().equals("Número") || editCCV.getText().toString().equals("CCV") ||
                         editFechaExpira.getText().toString().equals("MM/AA"))
-                Toast.makeText(getApplicationContext(),R.string.faltanDatos,Toast.LENGTH_LONG).show();
+                    {
+                    if (switchVendedor.isChecked() && (editAliasCBU.toString().equals("") || editCBU.toString().equals("")))
+                        /*
+                        Faltan datos
+                         */
+                        Toast.makeText(getApplicationContext(),R.string.faltanDatos,Toast.LENGTH_LONG).show();
+                    }
+                else {
+
+                }
 
             }
         });

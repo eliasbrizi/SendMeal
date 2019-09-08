@@ -226,12 +226,26 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
+                <TextView
+                    android:id="@+id/textCBU"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cbu"
+                    android:textColor="@color/colorPrimary" />
+
                 <EditText
                     android:id="@+id/editAliasCBU"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/textAliasCBU"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aliascbu"
+                    android:textColor="@color/colorPrimary" />
 
                 <EditText
                     android:id="@+id/editCBU"
@@ -240,19 +254,6 @@
                     android:ems="22"
                     android:inputType="number" />
 
-                <TextView
-                    android:id="@+id/textCBU"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cbu"
-                    android:textColor="@color/colorPrimary" />
-
-                <TextView
-                    android:id="@+id/textAliasCBU"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/aliascbu"
-                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
 
             <CheckBox

@@ -22,5 +22,7 @@
     <string name="reg">Registrar</string>
 
     <string name="faltanDatos">Debe completar todos los campos</string>
+    <string name="clavesDistintas">Las claves no coinciden</string>
+    <string name="emailNoValido">El e-mail ingresado no es válido</string>
 
 </resources>

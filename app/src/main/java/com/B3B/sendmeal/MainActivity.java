@@ -3,6 +3,7 @@ package com.B3B.sendmeal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,9 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.sql.Date;
+import java.text.DateFormat;
 
 import static java.lang.Integer.valueOf;
 
@@ -129,13 +133,22 @@ public class MainActivity extends AppCompatActivity {
                         editFechaExpira.getText().toString().equals("MM/AA"))
                     {
                     if (switchVendedor.isChecked() && (editAliasCBU.toString().equals("") || editCBU.toString().equals("")))
-                        /*
-                        Faltan datos
-                         */
+                        //Faltan datos
                         Toast.makeText(getApplicationContext(),R.string.faltanDatos,Toast.LENGTH_LONG).show();
                     }
                 else {
-
+                    // No coincidencia de claves
+                    if (!editClave.getText().toString().equals(editConfirmacionClave.getText().toString())){
+                        Toast.makeText(getApplicationContext(),R.string.clavesDistintas,Toast.LENGTH_LONG).show();
+                    } else {
+                        String email = editEmail.getText().toString();
+                        if (!editEmail.getText().toString().contains("@") ||
+                                (email.substring(editEmail.getText().toString().lastIndexOf("@")).length() < 4))
+                            Toast.makeText(getApplicationContext(),R.string.emailNoValido,Toast.LENGTH_LONG).show();
+                        else ;/*
+                         Hacer validacion de fecha de tarjeta
+                        */
+                    }
                 }
 
             }

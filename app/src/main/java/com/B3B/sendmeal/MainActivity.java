@@ -95,31 +95,41 @@ public class MainActivity extends AppCompatActivity {
         // Ver como hacer lindo esto, no funca asi y no tengo ganas de fijarme ahora
         //--------------------------------------------------------------------------------------------------------------------------
         /*editNumeroTarjeta.setOnTouchListener(new View.OnTouchListener() {
-            @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (editNumeroTarjeta.getText().toString().equals("Número")){
-                    editNumeroTarjeta.getText().clear();
+                boolean touchResult = editNumeroTarjeta.onTouch(view, motionEvent);
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (editNumeroTarjeta.getText().toString().equals("Número")){
+                        editNumeroTarjeta.setText("vacio");
+                    }
+                    return true;
                 }
-                return false;
+                return(false||touchResult);
             }
         });
         editCCV.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (editCCV.getText().toString().equals("CCV")){
-                    editCCV.getText().clear();
+                boolean touchResult = editNumeroTarjeta.onTouch(view, motionEvent);
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (editCCV.getText().toString().equals("CCV")){
+                        editCCV.setText("vacio");
+                    }
+                    return true;
                 }
-                return false;
+                return(false||touchResult);
             }
         });
         editFechaExpira.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.)
-                if (editFechaExpira.getText().toString().equals("MM/AA")){
-                    editFechaExpira.getText().clear();
+                boolean touchResult = editNumeroTarjeta.onTouch(view, motionEvent);
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (editFechaExpira.getText().toString().equals("MM/AA")){
+                        editFechaExpira.setText("vacio");
+                    }
+                    return true;
                 }
-                return false;
+                return(false||touchResult);
             }
         });*/
 

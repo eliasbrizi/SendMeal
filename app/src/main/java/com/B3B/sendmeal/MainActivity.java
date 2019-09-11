@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import java.sql.Date;
 import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static java.lang.Integer.valueOf;
 
@@ -145,9 +147,35 @@ public class MainActivity extends AppCompatActivity {
                         if (!editEmail.getText().toString().contains("@") ||
                                 (email.substring(editEmail.getText().toString().lastIndexOf("@")).length() < 4))
                             Toast.makeText(getApplicationContext(),R.string.emailNoValido,Toast.LENGTH_LONG).show();
-                        else ;/*
-                         Hacer validacion de fecha de tarjeta
-                        */
+                        else {
+                            LocalDateTime fechaActual = LocalDateTime.now();
+                            Integer mesActual = fechaActual.getMonthValue();
+                            Integer yearActual = fechaActual.getYear();
+                            Integer mesTarjeta = Integer.parseInt(editFechaExpira.getText().toString().substring(0,1));
+                            Integer yearTarjeta = Integer.parseInt(editFechaExpira.getText().toString().substring(3,4))+ 2000;
+                            if(yearTarjeta < yearActual){
+                                Toast.makeText(getApplicationContext(),R.string.tarjetaVencimiento,Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                if(yearTarjeta == yearActual){
+                                    if(mesTarjeta - mesActual > 3) {
+                                        //valido
+                                    }
+                                }
+                                else if(yearTarjeta == yearActual + 1){
+                                    if(mesTarjeta + 12 - mesActual > 3 ){
+                                        //valido
+                                    }
+                                }
+                                else if(yearTarjeta > yearActual + 1){
+                                    //valido
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(),R.string.tarjetaVencimiento,Toast.LENGTH_LONG).show();
+                                }
+
+                            }
+                        };
                     }
                 }
 

@@ -88,51 +88,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        Borro texto por default cuando se selecciona el campo
-         */
-        //-------------------------------------------------------------------------------------------------------------------------
-        // Ver como hacer lindo esto, no funca asi y no tengo ganas de fijarme ahora
-        //--------------------------------------------------------------------------------------------------------------------------
-        /*editNumeroTarjeta.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean touchResult = editNumeroTarjeta.onTouch(view, motionEvent);
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if (editNumeroTarjeta.getText().toString().equals("Número")){
-                        editNumeroTarjeta.setText("vacio");
-                    }
-                    return true;
-                }
-                return(false||touchResult);
-            }
-        });
-        editCCV.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean touchResult = editNumeroTarjeta.onTouch(view, motionEvent);
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if (editCCV.getText().toString().equals("CCV")){
-                        editCCV.setText("vacio");
-                    }
-                    return true;
-                }
-                return(false||touchResult);
-            }
-        });
-        editFechaExpira.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean touchResult = editNumeroTarjeta.onTouch(view, motionEvent);
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if (editFechaExpira.getText().toString().equals("MM/AA")){
-                        editFechaExpira.setText("vacio");
-                    }
-                    return true;
-                }
-                return(false||touchResult);
-            }
-        });*/
-
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

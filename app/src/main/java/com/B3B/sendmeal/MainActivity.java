@@ -3,24 +3,21 @@ package com.B3B.sendmeal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.format.DateUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-import static java.lang.Integer.valueOf;
+import java.time.LocalDateTime;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         final TextView textValorCredito = (TextView) findViewById(R.id.textValorCredito);
         final Button btnRegistrar = (Button) findViewById(R.id.buttonRegistrar);
         final CheckBox checkCondiciones = (CheckBox) findViewById(R.id.checkAceptoCondiciones);
+        final RadioGroup radioGroupTipoDeCuenta = (RadioGroup) findViewById(R.id.radioGroupTipoCuenta);
+        final RadioButton radioButtonBasica = (RadioButton) findViewById(R.id.radioButton);
+        final RadioButton radioButtonFull = (RadioButton) findViewById(R.id.radioButton2);
+        final RadioButton radioButtonPremium = (RadioButton) findViewById(R.id.radioButton3);
         /*
         EditText
          */
@@ -88,9 +89,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        radioGroupTipoDeCuenta.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (radioButtonBasica.isChecked()){
+                    seekCredito.setProgress(0);
+                    textValorCredito.setText("100");
+                }   else
+                    { if(radioButtonFull.isChecked()){
+                        seekCredito.setProgress(150);
+                        textValorCredito.setText("250");
+                        } else
+                            if (radioButtonPremium.isChecked())
+                            seekCredito.setProgress(400);
+                            textValorCredito.setText("500");
+                    }
+            }
+        });
+
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Boolean valido = true;
                 /*
                 Validaciones
                  */
@@ -99,19 +120,33 @@ public class MainActivity extends AppCompatActivity {
                         editNumeroTarjeta.getText().toString().equals("Número") || editCCV.getText().toString().equals("CCV") ||
                         editFechaExpira.getText().toString().equals("MM/AA"))
                     {
-                    if (switchVendedor.isChecked() && (editAliasCBU.toString().equals("") || editCBU.toString().equals("")))
-                        //Faltan datos
                         Toast.makeText(getApplicationContext(),R.string.faltanDatos,Toast.LENGTH_LONG).show();
+                        valido = false;
                     }
                 else {
-                    // No coincidencia de claves
+                    /*
+                    Vendedor
+                     */
+                    if (switchVendedor.isChecked() && (editAliasCBU.toString().equals("") || editCBU.toString().equals(""))) {
+                        Toast.makeText(getApplicationContext(), R.string.faltanDatos, Toast.LENGTH_LONG).show();
+                        valido = false;
+                    }/*
+                    Claves
+                     */
                     if (!editClave.getText().toString().equals(editConfirmacionClave.getText().toString())){
                         Toast.makeText(getApplicationContext(),R.string.clavesDistintas,Toast.LENGTH_LONG).show();
-                    } else {
+                        valido = false;
+                    }
+                    /*
+
+                     */
+                    else {
                         String email = editEmail.getText().toString();
                         if (!editEmail.getText().toString().contains("@") ||
-                                (email.substring(editEmail.getText().toString().lastIndexOf("@")).length() < 4))
-                            Toast.makeText(getApplicationContext(),R.string.emailNoValido,Toast.LENGTH_LONG).show();
+                                (email.substring(editEmail.getText().toString().lastIndexOf("@")).length() < 4)) {
+                            Toast.makeText(getApplicationContext(), R.string.emailNoValido, Toast.LENGTH_LONG).show();
+                            valido = false;
+                        }
                         else {
                             LocalDateTime fechaActual = LocalDateTime.now();
                             Integer mesActual = fechaActual.getMonthValue();
@@ -120,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                             Integer yearTarjeta = Integer.parseInt(editFechaExpira.getText().toString().substring(3,4))+ 2000;
                             if(yearTarjeta < yearActual){
                                 Toast.makeText(getApplicationContext(),R.string.tarjetaVencimiento,Toast.LENGTH_LONG).show();
+                                valido = false;
                             }
                             else{
                                 if(yearTarjeta == yearActual){
@@ -137,12 +173,14 @@ public class MainActivity extends AppCompatActivity {
                                 }
                                 else{
                                     Toast.makeText(getApplicationContext(),R.string.tarjetaVencimiento,Toast.LENGTH_LONG).show();
+                                    valido = false;
                                 }
 
                             }
                         };
                     }
                 }
+                if (valido) Toast.makeText(getApplicationContext(),R.string.guardadoExitoso,Toast.LENGTH_LONG).show();
 
             }
         });

@@ -27,5 +27,6 @@
     <string name="clavesDistintas">Las claves no coinciden</string>
     <string name="emailNoValido">El e-mail ingresado no es válido</string>
     <string name="tarjetaVencimiento">La tarjeta debe tener vencimiento mayor a 3 meses</string>
+    <string name="guardadoExitoso">El registro ha sido exitoso</string>
 
 </resources>

@@ -29,4 +29,10 @@
     <string name="tarjetaVencimiento">La tarjeta debe tener vencimiento mayor a 3 meses</string>
     <string name="guardadoExitoso">El registro ha sido exitoso</string>
 
+    <string name="menuItemRegistrar">Registrar</string>
+    <string name="menuItemCrear">Crear nuevo Item</string>
+    <string name="menuItemConsultar">Consultar Items</string>
+
+
+
 </resources>

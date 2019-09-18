@@ -38,6 +38,6 @@
     <string name="descripcionANP">Descripción</string>
     <string name="precioANP">ID</string>
     <string name="caloriasANP">Calorías</string>
-
+    <string name="guardarNuevoPlatoANP">Guardar Plato</string>
 
 </resources>

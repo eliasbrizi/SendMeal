@@ -12,5 +12,6 @@ public class AltaNuevoPlato extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarSendMeal);
         setSupportActionBar(toolbar);
+
     }
 }

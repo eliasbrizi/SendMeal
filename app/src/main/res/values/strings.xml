@@ -30,8 +30,8 @@
     <string name="guardadoExitoso">El registro ha sido exitoso</string>
 
     <string name="menuItemRegistrar">Registrar</string>
-    <string name="menuItemCrear">Crear nuevo Item</string>
-    <string name="menuItemConsultar">Consultar Items</string>
+    <string name="menuItemCrear">Crear nuevo Plato</string>
+    <string name="menuItemConsultar">Consultar Platos</string>
 
     <string name="idANP">ID</string>
     <string name="tituloANP">Título</string>
@@ -39,5 +39,6 @@
     <string name="precioANP">Precio</string>
     <string name="caloriasANP">Calorías</string>
     <string name="guardarNuevoPlatoANP">Guardar Plato</string>
+    <string name="platoCreado">El plato se ha creado con éxito</string>
 
 </resources>

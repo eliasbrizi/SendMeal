@@ -36,7 +36,7 @@
     <string name="idANP">ID</string>
     <string name="tituloANP">Título</string>
     <string name="descripcionANP">Descripción</string>
-    <string name="precioANP">ID</string>
+    <string name="precioANP">Precio</string>
     <string name="caloriasANP">Calorías</string>
     <string name="guardarNuevoPlatoANP">Guardar Plato</string>
 

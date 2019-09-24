@@ -9,9 +9,9 @@ public class AltaNuevoPlato extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarSendMeal);
+        setContentView(R.layout.activity_altanuevoplato);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarBack);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

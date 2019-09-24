@@ -27,14 +27,17 @@ public class Home extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i1;
         switch(item.getItemId()) {
-            case R.id.menuItemRegistrar: Intent i1 = new Intent (this,MainActivity.class);
-            startActivity(i1);
-            return true;
-            /*case R.id.menuItemCrear: Intent i1 =newIntent(this,Main3Activity.class);
+            case R.id.menuItemRegistrar:
+                i1 = new Intent (this,MainActivity.class);
                 startActivity(i1);
                 return true;
-            case R.id.menuItemConsultar: Intent i1 =newIntent(this,Main3Activity.class);
+            case R.id.menuItemCrear:
+                i1 = new Intent(this,AltaNuevoPlato.class);
+                startActivity(i1);
+                return true;
+            /*case R.id.menuItemConsultar: Intent i1 =newIntent(this,Main3Activity.class);
                 startActivity(i1);
                 return true;*/
                 default:

@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".MainActivity" android:parentActivityName=".Home"/>
         <activity android:name=".AltaNuevoPlato" android:parentActivityName=".Home"/>
+        <activity android:name=".ListaPlatos" android:parentActivityName=".Home"/>
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ public class Plato {
     private Double precio;
     private String nombre;
     private String descripcion;
+    private  Boolean oferta;
 
     /**
      * Crea un plato con
@@ -22,6 +23,7 @@ public class Plato {
         precio = prec;
         nombre = nombr;
         descripcion = descr;
+        oferta = false;
     }
 
     public Integer getID() {
@@ -62,5 +64,14 @@ public class Plato {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+
+    public Boolean getOferta() {
+        return oferta;
+    }
+
+    public void setOferta(Boolean oferta) {
+        this.oferta = oferta;
     }
 }

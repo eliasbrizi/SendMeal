@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
 
@@ -34,7 +33,7 @@ public class Home extends AppCompatActivity {
                 startActivity(i1);
                 return true;
             case R.id.menuItemCrear:
-                i1 = new Intent(this,AltaNuevoPlato.class);
+                i1 = new Intent(this, EditarPlato.class);
                 startActivity(i1);
                 return true;
             case R.id.menuItemConsultar:

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/back_toolbar"/>
+
+    <TextView
+        android:id="@+id/textIdANP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/idANP" />
+
+    <EditText
+        android:id="@+id/editNumIDANP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textTituloANP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tituloANP" />
+
+    <EditText
+        android:id="@+id/editTituloANP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textDescripcionANP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/descripcionANP" />
+
+    <EditText
+        android:id="@+id/editDescripcionANP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textPrecioANP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/precioANP" />
+
+    <EditText
+        android:id="@+id/editPrecioANP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textCaloriasANP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/caloriasANP" />
+
+    <EditText
+        android:id="@+id/editCaloriasANP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/buttonGuardarPlato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guardarNuevoPlatoANP"/>
+
+</LinearLayout>

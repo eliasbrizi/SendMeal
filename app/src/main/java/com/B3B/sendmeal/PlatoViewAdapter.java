@@ -15,16 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.B3B.sendmeal.domain.Plato;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class PlatoViewAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
 
     private List<Plato> platos;
     private Context contexto;
+    private ListaPlatos listaPlatos;
 
-    public  PlatoViewAdapter(Context cont, List<Plato> pl){
+    public  PlatoViewAdapter(Context cont, List<Plato> pl,ListaPlatos lp){
         platos = pl;
         contexto = cont;
+        listaPlatos = lp;
     }
 
     @NonNull
@@ -38,7 +41,7 @@ public class PlatoViewAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PlatoViewHolder holder, int position) {
-        Plato pl = platos.get(position);
+        final Plato pl = platos.get(position);
         holder.setNombrePlato(pl.getNombre());
         holder.setPrecioPlato(pl.getPrecio().toString());
         /*
@@ -46,12 +49,18 @@ public class PlatoViewAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
          */
         //TODO
         holder.setImagenPlato();
-        final Integer posicion = (Integer) holder.nombrePlato.getTag();
+        final Integer posicion = position;//(Integer) holder.nombrePlato.getTag();
         holder.editarPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i1 = new Intent (contexto,EditarPlato.class);
-                new AppCompatActivity().startActivity(i1);
+                i1.putExtra("ID",pl.getID());
+                i1.putExtra("calorias",pl.getCalorias());
+                i1.putExtra("descripcion",pl.getDescripcion());
+                i1.putExtra("nombre",pl.getNombre());
+                i1.putExtra("precio",pl.getPrecio());
+
+                listaPlatos.startActivity(i1);
             }
         });
         holder.ofertarPlato.setOnClickListener(new View.OnClickListener() {

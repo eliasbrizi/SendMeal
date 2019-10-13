@@ -33,6 +33,7 @@
     <string name="menuItemCrear">Crear nuevo Plato</string>
     <string name="menuItemConsultar">Consultar Platos</string>
 
+    <!-- Pantalla alta nuevo plato-->
     <string name="idANP">ID</string>
     <string name="tituloANP">Título</string>
     <string name="descripcionANP">Descripción</string>
@@ -41,4 +42,7 @@
     <string name="guardarNuevoPlatoANP">Guardar Plato</string>
     <string name="platoCreado">El plato se ha creado con éxito</string>
 
+    <!-- CardView plato -->
+    <string name="nombrePlatoListaPlato">Nombre: </string>
+    <string name="precioPlatoListaPlato">Precio: </string>
 </resources>

@@ -6,71 +6,71 @@
     <include layout="@layout/back_toolbar"/>
 
     <TextView
-        android:id="@+id/textIdANP"
+        android:id="@+id/textIdEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/idANP" />
 
     <EditText
-        android:id="@+id/editNumIDANP"
+        android:id="@+id/editNumIDEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number" />
 
     <TextView
-        android:id="@+id/textTituloANP"
+        android:id="@+id/textTituloEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tituloANP" />
 
     <EditText
-        android:id="@+id/editTituloANP"
+        android:id="@+id/editTituloEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" />
 
     <TextView
-        android:id="@+id/textDescripcionANP"
+        android:id="@+id/textDescripcionEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/descripcionANP" />
 
     <EditText
-        android:id="@+id/editDescripcionANP"
+        android:id="@+id/editDescripcionEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10" />
 
     <TextView
-        android:id="@+id/textPrecioANP"
+        android:id="@+id/textPrecioEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/precioANP" />
 
     <EditText
-        android:id="@+id/editPrecioANP"
+        android:id="@+id/editPrecioEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal" />
 
     <TextView
-        android:id="@+id/textCaloriasANP"
+        android:id="@+id/textCaloriasEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/caloriasANP" />
 
     <EditText
-        android:id="@+id/editCaloriasANP"
+        android:id="@+id/editCaloriasEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number" />
 
     <Button
-        android:id="@+id/buttonGuardarPlato"
+        android:id="@+id/buttonGuardarPlatoEditarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/guardarNuevoPlatoANP"/>

@@ -15,7 +15,7 @@ public class EditarPlato extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_altanuevoplato);
+        setContentView(R.layout.activity_editarplato);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarBack);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -23,18 +23,27 @@ public class EditarPlato extends AppCompatActivity {
         /*
         Variables de pantalla
          */
-        final EditText editIdPlato = (EditText) findViewById(R.id.editNumIDANP);
-        final EditText editTituloPlato = (EditText) findViewById(R.id.editTituloANP);
-        final EditText editDescripcionPlato = (EditText) findViewById(R.id.editDescripcionANP);
-        final EditText editPrecio = (EditText) findViewById(R.id.editPrecioANP);
-        final EditText editCalorias = (EditText) findViewById(R.id.editCaloriasANP);
+        final EditText editIdPlato = (EditText) findViewById(R.id.editNumIDEditarPlato);
+        final EditText editTituloPlato = (EditText) findViewById(R.id.editTituloEditarPlato);
+        final EditText editDescripcionPlato = (EditText) findViewById(R.id.editDescripcionEditarPlato);
+        final EditText editPrecio = (EditText) findViewById(R.id.editPrecioEditarPlato);
+        final EditText editCalorias = (EditText) findViewById(R.id.editCaloriasEditarPlato);
 
-        final Button btnGuardarPlato = (Button) findViewById(R.id.buttonGuardarPlato);
+        final Button btnGuardarPlato = (Button) findViewById(R.id.buttonGuardarPlatoEditarPlato);
+
+        /*
+        Logica
+        */
+
+        editIdPlato.setText(String.valueOf(getIntent().getExtras().getInt("ID")));
+        editCalorias.setText(String.valueOf(getIntent().getExtras().getInt("calorias")));
+        editDescripcionPlato.setText(getIntent().getExtras().getString("descripcion"));
+        editPrecio.setText(String.valueOf(getIntent().getExtras().getDouble("precio")));
+        editTituloPlato.setText(getIntent().getExtras().getString("nombre"));
 
         /*
 
          */
-
         btnGuardarPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

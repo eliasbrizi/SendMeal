@@ -47,9 +47,10 @@ Lista de platos
              /*
              borrar anterior
             */
-        mAdapter = new PlatoViewAdapter(ListaPlatos.this,_PLATOS);
+        mAdapter = new PlatoViewAdapter(getApplicationContext(),_PLATOS,this);
         mRecyclerView.setAdapter(mAdapter);
 
 
     }
+
 }

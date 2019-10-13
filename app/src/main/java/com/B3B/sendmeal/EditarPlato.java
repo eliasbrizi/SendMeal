@@ -11,6 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.B3B.sendmeal.domain.Plato;
 
+import java.util.List;
+
 public class EditarPlato extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +37,13 @@ public class EditarPlato extends AppCompatActivity {
         Logica
         */
 
-        editIdPlato.setText(String.valueOf(getIntent().getExtras().getInt("ID")));
-        editCalorias.setText(String.valueOf(getIntent().getExtras().getInt("calorias")));
-        editDescripcionPlato.setText(getIntent().getExtras().getString("descripcion"));
-        editPrecio.setText(String.valueOf(getIntent().getExtras().getDouble("precio")));
-        editTituloPlato.setText(getIntent().getExtras().getString("nombre"));
-
+        final Plato plato = ListaPlatos._PLATOS.
+                get(getIntent().getExtras().getInt("posicion"));
+        editCalorias.setText(plato.getCalorias().toString());
+        editDescripcionPlato.setText(plato.getDescripcion());
+        editIdPlato.setText(plato.getID().toString());
+        editPrecio.setText(plato.getPrecio().toString());
+        editTituloPlato.setText(plato.getNombre());
         /*
 
          */
@@ -54,11 +57,12 @@ public class EditarPlato extends AppCompatActivity {
                         editTituloPlato.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(),R.string.faltanDatos,Toast.LENGTH_SHORT).show();
                 } else {
-                    Plato pl = new Plato(Integer.parseInt(editIdPlato.getText().toString()),
-                            Integer.parseInt(editCalorias.getText().toString()),
-                            Double.parseDouble(editPrecio.getText().toString()),
-                            editTituloPlato.getText().toString(),
-                            editDescripcionPlato.getText().toString());
+
+                    plato.setCalorias(Integer.parseInt(editCalorias.getText().toString()));
+                    plato.setPrecio(Double.parseDouble(editPrecio.getText().toString()));
+                    plato.setNombre(editTituloPlato.getText().toString());
+                    plato.setDescripcion(editCalorias.getText().toString());
+
                     Toast.makeText(getApplicationContext(),R.string.platoCreado,Toast.LENGTH_SHORT).show();
 
                 }

@@ -37,13 +37,14 @@ Lista de platos
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         //TODO
+        if (_PLATOS.isEmpty()){
              /*
               creo una lista de un plato para que no explotee
              */
              Plato p;
-             for (int i=0; i<13 ; i++){
+             for (int i=0; i<5 ; i++){
              p = new Plato(i+1, 100+10*i, 150.0+i, "matambre", "Un matambre comunacho y conrriente");
-            _PLATOS.add(p);}
+            _PLATOS.add(p);}}
              /*
              borrar anterior
             */

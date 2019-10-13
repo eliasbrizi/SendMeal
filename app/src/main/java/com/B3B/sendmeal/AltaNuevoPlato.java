@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +50,7 @@ public class AltaNuevoPlato extends AppCompatActivity {
                             Double.parseDouble(editPrecio.getText().toString()),
                             editTituloPlato.getText().toString(),
                             editDescripcionPlato.getText().toString());
+  //                  ListaPlatos._PLATOS.add(pl);
                     Toast.makeText(getApplicationContext(),R.string.platoCreado,Toast.LENGTH_SHORT).show();
 
                 }

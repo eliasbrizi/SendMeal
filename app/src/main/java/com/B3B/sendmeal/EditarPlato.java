@@ -11,8 +11,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.B3B.sendmeal.domain.Plato;
 
-import java.util.List;
-
 public class EditarPlato extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

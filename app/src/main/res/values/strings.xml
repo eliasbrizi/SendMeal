@@ -41,7 +41,6 @@
     <string name="caloriasANP">Calorías</string>
     <string name="guardarNuevoPlatoANP">Guardar Plato</string>
     <string name="platoCreado">El plato se ha creado con éxito</string>
-    <string name="platoOfertado">El plato se esta preparando para ofertar</string>
 
     <!-- CardView plato -->
     <string name="nombrePlatoListaPlato">Nombre: </string>
@@ -50,4 +49,12 @@
     <!-- Lista Platos -->
     <string name="dialogoEliminarPlato">¿Desea eliminar el plato de la lista?</string>
     <string name="tituloDialogo">Eliminar plato</string>
+
+    <!-- Oferta Platos -->
+    <string name="platoOfertado">El plato se esta preparando para ofertar</string>
+
+    <!-- Notificaciones -->
+    <string name="nombreCanal">Canal 1</string>
+    <string name="descripcionCanal">Canal utilizado para notificaciones</string>
+
 </resources>

@@ -2,6 +2,7 @@ package com.B3B.sendmeal;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.widget.Toast;
 
 public class OfertaIntentService extends IntentService {
     public OfertaIntentService(){
@@ -11,10 +12,11 @@ public class OfertaIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         //logica servicio
+
         String name = "";
         try {
             name = Thread.currentThread().getName();
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         }
         catch (InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -25,4 +27,6 @@ public class OfertaIntentService extends IntentService {
         i1.setAction(OfertaBroadcastReceiver.OFERTA);
         sendBroadcast(i1);
     }
+
+
 }

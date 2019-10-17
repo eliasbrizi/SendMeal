@@ -54,11 +54,7 @@ public class PlatoViewAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         holder.ofertarPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //aca logica y enviar notificacion
-
-                Intent i2 = new Intent(contexto, OfertarPlato.class);
-                i2.putExtra("posicion",position);
-                listaPlatos.startActivity(i2);
+                listaPlatos.ponerEnOferta(position);
             }
         });
         holder.eliminarPlato.setOnClickListener(new View.OnClickListener() {

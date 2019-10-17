@@ -20,7 +20,6 @@
         <activity android:name=".AltaNuevoPlato" android:parentActivityName=".Home"/>
         <activity android:name=".ListaPlatos" android:parentActivityName=".Home"/>
         <activity android:name=".EditarPlato" android:parentActivityName=".ListaPlatos"/>
-        <activity android:name=".OfertarPlato" android:parentActivityName=".ListaPlatos"/>
 
         <service
             android:name=".OfertaIntentService">

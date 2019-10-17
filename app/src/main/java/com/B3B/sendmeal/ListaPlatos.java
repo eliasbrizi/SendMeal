@@ -1,10 +1,13 @@
 package com.B3B.sendmeal;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -54,8 +57,19 @@ Lista de platos
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public void enOferta(){
+    public void ponerEnOferta(final int position){
+        final Plato plato = ListaPlatos._PLATOS.get(position);
+        plato.setOferta(true);
 
+        Toast.makeText(getApplicationContext(),R.string.platoOfertado,Toast.LENGTH_SHORT).show();
+
+        BroadcastReceiver br = new OfertaBroadcastReceiver();
+        IntentFilter filtro = new IntentFilter();
+        filtro.addAction(OfertaBroadcastReceiver.OFERTA);
+        getApplication().getApplicationContext().registerReceiver(br, filtro);
+
+        Intent servicio = new Intent(this, OfertaIntentService.class);
+        startService(servicio);
     }
 
     public void showDialogEliminar(final int position) {

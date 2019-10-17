@@ -40,8 +40,5 @@ public class Home extends AppCompatActivity {
                 i1 = new Intent(this,ListaPlatos.class);
                 startActivity(i1);
                 return true;
-                /*default:
-                Toast.makeText(this,". . . .",Toast.LENGTH_LONG).show();*/
-            //return super.onOptionsItemSelected(item);
         } return true;
     }}

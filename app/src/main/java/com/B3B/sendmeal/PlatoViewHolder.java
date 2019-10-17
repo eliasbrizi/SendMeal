@@ -56,6 +56,6 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setImagenPlato() {
-        this.imagenPlato.setImageResource(R.drawable.ic_launcher_foreground);
+        this.imagenPlato.setImageResource(R.drawable.costillita);
     }
 }

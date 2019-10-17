@@ -43,7 +43,7 @@ Lista de platos
              */
              Plato p;
              for (int i=0; i<5 ; i++){
-             p = new Plato(i+1, 100+10*i, 150.0+i, "matambre", "Un matambre comunacho y conrriente");
+             p = new Plato(i+1, 100+10*i, 150.0+i, "costillita", "Un matambre comunacho y conrriente");
             _PLATOS.add(p);}}
              /*
              borrar anterior

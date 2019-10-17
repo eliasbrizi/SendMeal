@@ -3,9 +3,6 @@ package com.B3B.sendmeal;
 import android.app.IntentService;
 import android.content.Intent;
 
-import com.B3B.sendmeal.ListaPlatos;
-import com.B3B.sendmeal.domain.Plato;
-
 public class OfertaIntentService extends IntentService {
     public OfertaIntentService(){
         super("OfertaIntentService");
@@ -20,7 +17,12 @@ public class OfertaIntentService extends IntentService {
             Thread.sleep(10000);
         }
         catch (InterruptedException e) {
-
+            Thread.currentThread().interrupt();
         }
+
+        Intent i1 = new Intent();
+        i1.putExtra("Nombre", "Plato en ofertaaaaa");
+        i1.setAction(OfertaBroadcastReceiver.OFERTA);
+        sendBroadcast(i1);
     }
 }

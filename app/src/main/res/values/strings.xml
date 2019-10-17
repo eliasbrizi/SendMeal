@@ -56,5 +56,7 @@
     <!-- Notificaciones -->
     <string name="nombreCanal">Canal 1</string>
     <string name="descripcionCanal">Canal utilizado para notificaciones</string>
+    <string name="nombreNotificacionOferta">Oferta</string>
+    <string name="detalleNotificacionOferta">esta en oferta!!</string>
 
 </resources>

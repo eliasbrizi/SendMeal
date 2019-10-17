@@ -1,6 +1,8 @@
 package com.B3B.sendmeal;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +62,7 @@ public class PlatoViewAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         holder.eliminarPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                listaPlatos.showDialogEliminar(position);
             }
         });
     }

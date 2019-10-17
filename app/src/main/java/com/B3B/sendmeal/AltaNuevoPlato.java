@@ -19,7 +19,6 @@ public class AltaNuevoPlato extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarBack);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         /*
         Variables de pantalla
          */
@@ -33,7 +32,7 @@ public class AltaNuevoPlato extends AppCompatActivity {
 
         /*
 
-         */
+        */
 
         btnGuardarPlato.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +49,7 @@ public class AltaNuevoPlato extends AppCompatActivity {
                             Double.parseDouble(editPrecio.getText().toString()),
                             editTituloPlato.getText().toString(),
                             editDescripcionPlato.getText().toString());
-  //                  ListaPlatos._PLATOS.add(pl);
+                    ListaPlatos._PLATOS.add(pl);
                     Toast.makeText(getApplicationContext(),R.string.platoCreado,Toast.LENGTH_SHORT).show();
 
                 }

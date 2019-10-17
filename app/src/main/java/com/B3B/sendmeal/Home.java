@@ -33,7 +33,7 @@ public class Home extends AppCompatActivity {
                 startActivity(i1);
                 return true;
             case R.id.menuItemCrear:
-                i1 = new Intent(this, EditarPlato.class);
+                i1 = new Intent(this, AltaNuevoPlato.class);
                 startActivity(i1);
                 return true;
             case R.id.menuItemConsultar:

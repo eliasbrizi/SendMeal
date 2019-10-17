@@ -16,14 +16,14 @@ public class OfertaIntentService extends IntentService {
         String name = "";
         try {
             name = Thread.currentThread().getName();
-            Thread.sleep(5000);
+            Thread.sleep(2000);
         }
         catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
 
         Intent i1 = new Intent();
-        i1.putExtra("Nombre", "Plato en ofertaaaaa");
+        i1.putExtra("nombrePlato", intent.getExtras().getString("nombrePlato"));
         i1.setAction(OfertaBroadcastReceiver.OFERTA);
         sendBroadcast(i1);
     }

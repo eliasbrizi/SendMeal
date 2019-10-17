@@ -6,11 +6,10 @@ import android.content.Intent;
 import android.widget.Toast;
 
 public class OfertaBroadcastReceiver extends BroadcastReceiver {
-
     public static final String OFERTA = "On Sale";
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context,"Llegue",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"El plato " + intent.getExtras().getString("nombrePlato") + " se encuentra en OFERTA!!",Toast.LENGTH_SHORT).show();
     }
 }

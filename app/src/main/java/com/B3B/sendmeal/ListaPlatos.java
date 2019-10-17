@@ -69,6 +69,7 @@ Lista de platos
         getApplication().getApplicationContext().registerReceiver(br, filtro);
 
         Intent servicio = new Intent(this, OfertaIntentService.class);
+        servicio.putExtra("nombrePlato", plato.getNombre());
         startService(servicio);
     }
 

@@ -52,7 +52,9 @@ Lista de platos
             */
         mAdapter = new PlatoViewAdapter(getApplicationContext(),_PLATOS,this);
         mRecyclerView.setAdapter(mAdapter);
+    }
 
+    public void enOferta(){
 
     }
 

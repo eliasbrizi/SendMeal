@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.B3B.sendmeal.domain.OfertaIntentService;
 import com.B3B.sendmeal.domain.Plato;
 
 import java.util.List;
@@ -56,9 +55,10 @@ public class PlatoViewAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
             @Override
             public void onClick(View view) {
                 //aca logica y enviar notificacion
-                Intent i2 = new Intent(contexto, OfertaIntentService.class);
+
+                Intent i2 = new Intent(contexto, OfertarPlato.class);
                 i2.putExtra("posicion",position);
-                startService(i2);
+                listaPlatos.startActivity(i2);
             }
         });
         holder.eliminarPlato.setOnClickListener(new View.OnClickListener() {

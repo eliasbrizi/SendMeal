@@ -35,8 +35,7 @@ public class EditarPlato extends AppCompatActivity {
         Logica
         */
 
-        final Plato plato = ListaPlatos._PLATOS.
-                get(getIntent().getExtras().getInt("posicion"));
+        final Plato plato = ListaPlatos._PLATOS.get(getIntent().getExtras().getInt("posicion"));
         editCalorias.setText(plato.getCalorias().toString());
         editDescripcionPlato.setText(plato.getDescripcion());
         editIdPlato.setText(plato.getID().toString());

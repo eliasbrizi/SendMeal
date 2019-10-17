@@ -41,6 +41,7 @@
     <string name="caloriasANP">Calorías</string>
     <string name="guardarNuevoPlatoANP">Guardar Plato</string>
     <string name="platoCreado">El plato se ha creado con éxito</string>
+    <string name="platoOfertado">El plato se esta preparando para ofertar</string>
 
     <!-- CardView plato -->
     <string name="nombrePlatoListaPlato">Nombre: </string>

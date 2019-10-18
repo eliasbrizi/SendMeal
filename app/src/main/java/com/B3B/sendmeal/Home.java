@@ -42,5 +42,9 @@ public class Home extends AppCompatActivity {
                 i1 = new Intent(this,ListaPlatos.class);
                 startActivity(i1);
                 return true;
+            case  R.id.menuItemBuscar:
+                i1 = new Intent(this,BuscarPlato.class);
+                startActivity(i1);
+                return true;
         } return true;
     }}

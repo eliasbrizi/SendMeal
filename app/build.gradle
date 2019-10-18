@@ -29,5 +29,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.android.support:support-compat:27.1.1'
-
+    def rf_version = "2.6.2"
+    implementation "com.squareup.retrofit2:retrofit:$rf_version"
+    implementation "com.squareup.retrofit2:converter-gson:$rf_version"
 }

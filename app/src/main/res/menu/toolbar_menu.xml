@@ -17,4 +17,9 @@
         android:orderInCategory="3"
         android:title="@string/menuItemConsultar"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menuItemBuscar"
+        android:orderInCategory="3"
+        android:title="@string/menuItemBuscar"
+        app:showAsAction="never" />
 </menu>

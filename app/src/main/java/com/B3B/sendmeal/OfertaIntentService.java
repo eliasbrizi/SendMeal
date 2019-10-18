@@ -16,7 +16,7 @@ public class OfertaIntentService extends IntentService {
         String name = "";
         try {
             name = Thread.currentThread().getName();
-            Thread.sleep(2000);
+            Thread.sleep(10000);
         }
         catch (InterruptedException e) {
             Thread.currentThread().interrupt();

@@ -53,12 +53,20 @@ Lista de platos
               creo una lista de un plato para que no explotee
              */
              Plato p;
-             for (int i=0; i<5 ; i++){
-             p = new Plato(i+1, 100+10*i, 150.0+i, "costillita", "Un matambre comunacho y conrriente");
-            _PLATOS.add(p);}}
-             /*
-             borrar anterior
-            */
+             for (int i=0; i<10 ; i++){
+                if(i % 2 == 0){
+                    p = new Plato(i+1, 100+10*i, 350.0+5*i , "Costillita " + String.valueOf(i+1), "Ternera o cerdo");
+                }
+                else{
+                    p = new Plato(i+1, 100+15*i, 150.0+10*i, "Milanesa " + String.valueOf(i+1), "Comun, a la pizza o napolitana");
+                }
+                _PLATOS.add(p);
+             }
+        }
+        /*
+        borrar anterior
+        */
+
         mAdapter = new PlatoViewAdapter(getApplicationContext(),_PLATOS,this);
         mRecyclerView.setAdapter(mAdapter);
     }

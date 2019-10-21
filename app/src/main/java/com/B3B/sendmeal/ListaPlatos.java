@@ -27,7 +27,7 @@ public class ListaPlatos extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    BroadcastReceiver br;
+    public static BroadcastReceiver br;
 
 /*
 Lista de platos
@@ -99,10 +99,11 @@ Lista de platos
         dialog.show();
     }
 
+    /*
     @Override
     public void onDestroy(){
         if(br != null){
-            getApplication().getApplicationContext().unregisterReceiver(br);
+            getApplicationContext().unregisterReceiver(br);
         }
         super.onDestroy();
     }
@@ -110,9 +111,11 @@ Lista de platos
     @Override
     public void onStop(){
         if(br != null){
-            getApplication().getApplicationContext().unregisterReceiver(br);
+            getApplicationContext().unregisterReceiver(br);
         }
         super.onStop();
     }
+
+     */
 
 }

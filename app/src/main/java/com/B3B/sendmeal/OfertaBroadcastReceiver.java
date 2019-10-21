@@ -16,7 +16,7 @@ public class OfertaBroadcastReceiver extends BroadcastReceiver {
     public static final String OFERTA = "On Sale";
 
     private Context contexto;
-    final String CHANNEL1 = "CH1";
+    final String CHANNEL1 = "Ofertas";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -44,7 +44,7 @@ public class OfertaBroadcastReceiver extends BroadcastReceiver {
             String descripcion = contexto.getString(R.string.descripcionCanal);
             int importancia = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel canal = new NotificationChannel(CHANNEL1, name, importancia);
-            canal.setImportance(importancia);
+            canal.setDescription(descripcion);
 
             NotificationManager notificationManager = contexto.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(canal);

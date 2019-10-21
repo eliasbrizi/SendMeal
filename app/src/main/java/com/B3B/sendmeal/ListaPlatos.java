@@ -26,6 +26,9 @@ public class ListaPlatos extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    BroadcastReceiver br;
+
 /*
 Lista de platos
  */
@@ -66,7 +69,7 @@ Lista de platos
 
         Toast.makeText(getApplicationContext(),R.string.platoOfertado,Toast.LENGTH_SHORT).show();
 
-        BroadcastReceiver br = new OfertaBroadcastReceiver();
+        br = new OfertaBroadcastReceiver();
         IntentFilter filtro = new IntentFilter();
         filtro.addAction(OfertaBroadcastReceiver.OFERTA);
         getApplication().getApplicationContext().registerReceiver(br, filtro);
@@ -94,6 +97,18 @@ Lista de platos
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    public void onDestroy(){
+        getApplication().getApplicationContext().unregisterReceiver(br);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onStop(){
+        getApplication().getApplicationContext().unregisterReceiver(br);
+        super.onStop();
     }
 
 }

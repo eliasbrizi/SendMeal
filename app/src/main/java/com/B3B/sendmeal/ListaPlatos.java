@@ -101,13 +101,17 @@ Lista de platos
 
     @Override
     public void onDestroy(){
-        getApplication().getApplicationContext().unregisterReceiver(br);
+        if(br != null){
+            getApplication().getApplicationContext().unregisterReceiver(br);
+        }
         super.onDestroy();
     }
 
     @Override
     public void onStop(){
-        getApplication().getApplicationContext().unregisterReceiver(br);
+        if(br != null){
+            getApplication().getApplicationContext().unregisterReceiver(br);
+        }
         super.onStop();
     }
 

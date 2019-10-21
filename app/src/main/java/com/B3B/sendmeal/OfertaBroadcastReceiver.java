@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -42,7 +41,7 @@ public class OfertaBroadcastReceiver extends BroadcastReceiver {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             CharSequence name = contexto.getString(R.string.nombreCanal);
             String descripcion = contexto.getString(R.string.descripcionCanal);
-            int importancia = NotificationManager.IMPORTANCE_DEFAULT;
+            int importancia = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel canal = new NotificationChannel(CHANNEL1, name, importancia);
             canal.setDescription(descripcion);
 

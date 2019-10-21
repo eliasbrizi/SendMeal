@@ -50,7 +50,6 @@ public class Home extends AppCompatActivity {
                 return true;
             case android.R.id.home:
                 onBackPressed();
-                Toast.makeText(getApplicationContext(), "era boton", Toast.LENGTH_LONG);
                 return true;
         }
         return true;

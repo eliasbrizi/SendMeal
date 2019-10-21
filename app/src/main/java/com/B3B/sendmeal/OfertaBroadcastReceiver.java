@@ -20,9 +20,9 @@ public class OfertaBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         contexto = context;
-        Intent intento = new Intent(context, ListaPlatos.class);
-        intento.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intento, 0);
+        Intent destinoNotificacion = new Intent(context, ListaPlatos.class);
+        destinoNotificacion.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, destinoNotificacion, 0);
 
         createNotificationChannel();
 

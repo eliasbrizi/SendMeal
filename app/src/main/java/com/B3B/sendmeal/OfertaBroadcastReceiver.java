@@ -20,8 +20,8 @@ public class OfertaBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         contexto = context;
-        Intent destinoNotificacion = new Intent(context, ListaPlatos.class);
-        destinoNotificacion.putExtra("Posicion", intent.getExtras().getString("Posicion"));
+        Intent destinoNotificacion = new Intent(context, MostrarPlato.class);
+        destinoNotificacion.putExtra("Posicion", intent.getExtras().getInt("Posicion"));
         destinoNotificacion.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, destinoNotificacion, 0);
 
@@ -34,7 +34,7 @@ public class OfertaBroadcastReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(contexto);
         notificationManagerCompat.notify(99, mBuilder.build());
     }
 

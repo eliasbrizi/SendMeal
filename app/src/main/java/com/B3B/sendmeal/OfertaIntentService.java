@@ -20,8 +20,9 @@ public class OfertaIntentService extends IntentService {
         }
 
         Intent i1 = new Intent();
-        i1.putExtra("Posicion", intent.getExtras().getString("Posicion"));
+        i1.putExtra("Posicion", intent.getExtras().getInt("Posicion"));
         i1.putExtra("NombrePlato", intent.getExtras().getString("NombrePlato"));
+        i1.setAction(OfertaBroadcastReceiver.OFERTA);
         sendBroadcast(i1);
     }
 

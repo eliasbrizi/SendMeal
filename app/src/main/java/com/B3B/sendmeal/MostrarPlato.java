@@ -21,13 +21,13 @@ public class MostrarPlato extends AppCompatActivity {
         /*
         Variables de pantalla
          */
-        final EditText editIdPlato = (EditText) findViewById(R.id.editNumIDEditarPlato);
-        final EditText editTituloPlato = (EditText) findViewById(R.id.editTituloEditarPlato);
-        final EditText editDescripcionPlato = (EditText) findViewById(R.id.editDescripcionEditarPlato);
-        final EditText editPrecio = (EditText) findViewById(R.id.editPrecioEditarPlato);
-        final EditText editCalorias = (EditText) findViewById(R.id.editCaloriasEditarPlato);
+        final EditText editIdPlato = (EditText) findViewById(R.id.editNumIDMostrarPlato);
+        final EditText editTituloPlato = (EditText) findViewById(R.id.editTituloMostrarPlato);
+        final EditText editDescripcionPlato = (EditText) findViewById(R.id.editDescripcionMostrarPlato);
+        final EditText editPrecio = (EditText) findViewById(R.id.editPrecioMostrarPlato);
+        final EditText editCalorias = (EditText) findViewById(R.id.editCaloriasMostrarPlato);
 
-        final Button btnGuardarPlato = (Button) findViewById(R.id.buttonGuardarPlatoEditarPlato);
+        final Button btnGuardarPlato = (Button) findViewById(R.id.buttonGuardarPlatoMostrarPlato);
 
          /*
         Logica

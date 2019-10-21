@@ -21,6 +21,7 @@ public class OfertaBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         contexto = context;
         Intent destinoNotificacion = new Intent(context, ListaPlatos.class);
+        destinoNotificacion.putExtra("Posicion", intent.getExtras().getString("Posicion"));
         destinoNotificacion.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, destinoNotificacion, 0);
 
@@ -28,7 +29,7 @@ public class OfertaBroadcastReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL1)
                 .setSmallIcon(R.drawable.icono_notify).setContentTitle(context.getString(R.string.nombreNotificacionOferta))
-                .setContentText(intent.getExtras().getString("nombrePlato") + " " + context.getString(R.string.detalleNotificacionOferta))
+                .setContentText(intent.getExtras().getString("NombrePlato") + " " + context.getString(R.string.detalleNotificacionOferta))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);

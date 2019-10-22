@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.B3B.sendmeal.dao.PlatoRepository;
 import com.B3B.sendmeal.domain.Plato;
 
 public class AltaNuevoPlato extends AppCompatActivity {
@@ -49,9 +50,9 @@ public class AltaNuevoPlato extends AppCompatActivity {
                             Double.parseDouble(editPrecio.getText().toString()),
                             editTituloPlato.getText().toString(),
                             editDescripcionPlato.getText().toString());
-                    ListaPlatos._PLATOS.add(pl);
+                    //ListaPlatos._PLATOS.add(pl);
+                    PlatoRepository.getInstance().crearPlato(pl);
                     Toast.makeText(getApplicationContext(),R.string.platoCreado,Toast.LENGTH_SHORT).show();
-
                 }
             }
         });

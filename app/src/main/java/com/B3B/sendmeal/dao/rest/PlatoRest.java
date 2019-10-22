@@ -8,20 +8,25 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface PlatoRest {
-    @GET("platos/") Call<List<Plato>> listarTodos();
 
-    @GET("platos/") Call<Plato> findPlatoByID(int id);
+    @POST("platos/")
+    Call<Plato> crearPlato(@Body Plato p);
 
-    @POST("platos/") Call<Plato> crearPlato(@Body Plato p);
+    @GET("platos/")
+    Call<List<Plato>> listarTodos();
 
-    @PATCH("platos/") Call<Plato> actualizarNombrePlato(String nombre);
+    @GET("platos/{id}")
+    Call<Plato> buscarPlatoPorID(@Path("id") Integer id);
 
-    @PATCH("platos/") Call<Plato> actualizarDescripcionPlato(String descripcion);
+    @PUT("platos/{id}")
+    Call<Plato> actualizarPlato(@Path("id") Integer id, @Body Plato plato);
 
-    @DELETE("platos/") Call<Plato> eliminarPlato(int id);
+    @DELETE("platos/{id}")
+    Call<Plato> eliminarPlato(@Path("id") Integer id);
+
 }

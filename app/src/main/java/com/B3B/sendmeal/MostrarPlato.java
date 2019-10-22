@@ -27,8 +27,6 @@ public class MostrarPlato extends AppCompatActivity {
         final EditText editPrecio = (EditText) findViewById(R.id.editPrecioMostrarPlato);
         final EditText editCalorias = (EditText) findViewById(R.id.editCaloriasMostrarPlato);
 
-        final Button btnGuardarPlato = (Button) findViewById(R.id.buttonGuardarPlatoMostrarPlato);
-
          /*
         Logica
         */

@@ -49,7 +49,7 @@ public class PlatoRepository {
         return _INSTANCE;
     }
 
-    private void configurarRetrofit(){
+    private void configurarRetrofit (){
         this.rf = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:5000/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -83,7 +83,7 @@ public class PlatoRepository {
         });
     }
 
-    public void crearPlato(Plato plato/*, final Handler h*/){
+    public void crearPlato (Plato plato/*, final Handler h*/){
         Call<Plato> llamada = this.platoRest.crearPlato(plato);
         llamada.enqueue(new Callback<Plato>() {
             @Override
@@ -110,9 +110,43 @@ public class PlatoRepository {
         });
     }
 
+    public List<Plato> getListaPlatos() {
+        return listaPlatos;
+    }
 
+    public void borrarPlato (final Plato plato/*, final Handler h*/){
+        Call<Void> llamada = this.platoRest.eliminarPlato(plato.getID());
+        llamada.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d("APP_2","Despues que ejecuta"+ response.isSuccessful());
+                Log.d("APP_2","COdigo"+ response.code());
 
+                if(response.isSuccessful()){
+                    Log.d("APP_2","EJECUTO");
+                    for(Plato o : listaPlatos){
+                        Log.d("APP_2","Obra "+o.getID());
+                    }
+                    Log.d("APP_2","BORRA Obra "+plato.getID());
+                    listaPlatos.remove(plato);
+                    for(Plato o : listaPlatos){
+                        Log.d("APP_2","Obra "+o.getID());
+                    }/*
+                    Message m = new Message();
+                    m.arg1 = _BORRADO_OBRA;
+                    h.sendMessage(m);*/
+                }
+            }
 
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("APP_2","ERROR "+t.getMessage());
+                /*Message m = new Message();
+                m.arg1 = _ERROR_OBRA;
+                h.sendMessage(m);*/
+            }
+        });
+    }
 /*
     public void actualizarObra(final Obra o, final Handler h){
         Call<Obra> llamada = this.platoRest.actualizar(o.getId(),o);
@@ -225,7 +259,5 @@ public class PlatoRepository {
             }
         });
     }*/
-    public List<Plato> getListaPlatos() {
-        return listaPlatos;
-    }
+
 }

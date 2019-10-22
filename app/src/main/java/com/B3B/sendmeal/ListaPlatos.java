@@ -103,13 +103,14 @@ Lista de platos
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                Plato pl = _PLATOS.get(position);
+                                PlatoRepository.getInstance().borrarPlato(pl);
                                 _PLATOS.remove(position);
                                 mAdapter.notifyDataSetChanged();
                             }
                         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
             }
         });
         AlertDialog dialog = builder.create();

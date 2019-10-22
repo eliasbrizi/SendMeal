@@ -20,13 +20,13 @@ public interface PlatoRest {
     @GET("platos/")
     Call<List<Plato>> listarTodos();
 
-    @GET("platos/{id}")
-    Call<Plato> buscarPlatoPorID(@Path("id") Integer id);
+    @GET("platos/{ID}")
+    Call<Plato> buscarPlatoPorID(@Path("ID") Integer id);
 
-    @PUT("platos/{id}")
-    Call<Plato> actualizarPlato(@Path("id") Integer id, @Body Plato plato);
+    @PUT("platos/{ID}")
+    Call<Plato> actualizarPlato(@Path("ID") Integer id, @Body Plato plato);
 
-    @DELETE("platos/{id}")
-    Call<Plato> eliminarPlato(@Path("id") Integer id);
+    @DELETE("platos/{ID}")
+    Call<Void> eliminarPlato(@Path("ID") Integer id);
 
 }

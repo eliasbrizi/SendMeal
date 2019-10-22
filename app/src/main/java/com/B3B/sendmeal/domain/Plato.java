@@ -2,7 +2,7 @@ package com.B3B.sendmeal.domain;
 
 public class Plato {
 
-    private Integer ID;
+    private Integer id;
     private Integer calorias;
     private Double precio;
     private String nombre;
@@ -11,14 +11,14 @@ public class Plato {
 
     /**
      * Crea un plato con
-     * @param id
+     * @param i
      * @param cal calorias
      * @param prec precio
      * @param nombr nombre
      * @param descr descripcion
      */
-    public Plato(Integer id, Integer cal, Double prec,String nombr, String descr){
-        ID = id;
+    public Plato(Integer i, Integer cal, Double prec,String nombr, String descr){
+        id = i;
         calorias = cal;
         precio = prec;
         nombre = nombr;
@@ -27,11 +27,11 @@ public class Plato {
     }
 
     public Integer getID() {
-        return ID;
+        return id;
     }
 
     public void setID(Integer ID) {
-        this.ID = ID;
+        this.id = ID;
     }
 
     public Integer getCalorias() {

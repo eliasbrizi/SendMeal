@@ -7,17 +7,17 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "id", childColumns = "pedido"))
+@Entity(tableName = "ITEMSPEDIDO", foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "id", childColumns = "pedido"))
 public class ItemsPedido {
 
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "id")
-    private int id;
+    @ColumnInfo(name = "idItem")
+    private int idItem;
     @ColumnInfo(name = "pedido")
     private Pedido pedido;
     @Ignore
-    private Plato plato;
+    private Plato platoItem;
     @ColumnInfo(name = "cantidad")
     private int cantidad;
     @ColumnInfo(name = "precio")
@@ -27,12 +27,12 @@ public class ItemsPedido {
 
     }
 
-    public int getId() {
-        return id;
+    public int getIdItem() {
+        return idItem;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdItem(int idItem) {
+        this.idItem = idItem;
     }
 
     public Pedido getPedido() {
@@ -43,12 +43,12 @@ public class ItemsPedido {
         this.pedido = pedido;
     }
 
-    public Plato getPlato() {
-        return plato;
+    public Plato getPlatoItem() {
+        return platoItem;
     }
 
-    public void setPlato(Plato plato) {
-        this.plato = plato;
+    public void setPlatoItem(Plato platoItem) {
+        this.platoItem = platoItem;
     }
 
     public int getCantidad() {

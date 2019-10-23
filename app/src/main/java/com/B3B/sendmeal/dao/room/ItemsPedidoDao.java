@@ -11,6 +11,8 @@ import androidx.room.Update;
 import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
 
+import java.util.List;
+
 @Dao
 public interface ItemsPedidoDao {
 
@@ -24,6 +26,6 @@ public interface ItemsPedidoDao {
     public void borrarItemsPedido(ItemsPedido ip, Pedido p);
 
     @Query("SELECT * FROM ITEMSPEDIDO WHERE pedido = :id")
-    public ItemsPedido getItemsPedidoByID(int id);
+    public List<ItemsPedido> getItemsPedidoByID(int id);
 
 }

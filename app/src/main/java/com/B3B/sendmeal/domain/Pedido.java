@@ -13,12 +13,12 @@ public class Pedido {
 
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "id")
-    private int id;
-    @ColumnInfo(name = "fecha")
-    private LocalDateTime fecha;
-    @ColumnInfo(name = "estado")
-    private int estado;
+    @ColumnInfo(name = "idPedido")
+    private int idPedido;
+    @ColumnInfo(name = "fechaPedido")
+    private LocalDateTime fechaPedido;
+    @ColumnInfo(name = "estadoPedido")
+    private int estadoPedido;
     @ColumnInfo(name = "latitud")
     private double lat;
     @ColumnInfo(name = "longitud")
@@ -29,28 +29,28 @@ public class Pedido {
 
     }
 
-    public int getId() {
-        return id;
+    public int getIdPedido() {
+        return idPedido;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public LocalDateTime getFechaPedido() {
+        return fechaPedido;
     }
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public void setFechaPedido(LocalDateTime fechaPedido) {
+        this.fechaPedido = fechaPedido;
     }
 
-    public int getEstado() {
-        return estado;
+    public int getEstadoPedido() {
+        return estadoPedido;
     }
 
-    public void setEstado(int estado) {
-        this.estado = estado;
+    public void setEstadoPedido(int estadoPedido) {
+        this.estadoPedido = estadoPedido;
     }
 
     public double getLat() {

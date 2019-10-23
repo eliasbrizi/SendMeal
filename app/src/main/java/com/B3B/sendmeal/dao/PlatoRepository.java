@@ -1,12 +1,9 @@
 package com.B3B.sendmeal.dao;
 
-import android.os.Message;
-
 import com.B3B.sendmeal.dao.rest.PlatoRest;
 import com.B3B.sendmeal.domain.Plato;
 
 
-import android.os.Handler;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -17,7 +14,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PlatoRepository {
+public class PlatoRepository{
 
     private static PlatoRepository _INSTANCE;
     public static String _SERVER = "http://10.0.2.2:5000/";

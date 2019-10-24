@@ -8,7 +8,7 @@ import com.B3B.sendmeal.dao.room.PedidoDao;
 import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
 
-@Database(entities = {Pedido.class, ItemsPedido.class}, version = 3)
+@Database(entities = {Pedido.class, ItemsPedido.class}, version = 3, exportSchema = false)
 public abstract class BaseDatosSendMeal extends RoomDatabase {
 
     public abstract PedidoDao pedidoDao();

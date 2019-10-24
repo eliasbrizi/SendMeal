@@ -16,15 +16,15 @@ public class Pedido {
     @NonNull
     @ColumnInfo(name = "idpedido")
     private int idPedido;
-    @Ignore //No debe ignorarse
-    private LocalDateTime fechaPedido;
     @ColumnInfo(name = "estadopedido")
     private int estadoPedido;
     @ColumnInfo(name = "latitud")
     private double lat;
     @ColumnInfo(name = "longitud")
     private double lng;
-    @Ignore //No debe ignorarse
+    @Ignore
+    private LocalDateTime fechaPedido;
+    @Ignore
     private List<ItemsPedido> items;
 
     public void Pedido(){

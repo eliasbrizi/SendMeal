@@ -2,21 +2,22 @@ package com.B3B.sendmeal.domain;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+import androidx.room.Index;
 
-//@Entity(tableName = "ITEMSPEDIDO", foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "idpedido", childColumns = "pedido"))
-@Entity(tableName = "ITEMSPEDIDO")
+@Entity(tableName = "ITEMSPEDIDO", primaryKeys = {"iditem","idpedido"},
+        foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "idpedido", childColumns = "idpedido",
+                onDelete = ForeignKey.NO_ACTION), indices = {@Index("idpedido")})
 public class ItemsPedido {
 
-    @PrimaryKey
     @NonNull
     @ColumnInfo(name = "iditem")
     private int idItem;
-    @Ignore //No debe ignorarse
-    private Pedido pedido;
+    @ColumnInfo(name = "idpedido")
+    private int idPedido;
     @Ignore
     private Plato platoItem;
     @ColumnInfo(name = "cantidad")
@@ -36,12 +37,12 @@ public class ItemsPedido {
         this.idItem = idItem;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public int getIdPedido() {
+        return idPedido;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
     }
 
     public Plato getPlatoItem() {

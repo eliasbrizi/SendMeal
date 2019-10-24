@@ -20,6 +20,6 @@ public interface PedidoDao {
     @Delete
     public void borrarPedido(Pedido p);
 
-    @Query("SELECT * FROM PEDIDO WHERE idPedido = :id")
+    @Query("SELECT * FROM PEDIDO WHERE idpedido = :id")
     public Pedido getPedidoByID(int id);
 }

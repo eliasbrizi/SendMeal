@@ -1,5 +1,13 @@
 {
-  "platos": [],
+  "platos": [
+    {
+      "calorias": 4500,
+      "descripcion": "Carne",
+      "id": 5,
+      "nombre": "Milanga",
+      "oferta": false,
+      "precio": 250
+    }
+  ],
   "pedidos": []
-
 }

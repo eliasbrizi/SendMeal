@@ -13,61 +13,69 @@ import com.B3B.sendmeal.domain.Plato;
 
 import java.util.List;
 
-public class PlatoViewAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
-
+public class PedidoViewAdapter extends RecyclerView.Adapter<PedidoViewHolder>{
     private List<Plato> platos;
     private Context contexto;
-    private ListaPlatos listaPlatos;
+    private AltaPedido altaPedido;
 
-    public  PlatoViewAdapter(Context cont, List<Plato> pl,ListaPlatos lp){
+    public PedidoViewAdapter(Context cont, List<Plato> pl, AltaPedido ap){
         platos = pl;
         contexto = cont;
-        listaPlatos = lp;
+        altaPedido = ap;
     }
 
     @NonNull
     @Override
-    public PlatoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.fila_plato, parent, false);
-        PlatoViewHolder vh = new PlatoViewHolder(v);
+    public PedidoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.fila_pedido, parent, false);
+        PedidoViewHolder vh = new PedidoViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlatoViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull PedidoViewHolder holder, final int position) {
         final Plato pl = platos.get(position);
         holder.setNombrePlato(pl.getNombre());
         holder.setPrecioPlato(pl.getPrecio().toString());
+        holder.setCantidadPlato("1");
         /*
         Cargar imagen
          */
         //TODO
         holder.setImagenPlato();
 
-        holder.imagenPlato.setOnClickListener(new View.OnClickListener() {
+        holder.editarPlatoPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listaPlatos.showDialogCantidad(position);
+
             }
         });
-        holder.editarPlato.setOnClickListener(new View.OnClickListener() {
+
+        holder.eliminarPlatoPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i1 = new Intent (contexto,EditarPlato.class);
-                i1.putExtra("posicion",position);
-                listaPlatos.startActivity(i1);
+
             }
         });
-        holder.ofertarPlato.setOnClickListener(new View.OnClickListener() {
+
+        holder.agregarPlatoPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listaPlatos.ponerEnOferta(position);
+
             }
         });
-        holder.eliminarPlato.setOnClickListener(new View.OnClickListener() {
+
+        holder.crearPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listaPlatos.showDialogEliminar(position);
+
+            }
+        });
+
+        holder.enviarPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }

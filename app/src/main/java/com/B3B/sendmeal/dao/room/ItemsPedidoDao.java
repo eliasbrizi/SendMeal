@@ -25,7 +25,9 @@ public interface ItemsPedidoDao {
     @Delete
     public void borrarItemsPedido(ItemsPedido ip, Pedido p);
 
+    /* DESCOMENTAAAAAAAAR DESPUES
     @Query("SELECT * FROM ITEMSPEDIDO WHERE pedido = :id")
     public List<ItemsPedido> getItemsPedidoByID(int id);
 
+    */
 }

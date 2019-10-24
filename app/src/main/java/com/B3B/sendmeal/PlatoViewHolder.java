@@ -23,6 +23,7 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
         nombrePlato = (TextView) itemView.findViewById(R.id.txtTituloPlatoEnLista);
         precioPlato = (TextView) itemView.findViewById(R.id.txtPrecioPlatoEnLista);
         imagenPlato = (ImageView) itemView.findViewById(R.id.imagenPlatoLista);
+        imagenPlato.setClickable(true);
         editarPlato = (Button) itemView.findViewById(R.id.btnEditarPlato);
         ofertarPlato = (Button) itemView.findViewById(R.id.btnOfertarPlato);
         eliminarPlato = (Button) itemView.findViewById(R.id.btnEliminarPlato);

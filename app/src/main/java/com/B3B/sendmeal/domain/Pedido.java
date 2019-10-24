@@ -3,6 +3,7 @@ package com.B3B.sendmeal.domain;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDateTime;
@@ -13,16 +14,17 @@ public class Pedido {
 
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "idPedido")
+    @ColumnInfo(name = "idpedido")
     private int idPedido;
-    @ColumnInfo(name = "fechaPedido")
+    @Ignore //No debe ignorarse
     private LocalDateTime fechaPedido;
-    @ColumnInfo(name = "estadoPedido")
+    @ColumnInfo(name = "estadopedido")
     private int estadoPedido;
     @ColumnInfo(name = "latitud")
     private double lat;
     @ColumnInfo(name = "longitud")
     private double lng;
+    @Ignore //No debe ignorarse
     private List<ItemsPedido> items;
 
     public void Pedido(){

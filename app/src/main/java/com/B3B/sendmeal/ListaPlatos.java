@@ -117,6 +117,12 @@ Lista de platos
         dialog.show();
     }
 
+    public void showDialogCantidad(final int position){
+        Intent i1 = new Intent(this, AltaPedido.class);
+        i1.putExtra("posicion", position);
+        startActivity(i1);
+    }
+
 /*    Handler miHandler = new Handler(Looper.myLooper()){
         @Override
         public void handleMessage(Message msg) {

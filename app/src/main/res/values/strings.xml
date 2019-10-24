@@ -30,8 +30,10 @@
     <string name="guardadoExitoso">El registro ha sido exitoso</string>
 
     <string name="menuItemRegistrar">Registrar</string>
-    <string name="menuItemCrear">Crear nuevo Plato</string>
-    <string name="menuItemConsultar">Consultar Platos</string>
+    <string name="menuItemCrear">Crear nuevo plato</string>
+    <string name="menuItemConsultar">Consultar platos</string>
+    <string name="menuItemBuscar">Buscar platos</string>
+    <string name="menuItemRegistrarPedido">Registrar pedido</string>
 
     <!-- Pantalla alta nuevo plato-->
     <string name="idANP">ID</string>
@@ -45,10 +47,14 @@
     <!-- CardView plato -->
     <string name="nombrePlatoListaPlato">Nombre: </string>
     <string name="precioPlatoListaPlato">Precio: </string>
+    <string name="cantidadPlatoPedido">Cantidad: </string>
     
     <!-- Lista Platos -->
     <string name="dialogoEliminarPlato">¿Desea eliminar el plato de la lista?</string>
     <string name="tituloDialogo">Eliminar plato</string>
+    <string name="txtBtnEditar">Editar</string>
+    <string name="txtBtnOfertar">Ofertar</string>
+    <string name="txtBtnEliminar">Eliminar</string>
 
     <!-- Oferta Platos -->
     <string name="platoOfertado">El plato se esta preparando para ofertar</string>
@@ -58,11 +64,17 @@
     <string name="nombreBusquedaPlatos">Nombre de plato</string>
     <string name="nombreBotonBuscar">Buscar</string>
 
+    <!-- Registro Pedidos -->
+    <string name="txtBtnEditarPedido">Editar pedido</string>
+    <string name="txtBtnEliminarPlatoPedido">Eliminar del pedido</string>
+    <string name="txtBtnAgregarComida">Agregar comida</string>
+    <string name="txtBtnCrearPedido">Crear pedido</string>
+    <string name="txtBtnEnviarPedido">Enviar pedido</string>
+
     <!-- Notificaciones -->
     <string name="nombreCanal">Ofertas</string>
     <string name="descripcionCanal">Canal utilizado para notificaciones de platos en oferta</string>
     <string name="nombreNotificacionOferta">Oferta</string>
     <string name="detalleNotificacionOferta">esta en oferta!!</string>
-    <string name="menuItemBuscar">Buscar Platos</string>
 
 </resources>

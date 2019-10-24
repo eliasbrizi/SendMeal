@@ -7,14 +7,15 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "ITEMSPEDIDO", foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "id", childColumns = "pedido"))
+//@Entity(tableName = "ITEMSPEDIDO", foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "idpedido", childColumns = "pedido"))
+@Entity(tableName = "ITEMSPEDIDO")
 public class ItemsPedido {
 
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "idItem")
+    @ColumnInfo(name = "iditem")
     private int idItem;
-    @ColumnInfo(name = "pedido")
+    @Ignore //No debe ignorarse
     private Pedido pedido;
     @Ignore
     private Plato platoItem;

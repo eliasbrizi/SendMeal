@@ -61,11 +61,8 @@ public class PedidoRepository {
         itemsPedidoDao.borrarItemsPedido(ip, p);
     }
 
-
-    /* DESCOMENTAAAAAAAR DESPUES
     public List<ItemsPedido> buscarItemsPedidoPorID(int id){
         return itemsPedidoDao.getItemsPedidoByID(id);
     }
 
-    */
 }

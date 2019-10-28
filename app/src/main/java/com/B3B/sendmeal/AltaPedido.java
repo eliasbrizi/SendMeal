@@ -1,7 +1,7 @@
 package com.B3B.sendmeal;
 
-import android.content.BroadcastReceiver;
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.B3B.sendmeal.dao.PedidoRepository;
 import com.B3B.sendmeal.dao.PlatoRepository;
 import com.B3B.sendmeal.domain.Pedido;
 import com.B3B.sendmeal.domain.Plato;
@@ -20,12 +21,7 @@ public class AltaPedido extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    public static BroadcastReceiver br;
-
-    /*
-    Lista de platos en pedido (pedirla del json-server)
-     */
-    public static ArrayList<Plato> _PLATOS = new ArrayList<>();
+    public static ArrayList<Plato> _PLATOS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +36,14 @@ public class AltaPedido extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-
         PlatoRepository.getInstance().listarPlatos();
-        ArrayList<Plato> aux = (ArrayList<Plato>) PlatoRepository.getInstance().getListaPlatos();
-        Plato p = aux.get(getIntent().getExtras().getInt("posicion"));
-
-        _PLATOS.add(p);
+        _PLATOS = (ArrayList<Plato>) PlatoRepository.getInstance().getListaPlatos();
 
         mAdapter = new PedidoViewAdapter(getApplicationContext(), _PLATOS, this);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void newPedido(Pedido p){
+        PedidoRepository.getInstance(getApplicationContext()).crearPedido(p);
     }
 }

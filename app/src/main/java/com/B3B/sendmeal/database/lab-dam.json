@@ -7,6 +7,14 @@
       "nombre": "milanesa",
       "oferta": false,
       "precio": 230
+    },
+    {
+      "calorias": 5000,
+      "descripcion": "Comun",
+      "id": 8,
+      "nombre": "Matambre",
+      "oferta": false,
+      "precio": 500
     }
   ],
   "pedidos": []

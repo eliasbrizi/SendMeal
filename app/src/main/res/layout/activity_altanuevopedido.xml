@@ -6,8 +6,35 @@
     <include layout="@layout/back_toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAltaPedido"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerAltaPedido"/>
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAgregarComida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/txtBtnAgregarComida" />
+
+        <Button
+            android:id="@+id/btnCrearPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/txtBtnCrearPedido" />
+
+        <Button
+            android:id="@+id/btnEnviarPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/txtBtnEnviarPedido" />
+    </LinearLayout>
 
 </LinearLayout>

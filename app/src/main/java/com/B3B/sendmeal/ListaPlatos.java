@@ -1,19 +1,11 @@
 package com.B3B.sendmeal;
 
 import android.app.AlertDialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +26,7 @@ public class ListaPlatos extends AppCompatActivity {
 
     public static BroadcastReceiver br;
 
-/*
+    /*
 Lista de platos
  */
     public static ArrayList<Plato> _PLATOS = new ArrayList<>();

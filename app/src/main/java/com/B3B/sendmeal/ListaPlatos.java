@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +39,6 @@ Lista de platos
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarBack);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerListaPlatos);
         mRecyclerView.setHasFixedSize(true);
@@ -110,9 +110,27 @@ Lista de platos
     }
 
     public void showDialogCantidad(final int position){
-        Intent i1 = new Intent(this, AltaPedido.class);
-        i1.putExtra("posicion", position);
-        startActivity(i1);
+        final EditText campoCantidad = (EditText) findViewById(R.id.txtCantidadDialog);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Cantidad").setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                int cantidadPedido = Integer.valueOf(campoCantidad.getText().toString());
+                Intent i1 = new Intent(getApplicationContext(), AltaPedido.class);
+                i1.putExtra("posicion", position);
+                i1.putExtra("cantidad", cantidadPedido);
+                startActivity(i1);
+            }
+        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        }).setView(R.layout.dialog_cantidad);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 /*    Handler miHandler = new Handler(Looper.myLooper()){

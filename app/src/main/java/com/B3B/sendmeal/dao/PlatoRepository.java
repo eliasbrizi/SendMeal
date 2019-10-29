@@ -18,6 +18,7 @@ public class PlatoRepository{
     private static PlatoRepository _INSTANCE;
     public static String _SERVER = "http://10.0.2.2:5000/";
     private List<Plato> listaPlatos;
+    private Plato plato;
 
     /*
     Retrofit
@@ -92,6 +93,24 @@ public class PlatoRepository{
                 Log.d("APP_2","ERROR "+t.getMessage());
             }
         });
+    }
+
+    public Plato buscarPlatoPorID(int id){
+        Call<Plato> llamada = this.platoRest.buscarPlatoPorID(id);
+        llamada.enqueue(new Callback<Plato>() {
+            @Override
+            public void onResponse(Call<Plato> call, Response<Plato> response) {
+                if(response.isSuccessful()){
+                    plato = response.body();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Plato> call, Throwable t) {
+                Log.d("APP_2","fallo");
+            }
+        });
+        return plato;
     }
 
     public List<Plato> getListaPlatos() {

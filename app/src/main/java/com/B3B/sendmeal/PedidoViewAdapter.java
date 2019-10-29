@@ -16,11 +16,13 @@ public class PedidoViewAdapter extends RecyclerView.Adapter<PedidoViewHolder>{
     private List<Plato> platos;
     private Context contexto;
     private AltaPedido altaPedido;
+    private int cantInicial;
 
-    public PedidoViewAdapter(Context cont, List<Plato> pl, AltaPedido ap){
+    public PedidoViewAdapter(Context cont, List<Plato> pl, AltaPedido ap, int cantidadInicial){
         platos = pl;
         contexto = cont;
         altaPedido = ap;
+        cantInicial = cantidadInicial;
     }
 
     @NonNull
@@ -28,6 +30,7 @@ public class PedidoViewAdapter extends RecyclerView.Adapter<PedidoViewHolder>{
     public PedidoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.fila_pedido, parent, false);
         PedidoViewHolder vh = new PedidoViewHolder(v);
+        vh.setCantidadPlato(String.valueOf(cantInicial));
         return vh;
     }
 
@@ -36,7 +39,7 @@ public class PedidoViewAdapter extends RecyclerView.Adapter<PedidoViewHolder>{
         final Plato pl = platos.get(position);
         holder.setNombrePlato(pl.getNombre());
         holder.setPrecioPlato(pl.getPrecio().toString());
-        holder.setCantidadPlato("1");
+        holder.setCantidadPlato(String.valueOf(cantInicial));
         /*
         Cargar imagen
          */
@@ -62,4 +65,5 @@ public class PedidoViewAdapter extends RecyclerView.Adapter<PedidoViewHolder>{
     public int getItemCount() {
         return platos.size();
     }
+
 }

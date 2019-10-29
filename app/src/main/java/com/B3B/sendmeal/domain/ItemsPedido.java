@@ -6,6 +6,9 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.Index;
+import androidx.room.TypeConverters;
+
+import com.B3B.sendmeal.dao.PlatoConverter;
 
 @Entity(tableName = "ITEMSPEDIDO", primaryKeys = {"iditem","idpedido"},
         foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "idpedido", childColumns = "idpedido",
@@ -17,7 +20,7 @@ public class ItemsPedido {
     private int idItem;
     @ColumnInfo(name = "idpedido")
     private int idPedido;
-    @Ignore
+    @TypeConverters(PlatoConverter.class)
     private Plato platoItem;
     @ColumnInfo(name = "cantidad")
     private int cantidad;

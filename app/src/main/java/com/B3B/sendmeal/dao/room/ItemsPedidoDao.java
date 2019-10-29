@@ -28,4 +28,7 @@ public interface ItemsPedidoDao {
     @Query("SELECT * FROM ITEMSPEDIDO WHERE idpedido = :id")
     public List<ItemsPedido> getItemsPedidoByID(int id);
 
+    @Query("SELECT * FROM ITEMSPEDIDO, PEDIDO WHERE ITEMSPEDIDO.idpedido = PEDIDO.idpedido AND PEDIDO.idpedido = :idped AND platoItem = :idPlato")
+    public ItemsPedido getItemPedidoByPlato(int idPlato, int idped);
+
 }

@@ -45,9 +45,12 @@ public class AltaPedido extends AppCompatActivity {
         final Button enviarPedido = (Button) findViewById(R.id.btnEnviarPedido);
 
         PlatoRepository.getInstance().listarPlatos();
-        _PLATOS = (ArrayList<Plato>) PlatoRepository.getInstance().getListaPlatos();
+        List<Plato> aux = PlatoRepository.getInstance().getListaPlatos();
 
-        mAdapter = new PedidoViewAdapter(getApplicationContext(), _PLATOS, this);
+        _PLATOS = new ArrayList<Plato>();
+        _PLATOS.add(aux.get(getIntent().getExtras().getInt("posicion")));
+
+        mAdapter = new PedidoViewAdapter(getApplicationContext(), _PLATOS, this, getIntent().getExtras().getInt("cantidad"));
         mRecyclerView.setAdapter(mAdapter);
 
         agregarPlatoPedido.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +69,7 @@ public class AltaPedido extends AppCompatActivity {
                 for (int i = 0; i < platos.size(); i++) {
                     ItemsPedido ip = new ItemsPedido();
                     ip.setIdItem(i+1);
-                    ip.setCantidad(1); //cambiar para que el user pueda ingresar cantidad
+                    ip.setCantidad(1);
                     ip.setPrecio(platos.get(i).getPrecio());
                     ip.setPlatoItem(platos.get(i));
                     items.add(ip);

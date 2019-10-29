@@ -17,6 +17,10 @@ public class Plato {
      * @param nombr nombre
      * @param descr descripcion
      */
+    public Plato(){
+
+    }
+
     public Plato(Integer i, Integer cal, Double prec,String nombr, String descr){
         id = i;
         calorias = cal;

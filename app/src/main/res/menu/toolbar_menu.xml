@@ -22,10 +22,4 @@
         android:orderInCategory="3"
         android:title="@string/menuItemBuscar"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/menuItemRegistrarPedido"
-        android:orderInCategory="4"
-        android:title="@string/menuItemRegistrarPedido"
-        app:showAsAction="never" />
-        />
 </menu>

@@ -10,7 +10,7 @@ import com.B3B.sendmeal.dao.room.PedidoDao;
 import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
 
-@Database(entities = {Pedido.class, ItemsPedido.class}, version = 3, exportSchema = false)
+@Database(entities = {Pedido.class, ItemsPedido.class}, version = 4, exportSchema = false)
 @TypeConverters({FechaConverter.class})
 public abstract class BaseDatosSendMeal extends RoomDatabase {
 

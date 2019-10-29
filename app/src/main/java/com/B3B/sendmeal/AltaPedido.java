@@ -72,11 +72,11 @@ public class AltaPedido extends AppCompatActivity {
                     items.add(ip);
                 }
                 Pedido p = new Pedido();
-                p.setIdPedido(1);
+                p.setIdPedido(2);
                 p.setFechaPedido(new Date(System.currentTimeMillis()));
                 p.setEstadoPedido(1);
-                p.setLat(45.98);
-                p.setLng(37.56);
+                p.setLat(50);
+                p.setLng(3.6);
                 p.setItems(items);
                 newPedido(p);
             }

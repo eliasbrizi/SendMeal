@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -47,10 +48,6 @@ public class Home extends AppCompatActivity {
             case R.id.menuItemBuscar:
                 i1 = new Intent(this,BuscarPlato.class);
                 startActivity(i1);
-                return true;
-            case R.id.menuItemRegistrarPedido:
-                Pedido p = PedidoRepository.getInstance(getApplicationContext()).buscarPedidoPorID(1);
-                Toast.makeText(getApplicationContext(),"Pedido: "+p.getIdPedido(), Toast.LENGTH_SHORT).show();
                 return true;
             case android.R.id.home:
                 onBackPressed();

@@ -15,9 +15,6 @@ public class PedidoViewHolder extends RecyclerView.ViewHolder {
     ImageView imagenPlato;
     Button editarPlatoPedido;
     Button eliminarPlatoPedido;
-    Button agregarPlatoPedido;
-    Button crearPedido;
-    Button enviarPedido;
 
     public PedidoViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -27,9 +24,6 @@ public class PedidoViewHolder extends RecyclerView.ViewHolder {
         imagenPlato = (ImageView) itemView.findViewById(R.id.imagenPlatoPedido);
         editarPlatoPedido = (Button) itemView.findViewById(R.id.btnEditarPlatoPedido);
         eliminarPlatoPedido = (Button) itemView.findViewById(R.id.btnEliminarPlatoPedido);
-        agregarPlatoPedido = (Button) itemView.findViewById(R.id.btnAgregarComida);
-        crearPedido = (Button) itemView.findViewById(R.id.btnCrearPedido);
-        enviarPedido = (Button) itemView.findViewById(R.id.btnEnviarPedido);
     /*
     Posicion en lista
      */

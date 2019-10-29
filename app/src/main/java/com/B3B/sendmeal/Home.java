@@ -7,6 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.B3B.sendmeal.dao.PedidoRepository;
+import com.B3B.sendmeal.domain.Pedido;
 
 public class Home extends AppCompatActivity {
 
@@ -16,8 +20,6 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarSendMeal);
         setSupportActionBar(toolbar);
-        //ActionBar actionBar = getSupportActionBar();
-        //actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -42,9 +44,13 @@ public class Home extends AppCompatActivity {
                 i1 = new Intent(this,ListaPlatos.class);
                 startActivity(i1);
                 return true;
-            case  R.id.menuItemBuscar:
+            case R.id.menuItemBuscar:
                 i1 = new Intent(this,BuscarPlato.class);
                 startActivity(i1);
+                return true;
+            case R.id.menuItemRegistrarPedido:
+                Pedido p = PedidoRepository.getInstance(getApplicationContext()).buscarPedidoPorID(1);
+                Toast.makeText(getApplicationContext(),"Pedido: "+p.getIdPedido(), Toast.LENGTH_SHORT).show();
                 return true;
             case android.R.id.home:
                 onBackPressed();

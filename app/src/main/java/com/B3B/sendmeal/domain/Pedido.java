@@ -5,9 +5,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
-import java.time.LocalDateTime;
+import com.B3B.sendmeal.dao.FechaConverter;
+
+import java.util.Date;
 import java.util.List;
 
 @Entity(tableName = "PEDIDO")
@@ -23,8 +25,8 @@ public class Pedido {
     private double lat;
     @ColumnInfo(name = "longitud")
     private double lng;
-    @Ignore
-    private LocalDateTime fechaPedido;
+    @TypeConverters(FechaConverter.class)
+    private Date fechaPedido;
     @Ignore
     private List<ItemsPedido> items;
 
@@ -40,11 +42,11 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public LocalDateTime getFechaPedido() {
+    public Date getFechaPedido() {
         return fechaPedido;
     }
 
-    public void setFechaPedido(LocalDateTime fechaPedido) {
+    public void setFechaPedido(Date fechaPedido) {
         this.fechaPedido = fechaPedido;
     }
 

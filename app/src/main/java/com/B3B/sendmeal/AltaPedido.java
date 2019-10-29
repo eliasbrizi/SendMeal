@@ -1,7 +1,8 @@
 package com.B3B.sendmeal;
 
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.B3B.sendmeal.dao.PedidoRepository;
 import com.B3B.sendmeal.dao.PlatoRepository;
+import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
 import com.B3B.sendmeal.domain.Plato;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class AltaPedido extends AppCompatActivity {
 
@@ -36,11 +40,54 @@ public class AltaPedido extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        final Button agregarPlatoPedido = (Button) findViewById(R.id.btnAgregarComida);
+        final Button crearPedido = (Button) findViewById(R.id.btnCrearPedido);
+        final Button enviarPedido = (Button) findViewById(R.id.btnEnviarPedido);
+
         PlatoRepository.getInstance().listarPlatos();
         _PLATOS = (ArrayList<Plato>) PlatoRepository.getInstance().getListaPlatos();
 
         mAdapter = new PedidoViewAdapter(getApplicationContext(), _PLATOS, this);
         mRecyclerView.setAdapter(mAdapter);
+
+        agregarPlatoPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        crearPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PlatoRepository.getInstance().listarPlatos();
+                List<Plato> platos = PlatoRepository.getInstance().getListaPlatos();
+                ArrayList<ItemsPedido> items = new ArrayList<ItemsPedido>();
+                for (int i = 0; i < platos.size(); i++) {
+                    ItemsPedido ip = new ItemsPedido();
+                    ip.setIdItem(i+1);
+                    ip.setCantidad(1); //cambiar para que el user pueda ingresar cantidad
+                    ip.setPrecio(platos.get(i).getPrecio());
+                    ip.setPlatoItem(platos.get(i));
+                    items.add(ip);
+                }
+                Pedido p = new Pedido();
+                p.setIdPedido(1);
+                p.setFechaPedido(new Date(System.currentTimeMillis()));
+                p.setEstadoPedido(1);
+                p.setLat(45.98);
+                p.setLng(37.56);
+                p.setItems(items);
+                newPedido(p);
+            }
+        });
+
+        enviarPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     public void newPedido(Pedido p){

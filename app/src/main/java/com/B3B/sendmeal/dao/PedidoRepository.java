@@ -20,7 +20,7 @@ public class PedidoRepository {
 
     private PedidoRepository(Context ctx){
         BaseDatosSendMeal db = Room.databaseBuilder(ctx, BaseDatosSendMeal.class, "DB-SM")
-                .fallbackToDestructiveMigration().build();
+                .allowMainThreadQueries().build();
 
         pedidoDao = db.pedidoDao();
         itemsPedidoDao = db.itemsPedidoDao();

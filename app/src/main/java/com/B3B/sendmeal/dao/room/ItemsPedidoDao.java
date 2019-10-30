@@ -6,6 +6,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.RoomWarnings;
 import androidx.room.Update;
 
 import com.B3B.sendmeal.domain.ItemsPedido;
@@ -28,6 +29,7 @@ public interface ItemsPedidoDao {
     @Query("SELECT * FROM ITEMSPEDIDO WHERE idpedido = :id")
     public List<ItemsPedido> getItemsPedidoByID(int id);
 
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT * FROM ITEMSPEDIDO, PEDIDO WHERE ITEMSPEDIDO.idpedido = PEDIDO.idpedido AND PEDIDO.idpedido = :idped AND platoItem = :idPlato")
     public ItemsPedido getItemPedidoByPlato(int idPlato, int idped);
 

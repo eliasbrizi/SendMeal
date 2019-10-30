@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -110,26 +113,31 @@ Lista de platos
     }
 
     public void showDialogCantidad(final int position){
-        final EditText campoCantidad = (EditText) findViewById(R.id.txtCantidadDialog);
-
+        LayoutInflater inflater = LayoutInflater.from(this);
+        final View dialogoView = inflater.inflate(R.layout.dialog_cantidad,null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Cantidad").setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                int cantidadPedido = Integer.valueOf(campoCantidad.getText().toString());
-                Intent i1 = new Intent(getApplicationContext(), AltaPedido.class);
-                i1.putExtra("posicion", position);
-                i1.putExtra("cantidad", cantidadPedido);
-                startActivity(i1);
-            }
-        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
 
-            }
-        }).setView(R.layout.dialog_cantidad);
+        final EditText campoCantidad = (EditText) dialogoView.findViewById(R.id.txtCantidadDialog);
+
+        builder.setView(dialogoView).setTitle("Cantidad")
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    int cantidadPedido = Integer.valueOf(campoCantidad.getText().toString());
+                    Intent i1 = new Intent(getApplicationContext(), AltaPedido.class);
+                    i1.putExtra("posicion", position);
+                    i1.putExtra("cantidad", cantidadPedido);
+                    startActivity(i1);
+                    }
+                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
 
         AlertDialog dialog = builder.create();
+
         dialog.show();
     }
 

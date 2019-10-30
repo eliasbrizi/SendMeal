@@ -1,6 +1,7 @@
 package com.B3B.sendmeal;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -47,11 +48,37 @@ public class AltaPedido extends AppCompatActivity {
         PlatoRepository.getInstance().listarPlatos();
         List<Plato> aux = PlatoRepository.getInstance().getListaPlatos();
 
+        Plato p = aux.get(getIntent().getExtras().getInt("posicion"));
+
         _PLATOS = new ArrayList<Plato>();
-        _PLATOS.add(aux.get(getIntent().getExtras().getInt("posicion")));
+        _PLATOS.add(p);
 
         mAdapter = new PedidoViewAdapter(getApplicationContext(), _PLATOS, this, getIntent().getExtras().getInt("cantidad"));
         mRecyclerView.setAdapter(mAdapter);
+
+        //TODO insertar item en room
+        Pedido pedido = new Pedido();
+        pedido.setIdPedido(1);
+        pedido.setEstadoPedido(1);
+        pedido.setLng(10.0);
+        pedido.setLat(20.0);
+        pedido.setFechaPedido(new Date(System.currentTimeMillis()));
+
+        ItemsPedido itemsPedido = new ItemsPedido();
+        itemsPedido.setPrecio(p.getPrecio());
+        itemsPedido.setPlatoItem(p);
+        itemsPedido.setCantidad(getIntent().getExtras().getInt("cantidad"));
+        itemsPedido.setIdItem(1);
+        itemsPedido.setIdPedido(pedido.getIdPedido());
+
+        ArrayList<ItemsPedido> items = new ArrayList<ItemsPedido>();
+        items.add(itemsPedido);
+        pedido.setItems(items);
+
+        PedidoRepository.getInstance(getApplicationContext()).crearPedido(pedido);
+        PedidoRepository.getInstance(getApplicationContext()).crearItemPedido(itemsPedido, pedido);
+
+        Log.d("ROOM", "PEDIDO CREADO");
 
         agregarPlatoPedido.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,15 +90,13 @@ public class AltaPedido extends AppCompatActivity {
         crearPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PlatoRepository.getInstance().listarPlatos();
-                List<Plato> platos = PlatoRepository.getInstance().getListaPlatos();
                 ArrayList<ItemsPedido> items = new ArrayList<ItemsPedido>();
-                for (int i = 0; i < platos.size(); i++) {
+                for (int i = 0; i < _PLATOS.size(); i++) {
                     ItemsPedido ip = new ItemsPedido();
                     ip.setIdItem(i+1);
                     ip.setCantidad(1);
-                    ip.setPrecio(platos.get(i).getPrecio());
-                    ip.setPlatoItem(platos.get(i));
+                    ip.setPrecio(_PLATOS.get(i).getPrecio());
+                    ip.setPlatoItem(_PLATOS.get(i));
                     items.add(ip);
                 }
                 Pedido p = new Pedido();

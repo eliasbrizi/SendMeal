@@ -27,8 +27,6 @@ public class Pedido {
     private double lng;
     @TypeConverters(FechaConverter.class)
     private Date fechaPedido;
-    @Ignore
-    private List<ItemsPedido> items;
 
     public void Pedido(){
 
@@ -72,13 +70,5 @@ public class Pedido {
 
     public void setLng(double lng) {
         this.lng = lng;
-    }
-
-    public List<ItemsPedido> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ItemsPedido> items) {
-        this.items = items;
     }
 }

@@ -113,6 +113,26 @@ public class PlatoRepository{
         return plato;
     }
 
+    public ArrayList<Plato> buscarPlatoPorNombre(String nombre){
+        Call<List<Plato>> llamada = this.platoRest.buscarPlatoPorNombre(nombre);
+        final ArrayList<Plato> listaNombrePlato = new ArrayList<>();
+        llamada.enqueue(new Callback<List<Plato>>() {
+            @Override
+            public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
+                if(response.isSuccessful()){
+                    listaNombrePlato.clear();
+                    listaNombrePlato.addAll(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Plato>> call, Throwable t) {
+                Log.d("APP_2","fallo");
+            }
+        });
+        return listaNombrePlato;
+    }
+
     public List<Plato> getListaPlatos() {
         return listaPlatos;
     }

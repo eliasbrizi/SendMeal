@@ -26,10 +26,12 @@ public interface PlatoRest {
     @GET("platos/{nombre}")
     Call<List<Plato>> buscarPlatoPorNombre(@Path("nombre") String nombre);
 
+    @GET("platos/{nombre}")
+    Call<List<Plato>> buscarPlatoPorPrecios(@Path("nombre") String nombre);
+
     @PUT("platos/{ID}")
     Call<Plato> actualizarPlato(@Path("ID") Integer id, @Body Plato plato);
 
     @DELETE("platos/{ID}")
     Call<Void> eliminarPlato(@Path("ID") Integer id);
-
 }

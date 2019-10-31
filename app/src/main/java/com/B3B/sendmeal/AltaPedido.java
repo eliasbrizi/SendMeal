@@ -81,12 +81,27 @@ public class AltaPedido extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO si quiere agregar otro plato al pedido
+                Pedido pedido1 = PedidoRepository.getInstance(getApplicationContext()).buscarPedidoPorID(1);
+                ArrayList<ItemsPedido> itemsPedido1 = (ArrayList) PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(pedido1.getIdPedido());
+                Plato aux = PlatoRepository.getInstance().buscarPlatoPorID(5);
+                Log.d("PLATO ENCONTRADO!","ID: "+aux.getID());
+                Log.d("PLATO ENCONTRADO!","NOMBRE: "+aux.getNombre());
+                Log.d("ITEMS PEDIDO ENCONTRADO!","N° ITEMS "+itemsPedido1.size());
+                for(ItemsPedido ip : itemsPedido1){
+                    Log.d("ITEMS PEDIDO ENCONTRADO!","CANTIDAD: "+ip.getCantidad());
+                    Log.d("ITEMS PEDIDO ENCONTRADO!","ID: "+ip.getIdItem());
+                    Log.d("ITEMS PEDIDO ENCONTRADO!","PRECIO: "+ip.getPrecio());
+                    Log.d("ITEMS PEDIDO ENCONTRADO!","ID PEDIDO: "+ip.getIdPedido());
+                    Log.d("ITEMS PEDIDO ENCONTRADO!","PLATO ID: "+ip.getPlatoItem().getID());
+                    Log.d("ITEMS PEDIDO ENCONTRADO!","PLATO: "+ip.getPlatoItem().getNombre());
+                }
             }
         });
 
         crearPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //obsoleto
                 ArrayList<ItemsPedido> items = new ArrayList<ItemsPedido>();
                 for (int i = 0; i < _PLATOS.size(); i++) {
                     ItemsPedido ip = new ItemsPedido();

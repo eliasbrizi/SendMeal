@@ -9,8 +9,8 @@ import androidx.room.TypeConverters;
 
 import com.B3B.sendmeal.dao.FechaConverter;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity(tableName = "PEDIDO")
 public class Pedido {
@@ -28,7 +28,7 @@ public class Pedido {
     @TypeConverters(FechaConverter.class)
     private Date fechaPedido;
     @Ignore
-    private List<ItemsPedido> itemsPedido;
+    private ArrayList<ItemsPedido> itemsPedido;
 
     public void Pedido(){
 
@@ -74,11 +74,11 @@ public class Pedido {
         this.lng = lng;
     }
 
-    public List<ItemsPedido> getItemsPedido() {
+    public ArrayList<ItemsPedido> getItemsPedido() {
         return itemsPedido;
     }
 
-    public void setItemsPedido(List<ItemsPedido> itemsPedido) {
+    public void setItemsPedido(ArrayList<ItemsPedido> itemsPedido) {
         this.itemsPedido = itemsPedido;
     }
 }

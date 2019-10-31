@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -47,7 +46,6 @@ public class AltaPedido extends AppCompatActivity {
 
         PlatoRepository.getInstance().listarPlatos();
         List<Plato> aux = PlatoRepository.getInstance().getListaPlatos();
-
         Plato p = aux.get(getIntent().getExtras().getInt("posicion"));
 
         _PLATOS = new ArrayList<Plato>();
@@ -73,7 +71,7 @@ public class AltaPedido extends AppCompatActivity {
 
         ArrayList<ItemsPedido> items = new ArrayList<ItemsPedido>();
         items.add(itemsPedido);
-        pedido.setItems(items);
+        pedido.setItemsPedido(items);
 
         PedidoRepository.getInstance(getApplicationContext()).crearPedido(pedido);
         PedidoRepository.getInstance(getApplicationContext()).crearItemPedido(itemsPedido, pedido);
@@ -82,7 +80,7 @@ public class AltaPedido extends AppCompatActivity {
         agregarPlatoPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //TODO si quiere agregar otro plato al pedido
             }
         });
 
@@ -104,7 +102,6 @@ public class AltaPedido extends AppCompatActivity {
                 p.setEstadoPedido(1);
                 p.setLat(50);
                 p.setLng(3.6);
-                p.setItems(items);
                 newPedido(p);
             }
         });
@@ -112,12 +109,12 @@ public class AltaPedido extends AppCompatActivity {
         enviarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //TODO subir pedido al servidor
             }
         });
     }
 
-    public void newPedido(Pedido p){
+    private void newPedido(Pedido p){
         PedidoRepository.getInstance(getApplicationContext()).crearPedido(p);
     }
 }

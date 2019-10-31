@@ -77,7 +77,6 @@ public class AltaPedido extends AppCompatActivity {
 
         PedidoRepository.getInstance(getApplicationContext()).crearPedido(pedido);
         PedidoRepository.getInstance(getApplicationContext()).crearItemPedido(itemsPedido, pedido);
-
         Log.d("ROOM", "PEDIDO CREADO");
 
         agregarPlatoPedido.setOnClickListener(new View.OnClickListener() {

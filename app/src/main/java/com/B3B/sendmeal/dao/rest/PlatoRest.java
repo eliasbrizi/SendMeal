@@ -23,6 +23,9 @@ public interface PlatoRest {
     @GET("platos/{ID}")
     Call<Plato> buscarPlatoPorID(@Path("ID") Integer id);
 
+    @GET("platos/{nombre}")
+    Call<List<Plato>> buscarPlatoPorNombre(@Path("nombre") String nombre);
+
     @PUT("platos/{ID}")
     Call<Plato> actualizarPlato(@Path("ID") Integer id, @Body Plato plato);
 

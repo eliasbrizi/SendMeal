@@ -95,13 +95,15 @@ public class PlatoRepository{
         });
     }
 
-    public Plato buscarPlatoPorID(int id){
+    public Plato buscarPlatoPorID(final int id){
         Call<Plato> llamada = this.platoRest.buscarPlatoPorID(id);
         llamada.enqueue(new Callback<Plato>() {
             @Override
             public void onResponse(Call<Plato> call, Response<Plato> response) {
+                Log.d("RESPUESTA","RESPUESTA");
                 if(response.isSuccessful()){
                     plato = response.body();
+                    Log.d("RESPUESTA","RESPUESTA SUCCESSFUL");
                 }
             }
 
@@ -110,7 +112,11 @@ public class PlatoRepository{
                 Log.d("APP_2","fallo");
             }
         });
-        return plato;
+        Plato p = new Plato();
+        p.setID(2);
+        p.setNombre("Hola mundo");
+        return p;
+        //return plato;
     }
 
     public List<Plato> getListaPlatos() {

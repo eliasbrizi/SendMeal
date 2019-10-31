@@ -1,7 +1,5 @@
 package com.B3B.sendmeal.dao.room;
 
-import android.content.ClipData;
-
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -28,7 +26,7 @@ public interface ItemsPedidoDao {
     public void borrarItemsPedido(ItemsPedido ip, Pedido p);
 
     @Query("SELECT * FROM ITEMSPEDIDO WHERE idpedido = :id")
-    public List<ItemsPedido> getItemsPedidoByID(int id);
+    public List<ItemsPedido> getItemsPedidoByIdPedido(int id);
 
     @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT * FROM ITEMSPEDIDO, PEDIDO WHERE ITEMSPEDIDO.idpedido = PEDIDO.idpedido AND PEDIDO.idpedido = :idped AND platoItem = :idPlato")

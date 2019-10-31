@@ -20,8 +20,8 @@ public interface PlatoRest {
     @GET("platos/")
     Call<List<Plato>> listarTodos();
 
-    @GET("platos/{ID}")
-    Call<Plato> buscarPlatoPorID(@Path("ID") Integer id);
+    @GET("platos/{id}")
+    Call<Plato> buscarPlatoPorID(@Path("id") Integer id);
 
     @GET("platos/{nombre}")
     Call<List<Plato>> buscarPlatoPorNombre(@Path("nombre") String nombre);

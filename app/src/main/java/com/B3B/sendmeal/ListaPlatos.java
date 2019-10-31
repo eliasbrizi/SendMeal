@@ -47,11 +47,15 @@ Lista de platos
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        PlatoRepository.getInstance().listarPlatos();
         _PLATOS = (ArrayList<Plato>) PlatoRepository.getInstance().getListaPlatos();
+        if (_PLATOS.isEmpty()) {
+            PlatoRepository.getInstance().listarPlatos();
+            _PLATOS = (ArrayList<Plato>) PlatoRepository.getInstance().getListaPlatos();
+        }
 
         mAdapter = new PlatoViewAdapter(getApplicationContext(),_PLATOS,this);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 
     public void ponerEnOferta(final int position){

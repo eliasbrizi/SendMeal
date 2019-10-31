@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.B3B.sendmeal.dao.PedidoRepository;
+import com.B3B.sendmeal.dao.PlatoRepository;
 import com.B3B.sendmeal.domain.Pedido;
 
 public class Home extends AppCompatActivity {
@@ -42,6 +43,11 @@ public class Home extends AppCompatActivity {
                 startActivity(i1);
                 return true;
             case R.id.menuItemConsultar:
+                /*
+                Pido una nueva lista de platos por si se realizo una busqueda
+                y la lista quedo con basura
+                 */
+                PlatoRepository.getInstance().listarPlatos();
                 i1 = new Intent(this,ListaPlatos.class);
                 startActivity(i1);
                 return true;

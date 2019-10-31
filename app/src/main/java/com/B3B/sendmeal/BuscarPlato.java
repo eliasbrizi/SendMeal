@@ -2,6 +2,7 @@ package com.B3B.sendmeal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ public class BuscarPlato extends AppCompatActivity {
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("falla","click");
                 PlatoRepository.getInstance().buscarPlatoPorPrecio(
                         Integer.parseInt(editPrecioMin.getText().toString()),
                         Integer.parseInt(editPrecioMax.getText().toString()));

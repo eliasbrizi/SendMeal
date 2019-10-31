@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface PlatoRest {
 
@@ -26,8 +27,8 @@ public interface PlatoRest {
     @GET("/platos?nombre={nomb}")
     Call<List<Plato>> buscarPlatoPorNombre(@Path("nomb") String nombre);
 
-    @GET("/platos?precio_gte={minimo}&precio_lte={maximo}")
-    Call<List<Plato>> buscarPlatoPorPrecios(@Path("minimo") Integer precioMinimo, @Path("maximo") Integer precioMaximo);
+    @GET("platos/")
+    Call<List<Plato>> buscarPlatoPorPrecios(@Query("precio_gte") Integer precioMinimo, @Query("precio_lte") Integer precioMaximo);
 
     @PUT("platos/{ID}")
     Call<Plato> actualizarPlato(@Path("ID") Integer id, @Body Plato plato);

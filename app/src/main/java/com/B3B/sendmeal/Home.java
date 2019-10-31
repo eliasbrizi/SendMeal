@@ -5,14 +5,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.B3B.sendmeal.dao.PedidoRepository;
 import com.B3B.sendmeal.dao.PlatoRepository;
-import com.B3B.sendmeal.domain.Pedido;
 
 public class Home extends AppCompatActivity {
 
@@ -27,6 +23,7 @@ public class Home extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        PlatoRepository.getInstance().listarPlatos();
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -47,7 +44,6 @@ public class Home extends AppCompatActivity {
                 Pido una nueva lista de platos por si se realizo una busqueda
                 y la lista quedo con basura
                  */
-                PlatoRepository.getInstance().listarPlatos();
                 i1 = new Intent(this,ListaPlatos.class);
                 startActivity(i1);
                 return true;

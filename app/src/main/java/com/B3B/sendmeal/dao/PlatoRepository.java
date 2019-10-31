@@ -95,32 +95,22 @@ public class PlatoRepository{
         });
     }
 
-    public Plato buscarPlatoPorID(final int id){
-        Call<Plato> llamada = this.platoRest.buscarPlatoPorID(id);
-        llamada.enqueue(new Callback<Plato>() {
+    public void buscarPlatoPorID(final int id){
+        Call<List<Plato>> llamada = this.platoRest.buscarPlatoPorID(id);
+        llamada.enqueue(new Callback<List<Plato>>() {
             @Override
-            public void onResponse(Call<Plato> call, Response<Plato> response) {
-                Log.d("RESPUESTA","RESPUESTA");
+            public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
                 if(response.isSuccessful()){
-                    plato = response.body();
-                    Log.d("RESPUESTA","RESPUESTA SUCCESSFUL");
+                    listaPlatos.clear();
+                    listaPlatos.addAll(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<Plato> call, Throwable t) {
+            public void onFailure(Call<List<Plato>> call, Throwable t) {
                 Log.d("APP_2","fallo");
             }
         });
-        Plato p = new Plato();
-        p.setID(2);
-        p.setNombre("Hola mundo");
-        p.setOferta(false);
-        p.setCalorias(4500);
-        p.setDescripcion("Hello");
-        p.setPrecio(35.0);
-        return p;
-        //return plato;
     }
 
     public void buscarPlatoPorNombre(String nombre){

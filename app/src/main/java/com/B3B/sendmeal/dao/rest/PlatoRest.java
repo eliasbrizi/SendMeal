@@ -22,7 +22,7 @@ public interface PlatoRest {
     Call<List<Plato>> listarTodos();
 
     @GET("platos/")
-    Call<Plato> buscarPlatoPorID(@Query("id") Integer id);
+    Call<List<Plato>> buscarPlatoPorID(@Query("id") Integer id);
 
     @GET("platos/")
     Call<List<Plato>> buscarPlatoPorNombre(@Query("nombre") String nombre);

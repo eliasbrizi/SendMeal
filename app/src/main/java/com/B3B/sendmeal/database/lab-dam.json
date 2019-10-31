@@ -23,6 +23,14 @@
       "nombre": "Pizza",
       "oferta": false,
       "precio": 350
+    },
+    {
+      "calorias": 3000,
+      "descripcion": "Done carne",
+      "id": 6,
+      "nombre": "Hamburguesa",
+      "oferta": false,
+      "precio": 270
     }
   ],
   "pedidos": []

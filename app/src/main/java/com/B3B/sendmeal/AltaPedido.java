@@ -112,23 +112,41 @@ public class AltaPedido extends AppCompatActivity {
         crearPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //OBSOLETOOOO CAMBIAR LUEGO
-                ArrayList<ItemsPedido> items = new ArrayList<ItemsPedido>();
-                for (int i = 0; i < _PLATOS.size(); i++) {
-                    ItemsPedido ip = new ItemsPedido();
-                    ip.setIdItem(i+1);
-                    ip.setCantidad(1);
-                    ip.setPrecio(_PLATOS.get(i).getPrecio());
-                    ip.setPlatoItem(_PLATOS.get(i));
-                    items.add(ip);
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(idPedido);
+                pedido.setFechaPedido(new Date(System.currentTimeMillis()));
+                pedido.setLat(10.0);
+                pedido.setLng(20.0);
+                pedido.setEstadoPedido(1);
+
+                ArrayList<ItemsPedido> items = (ArrayList) PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido);
+                if(items.isEmpty()){
+                    ItemsPedido item1 = new ItemsPedido();
+                    item1.setIdItem(1);
+                    item1.setIdPedido(idPedido);
+                    item1.setCantidad(getIntent().getExtras().getInt("cantidad"));
+                    item1.setPlatoItem(_PLATOS.get(0));
+                    item1.setPrecio(_PLATOS.get(0).getPrecio());
+                    items.add(item1);
+                    pedido.setItemsPedido(items);
+
+                    PedidoRepository.getInstance(getApplicationContext()).crearPedido(pedido);
                 }
-                Pedido p = new Pedido();
-                p.setIdPedido(2);
-                p.setFechaPedido(new Date(System.currentTimeMillis()));
-                p.setEstadoPedido(1);
-                p.setLat(50);
-                p.setLng(3.6);
-                newPedido(p);
+                else{
+                    Plato paux = _PLATOS.get(_PLATOS.size()-1);
+                    ItemsPedido item = new ItemsPedido();
+                    item.setIdItem(items.size()+1);
+                    item.setPrecio(paux.getPrecio());
+                    item.setPlatoItem(paux);
+                    item.setCantidad(getIntent().getExtras().getInt("cantidad"));
+                    item.setIdPedido(idPedido);
+                    PedidoRepository.getInstance(getApplicationContext()).crearItemPedido(item,pedido);
+                    items.add(item);
+                    pedido.setItemsPedido(items);
+
+                    PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(pedido);
+                }
+                Log.d("ROOM", "PEDIDO CREADO!");
             }
         });
 
@@ -138,9 +156,5 @@ public class AltaPedido extends AppCompatActivity {
                 //TODO subir pedido al servidor
             }
         });
-    }
-
-    private void newPedido(Pedido p){
-        PedidoRepository.getInstance(getApplicationContext()).crearPedido(p);
     }
 }

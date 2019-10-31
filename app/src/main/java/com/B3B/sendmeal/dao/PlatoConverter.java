@@ -13,7 +13,8 @@ public class PlatoConverter {
             return null;
         }
         else{
-            Plato pl = PlatoRepository.getInstance().buscarPlatoPorID(id);
+            PlatoRepository.getInstance().buscarPlatoPorID(id);
+            Plato pl = PlatoRepository.getInstance().getListaPlatos().get(0);
             return pl;
         }
     }

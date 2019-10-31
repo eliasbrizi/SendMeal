@@ -21,11 +21,11 @@ public interface PlatoRest {
     @GET("platos/")
     Call<List<Plato>> listarTodos();
 
-    @GET("/platos?id={ID}")
-    Call<Plato> buscarPlatoPorID(@Path("ID") Integer id);
+    @GET("platos/")
+    Call<Plato> buscarPlatoPorID(@Query("id") Integer id);
 
-    @GET("/platos?nombre={nomb}")
-    Call<List<Plato>> buscarPlatoPorNombre(@Path("nomb") String nombre);
+    @GET("platos/")
+    Call<List<Plato>> buscarPlatoPorNombre(@Query("nombre") String nombre);
 
     @GET("platos/")
     Call<List<Plato>> buscarPlatoPorPrecios(@Query("precio_gte") Integer precioMinimo, @Query("precio_lte") Integer precioMaximo);

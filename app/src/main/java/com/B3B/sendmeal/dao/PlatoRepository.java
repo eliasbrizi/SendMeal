@@ -112,6 +112,7 @@ public class PlatoRepository{
         });
         return plato;
     }
+/*
 
     public ArrayList<Plato> buscarPlatoPorNombre(String nombre){
         Call<List<Plato>> llamada = this.platoRest.buscarPlatoPorNombre(nombre);
@@ -131,6 +132,49 @@ public class PlatoRepository{
             }
         });
         return listaNombrePlato;
+    }
+
+    public ArrayList<Plato> buscarPlatoPorPrecio(Integer precioMinimo,Integer precioMaximo){
+        Call<List<Plato>> llamada = this.platoRest.buscarPlatoPorPrecios(precioMinimo,precioMaximo);
+        final ArrayList<Plato> listaRespuesta = new ArrayList<>();
+        llamada.enqueue(new Callback<List<Plato>>() {
+            @Override
+            public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
+                if(response.isSuccessful()){
+                    listaRespuesta.clear();
+                    listaRespuesta.addAll(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Plato>> call, Throwable t) {
+                Log.d("APP_2","fallo");
+            }
+        });
+        return listaRespuesta;
+    }
+
+    public List<Plato> getListaPlatos() {
+        return listaPlatos;
+    }
+*/
+
+    public void buscarPlatoPorPrecio(Integer precioMinimo,Integer precioMaximo){
+        Call<List<Plato>> llamada = this.platoRest.buscarPlatoPorPrecios(precioMinimo,precioMaximo);
+        llamada.enqueue(new Callback<List<Plato>>() {
+            @Override
+            public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
+                if(response.isSuccessful()){
+                    listaPlatos.clear();
+                    listaPlatos.addAll(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Plato>> call, Throwable t) {
+                Log.d("APP_2","fallo");
+            }
+        });
     }
 
     public List<Plato> getListaPlatos() {

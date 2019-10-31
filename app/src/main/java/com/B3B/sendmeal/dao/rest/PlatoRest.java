@@ -20,14 +20,14 @@ public interface PlatoRest {
     @GET("platos/")
     Call<List<Plato>> listarTodos();
 
-    @GET("platos/{ID}")
+    @GET("/platos?id={ID}")
     Call<Plato> buscarPlatoPorID(@Path("ID") Integer id);
 
-    @GET("platos/{nombre}")
-    Call<List<Plato>> buscarPlatoPorNombre(@Path("nombre") String nombre);
+    @GET("/platos?nombre={nomb}")
+    Call<List<Plato>> buscarPlatoPorNombre(@Path("nomb") String nombre);
 
-    @GET("platos/{nombre}")
-    Call<List<Plato>> buscarPlatoPorPrecios(@Path("nombre") String nombre);
+    @GET("/platos?precio_gte={minimo}&precio_lte={maximo}")
+    Call<List<Plato>> buscarPlatoPorPrecios(@Path("minimo") Integer precioMinimo, @Path("maximo") Integer precioMaximo);
 
     @PUT("platos/{ID}")
     Call<Plato> actualizarPlato(@Path("ID") Integer id, @Body Plato plato);

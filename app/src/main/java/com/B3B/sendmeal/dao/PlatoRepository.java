@@ -115,6 +115,10 @@ public class PlatoRepository{
         Plato p = new Plato();
         p.setID(2);
         p.setNombre("Hola mundo");
+        p.setOferta(false);
+        p.setCalorias(4500);
+        p.setDescripcion("Hello");
+        p.setPrecio(35.0);
         return p;
         //return plato;
     }

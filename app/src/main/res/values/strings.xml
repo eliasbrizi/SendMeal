@@ -71,6 +71,7 @@
     <string name="txtBtnAgregarComida">Agregar comida</string>
     <string name="txtBtnCrearPedido">Crear pedido</string>
     <string name="txtBtnEnviarPedido">Enviar pedido</string>
+    <string name="txtBtnAgregarPedido">Agregar al pedido</string>
 
     <!-- Notificaciones -->
     <string name="nombreCanal">Ofertas</string>

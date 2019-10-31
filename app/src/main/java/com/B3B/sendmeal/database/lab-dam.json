@@ -15,6 +15,14 @@
       "nombre": "Matambre",
       "oferta": false,
       "precio": 500
+    },
+    {
+      "calorias": 4750,
+      "descripcion": "Provenzal",
+      "id": 2,
+      "nombre": "Pizza",
+      "oferta": false,
+      "precio": 350
     }
   ],
   "pedidos": []

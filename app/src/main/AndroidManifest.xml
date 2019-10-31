@@ -25,6 +25,7 @@
         <activity android:name=".BuscarPlato" android:parentActivityName=".Home"/>
         <activity android:name=".MostrarPlato" android:parentActivityName=".Home"/>
         <activity android:name=".AltaPedido" android:parentActivityName=".ListaPlatos"/>
+        <activity android:name=".MostrarPlatosPedido" android:parentActivityName=".AltaPedido"/>
 
         <service
             android:name=".OfertaIntentService">

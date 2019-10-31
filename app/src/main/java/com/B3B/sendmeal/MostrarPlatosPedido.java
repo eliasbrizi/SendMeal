@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,11 +22,13 @@ import com.B3B.sendmeal.domain.Plato;
 
 import java.util.ArrayList;
 
-public class ListaPlatos extends AppCompatActivity {
+public class MostrarPlatosPedido extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private int idPedido;
 
     public static BroadcastReceiver br;
 
@@ -37,12 +40,12 @@ Lista de platos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listaplatos);
+        setContentView(R.layout.activity_mostrarplatospedido);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarBack);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerListaPlatos);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerMostrarPlatosPedido);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -53,50 +56,14 @@ Lista de platos
             _PLATOS = (ArrayList<Plato>) PlatoRepository.getInstance().getListaPlatos();
         }
 
-        mAdapter = new PlatoViewAdapter(getApplicationContext(),_PLATOS,this);
+        idPedido = getIntent().getExtras().getInt("idPedido");
+
+        mAdapter = new PlatosPedidoViewAdapter(getApplicationContext(), _PLATOS, this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
 
-    public void ponerEnOferta(final int position){
-        final Plato plato = ListaPlatos._PLATOS.get(position);
-        plato.setOferta(true);
-
-        Toast.makeText(getApplicationContext(),R.string.platoOfertado,Toast.LENGTH_SHORT).show();
-
-        br = new OfertaBroadcastReceiver();
-        IntentFilter filtro = new IntentFilter();
-        filtro.addAction(OfertaBroadcastReceiver.OFERTA);
-        getApplication().getApplicationContext().registerReceiver(br, filtro);
-
-        Intent servicio = new Intent(this, OfertaIntentService.class);
-        servicio.putExtra("Posicion", position);
-        servicio.putExtra("NombrePlato", plato.getNombre());
-        startService(servicio);
-    }
-
-    public void showDialogEliminar(final int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.dialogoEliminarPlato).setTitle(R.string.tituloDialogo)
-                .setPositiveButton("Si",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Plato pl = _PLATOS.get(position);
-                                PlatoRepository.getInstance().borrarPlato(pl);
-                                _PLATOS.remove(position);
-                                mAdapter.notifyDataSetChanged();
-                            }
-                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
-    public void showDialogCantidad(final int position){
+    public void agregarComidaAPedido(final int position){
         LayoutInflater inflater = LayoutInflater.from(this);
         final View dialogoView = inflater.inflate(R.layout.dialog_cantidad,null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -107,12 +74,12 @@ Lista de platos
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                    int cantidadPedido = Integer.valueOf(campoCantidad.getText().toString());
-                    Intent i1 = new Intent(getApplicationContext(), AltaPedido.class);
-                    i1.putExtra("posicion", position);
-                    i1.putExtra("cantidad", cantidadPedido);
-                    i1.putExtra("idPedido", 0);
-                    startActivity(i1);
+                        int cantidadPedido = Integer.valueOf(campoCantidad.getText().toString());
+                        Intent i1 = new Intent(getApplicationContext(), AltaPedido.class);
+                        i1.putExtra("posicion", position);
+                        i1.putExtra("cantidad", cantidadPedido);
+                        i1.putExtra("idPedido", idPedido);
+                        startActivity(i1);
                     }
                 }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override

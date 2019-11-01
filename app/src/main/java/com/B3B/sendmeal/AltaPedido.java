@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.B3B.sendmeal.dao.PedidoRepository;
+import com.B3B.sendmeal.dao.PedidoRepositoryServer;
 import com.B3B.sendmeal.dao.PlatoRepository;
 import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
@@ -30,6 +31,7 @@ public class AltaPedido extends AppCompatActivity {
 
     public static ArrayList<Plato> _PLATOS;
     private int idPedido;
+    private Pedido pedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +116,7 @@ public class AltaPedido extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Pedido pedido = new Pedido();
+                pedido = new Pedido();
                 pedido.setIdPedido(idPedido);
                 pedido.setFechaPedido(new Date(System.currentTimeMillis()));
                 pedido.setLat(10.0);
@@ -158,7 +160,8 @@ public class AltaPedido extends AppCompatActivity {
         enviarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO subir pedido al servidor
+                PedidoRepositoryServer.getInstance().crearPedido(pedido);
+                finish();
             }
         });
     }

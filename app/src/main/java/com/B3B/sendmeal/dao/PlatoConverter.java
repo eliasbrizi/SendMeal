@@ -1,7 +1,5 @@
 package com.B3B.sendmeal.dao;
 
-import android.util.Log;
-
 import androidx.room.TypeConverter;
 
 import com.B3B.sendmeal.domain.Plato;
@@ -14,8 +12,7 @@ public class PlatoConverter {
         }
         else{
             PlatoRepository.getInstance().buscarPlatoPorID(id);
-            Plato pl = PlatoRepository.getInstance().getListaPlatos().get(0);
-            return pl;
+            return PlatoRepository.getInstance().getPlato();
         }
     }
 

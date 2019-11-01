@@ -96,18 +96,16 @@ public class PlatoRepository{
     }
 
     public void buscarPlatoPorID(final int id){
-        Call<List<Plato>> llamada = this.platoRest.buscarPlatoPorID(id);
-        llamada.enqueue(new Callback<List<Plato>>() {
+        Call<Plato> llamada = this.platoRest.buscarPlatoPorID(id);
+        llamada.enqueue(new Callback<Plato>() {
             @Override
-            public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
-                if(response.isSuccessful()){
-                    listaPlatos.clear();
-                    listaPlatos.addAll(response.body());
-                }
+            public void onResponse(Call<Plato> call, Response<Plato> response) {
+                if(response.isSuccessful()) plato = response.body();
+                else plato = null;
             }
 
             @Override
-            public void onFailure(Call<List<Plato>> call, Throwable t) {
+            public void onFailure(Call<Plato> call, Throwable t) {
                 Log.d("APP_2","fallo");
             }
         });
@@ -149,10 +147,6 @@ public class PlatoRepository{
         });
     }
 
-    public List<Plato> getListaPlatos() {
-        return listaPlatos;
-    }
-
     public void borrarPlato (final Plato plato/*, final Handler h*/){
         Call<Void> llamada = this.platoRest.eliminarPlato(plato.getID());
         llamada.enqueue(new Callback<Void>() {
@@ -179,5 +173,13 @@ public class PlatoRepository{
                 Log.d("APP_2","ERROR "+t.getMessage());
             }
         });
+    }
+
+    public List<Plato> getListaPlatos() {
+        return listaPlatos;
+    }
+
+    public Plato getPlato(){
+        return plato;
     }
 }

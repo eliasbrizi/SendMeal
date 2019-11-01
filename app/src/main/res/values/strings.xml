@@ -49,7 +49,7 @@
     <string name="nombrePlatoListaPlato">Nombre: </string>
     <string name="precioPlatoListaPlato">Precio: </string>
     <string name="cantidadPlatoPedido">Cantidad: </string>
-    
+
     <!-- Lista Platos -->
     <string name="dialogoEliminarPlato">¿Desea eliminar el plato de la lista?</string>
     <string name="tituloDialogo">Eliminar plato</string>
@@ -78,5 +78,10 @@
     <string name="descripcionCanal">Canal utilizado para notificaciones de platos en oferta</string>
     <string name="nombreNotificacionOferta">Oferta</string>
     <string name="detalleNotificacionOferta">esta en oferta!!</string>
+
+
+    <!-- Mapas -->
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCuYHwH_F4qzlVLJYDJWIR5FZWS_eN5loA</string>
 
 </resources>

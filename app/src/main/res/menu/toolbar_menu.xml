@@ -19,7 +19,7 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/menuItemBuscar"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="@string/menuItemBuscar"
         app:showAsAction="never" />
 </menu>

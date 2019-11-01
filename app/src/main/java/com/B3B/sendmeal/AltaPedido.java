@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -112,6 +113,7 @@ public class AltaPedido extends AppCompatActivity {
         crearPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(idPedido);
                 pedido.setFechaPedido(new Date(System.currentTimeMillis()));
@@ -147,6 +149,9 @@ public class AltaPedido extends AppCompatActivity {
                     PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(pedido);
                 }
                 Log.d("ROOM", "PEDIDO CREADO!");
+
+                Intent i1 = new Intent(getApplicationContext(),MapsActivity.class);
+                startActivityForResult(i1, 1);
             }
         });
 
@@ -156,5 +161,18 @@ public class AltaPedido extends AppCompatActivity {
                 //TODO subir pedido al servidor
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent i1){
+        if(requestCode == 1 && resultCode == 1){
+            Pedido actual = PedidoRepository.getInstance(getApplicationContext()).buscarPedidoPorID(idPedido);
+            actual.setLat(i1.getExtras().getDouble("latitud"));
+            actual.setLng(i1.getExtras().getDouble("longitud"));
+            PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(actual);
+        } else {
+            Log.d("Error", "Fallo onActivityResultMapas");
+        }
+
     }
 }

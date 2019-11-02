@@ -2,8 +2,16 @@ package com.B3B.sendmeal;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
+import com.B3B.sendmeal.domain.EstadoPedido;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -14,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Spinner spnEstadoPedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +32,15 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        spnEstadoPedido = (Spinner) findViewById(R.id.spnEstadoPedidoMapa);
+        EstadoPedido[] adapter = {EstadoPedido.ACEPTADO,EstadoPedido.EN_ENVIO,
+                        EstadoPedido.EN_PREPARACION,EstadoPedido.ENTREGADO,
+                        EstadoPedido.ENVIADO,EstadoPedido.RECHAZADO};
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,adapter);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spnEstadoPedido.setAdapter(aa);
     }
 
 

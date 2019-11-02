@@ -3,19 +3,24 @@ package com.B3B.sendmeal;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.B3B.sendmeal.dao.PedidoRepository;
 import com.B3B.sendmeal.dao.PedidoRepositoryServer;
 import com.B3B.sendmeal.domain.EstadoPedido;
+import com.B3B.sendmeal.domain.Pedido;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback {
 
@@ -48,7 +53,7 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                actualizarMarcadores();
             }
         });
     }
@@ -71,10 +76,25 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        /*
+            Cargo los pedidos en el repositorio
+         */
+        PedidoRepositoryServer.getInstance().listarPedidos();
+        actualizarMarcadores();
+    }
+
+    private void actualizarMarcadores(){
+        List<Pedido> lista = PedidoRepositoryServer.getInstance().getListaPedidos();
+        mMap.clear();
+        for (Pedido p: lista)
+        mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng())));
     }
 
     private void actualizarMarcadores(EstadoPedido e){
         //TODO implementar
-        PedidoRepositoryServer.getInstance().
+        List<Pedido> lista = PedidoRepositoryServer.getInstance().getListaPedidos();
+        mMap.clear();
+        for (Pedido p: lista) if(EstadoPedido.values()[p.getEstadoPedido()] == e)
+            mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng())));
     }
 }

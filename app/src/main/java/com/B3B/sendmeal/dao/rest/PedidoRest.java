@@ -1,7 +1,6 @@
 package com.B3B.sendmeal.dao.rest;
 
 import com.B3B.sendmeal.domain.Pedido;
-import com.B3B.sendmeal.domain.Plato;
 
 import java.util.List;
 

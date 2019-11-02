@@ -28,7 +28,7 @@ public class PedidoRepositoryServer {
     /*
 
      */
-    private ArrayList<Pedido> listaPedidos;
+    private List<Pedido> listaPedidos;
 
     private PedidoRepositoryServer(){}
 
@@ -36,6 +36,7 @@ public class PedidoRepositoryServer {
         if(_INSTANCE==null){
             _INSTANCE = new PedidoRepositoryServer();
             _INSTANCE.configurarRetrofit();
+            _INSTANCE.listaPedidos = new ArrayList<>();
         }
         return _INSTANCE;
     }
@@ -70,7 +71,8 @@ public class PedidoRepositoryServer {
         });
     }
 
-    public void listaPedidos(){
+    public void listarPedidos(){
+
         Call<List<Pedido>> llamada = this.pedidoRest.listarTodos();
         llamada.enqueue(new Callback<List<Pedido>>() {
             @Override
@@ -88,7 +90,7 @@ public class PedidoRepositoryServer {
         });
     }
 
-    public ArrayList<Pedido> getListaPedidos(){
+    public List<Pedido> getListaPedidos(){
         return listaPedidos;
     }
 }

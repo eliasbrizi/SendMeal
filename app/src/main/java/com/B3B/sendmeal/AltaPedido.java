@@ -173,6 +173,7 @@ public class AltaPedido extends AppCompatActivity {
             actual.setLat(i1.getExtras().getDouble("latitud"));
             actual.setLng(i1.getExtras().getDouble("longitud"));
             PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(actual);
+            pedido = actual;
             Log.d("ROOM", "LAT: "+i1.getExtras().getDouble("latitud"));
             Log.d("ROOM", "LNG: "+i1.getExtras().getDouble("longitud"));
             Log.d("ROOM", "PEDIDO ACTUALIZADO");

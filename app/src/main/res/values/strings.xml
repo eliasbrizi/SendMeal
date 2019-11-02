@@ -30,11 +30,13 @@
     <string name="tarjetaVencimiento">La tarjeta debe tener vencimiento mayor a 3 meses</string>
     <string name="guardadoExitoso">El registro ha sido exitoso</string>
 
+    <!-- Menu -->
     <string name="menuItemRegistrar">Registrar</string>
     <string name="menuItemCrear">Crear nuevo plato</string>
     <string name="menuItemConsultar">Consultar platos</string>
     <string name="menuItemBuscar">Buscar platos</string>
     <string name="menuItemRegistrarPedido">Registrar pedido</string>
+    <string name="menuPedidosEnMapa">Mapa de pedidos</string>
 
     <!-- Pantalla alta nuevo plato-->
     <string name="idANP">ID</string>
@@ -83,5 +85,6 @@
     <!-- Mapas -->
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCuYHwH_F4qzlVLJYDJWIR5FZWS_eN5loA</string>
+    <string name="title_activity_mapa_pedidos">Map</string>
 
 </resources>

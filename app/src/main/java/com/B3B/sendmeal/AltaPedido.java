@@ -179,6 +179,5 @@ public class AltaPedido extends AppCompatActivity {
         } else {
             Log.d("Error", "Fallo onActivityResultMapas");
         }
-
     }
 }

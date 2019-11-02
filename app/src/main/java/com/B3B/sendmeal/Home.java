@@ -51,6 +51,10 @@ public class Home extends AppCompatActivity {
                 i1 = new Intent(this,BuscarPlato.class);
                 startActivity(i1);
                 return true;
+            case R.id.menuItemPedidosEnMapa:
+                i1 = new Intent(this,MapaPedidos.class);
+                startActivity(i1);
+                return true;
             case android.R.id.home:
                 onBackPressed();
                 return true;

@@ -22,4 +22,9 @@
         android:orderInCategory="4"
         android:title="@string/menuItemBuscar"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menuItemPedidosEnMapa"
+        android:orderInCategory="5"
+        android:title="@string/menuPedidosEnMapa"
+        app:showAsAction="never" />
 </menu>

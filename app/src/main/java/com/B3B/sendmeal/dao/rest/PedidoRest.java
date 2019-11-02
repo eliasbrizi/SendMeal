@@ -17,16 +17,16 @@ import retrofit2.http.Query;
 public interface PedidoRest {
 
     @POST("pedidos/")
-    Call<Plato> crearPedido(@Body Pedido p);
+    Call<Pedido> crearPedido(@Body Pedido p);
 
     @GET("pedidos/")
-    Call<List<Plato>> listarTodos();
+    Call<List<Pedido>> listarTodos();
 
     @GET("pedidos/{id}")
-    Call<Plato> buscarPlatoPorID(@Path("id") Integer id);
+    Call<Pedido> buscarPlatoPorID(@Path("id") Integer id);
 
     @PUT("pedidos/{ID}")
-    Call<Plato> actualizarPedido(@Path("ID") Integer id, @Body Pedido plato);
+    Call<Pedido> actualizarPedido(@Path("ID") Integer id, @Body Pedido pedido);
 
     @DELETE("pedidos/{ID}")
     Call<Void> eliminarPedido(@Path("ID") Integer id);

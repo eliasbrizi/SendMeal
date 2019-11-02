@@ -2,15 +2,13 @@ package com.B3B.sendmeal;
 
 import androidx.fragment.app.FragmentActivity;
 
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
+import com.B3B.sendmeal.dao.PedidoRepositoryServer;
 import com.B3B.sendmeal.domain.EstadoPedido;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,6 +21,9 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
 
     private GoogleMap mMap;
     private Spinner spnEstadoPedido;
+    private EstadoPedido[] adapter = {EstadoPedido.ACEPTADO,EstadoPedido.EN_ENVIO,
+                    EstadoPedido.EN_PREPARACION,EstadoPedido.ENTREGADO,
+                    EstadoPedido.ENVIADO,EstadoPedido.RECHAZADO};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +35,22 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         mapFragment.getMapAsync(this);
 
         spnEstadoPedido = (Spinner) findViewById(R.id.spnEstadoPedidoMapa);
-        EstadoPedido[] adapter = {EstadoPedido.ACEPTADO,EstadoPedido.EN_ENVIO,
-                        EstadoPedido.EN_PREPARACION,EstadoPedido.ENTREGADO,
-                        EstadoPedido.ENVIADO,EstadoPedido.RECHAZADO};
         ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,adapter);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spnEstadoPedido.setAdapter(aa);
+        spnEstadoPedido.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                actualizarMarcadores(adapter[i]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
 
@@ -61,5 +71,10 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    private void actualizarMarcadores(EstadoPedido e){
+        //TODO implementar
+        PedidoRepositoryServer.getInstance().
     }
 }

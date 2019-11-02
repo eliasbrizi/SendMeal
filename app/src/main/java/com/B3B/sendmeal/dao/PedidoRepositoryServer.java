@@ -20,12 +20,15 @@ public class PedidoRepositoryServer {
 
     private static PedidoRepositoryServer _INSTANCE;
     public static String _SERVER = "http://10.0.2.2:5000/";
-
     /*
     Retrofit
      */
     private Retrofit rf;
     private PedidoRest pedidoRest;
+    /*
+
+     */
+    private ArrayList<Pedido> listaPedidos;
 
     private PedidoRepositoryServer(){}
 
@@ -47,10 +50,10 @@ public class PedidoRepositoryServer {
     }
 
     public void crearPedido(Pedido pedido/*, final Handler h*/){
-        Call<Plato> llamada = this.pedidoRest.crearPedido(pedido);
-        llamada.enqueue(new Callback<Plato>() {
+        Call<Pedido> llamada = this.pedidoRest.crearPedido(pedido);
+        llamada.enqueue(new Callback<Pedido>() {
             @Override
-            public void onResponse(Call<Plato> call, Response<Plato> response) {
+            public void onResponse(Call<Pedido> call, Response<Pedido> response) {
                 Log.d("APP_2","Despues que ejecuta"+ response.isSuccessful());
                 Log.d("APP_2","COdigo"+ response.code());
 
@@ -61,9 +64,31 @@ public class PedidoRepositoryServer {
             }
 
             @Override
-            public void onFailure(Call<Plato> call, Throwable t) {
+            public void onFailure(Call<Pedido> call, Throwable t) {
                 Log.d("APP_2","ERROR "+t.getMessage());
             }
         });
+    }
+
+    public void listaPedidos(){
+        Call<List<Pedido>> llamada = this.pedidoRest.listarTodos();
+        llamada.enqueue(new Callback<List<Pedido>>() {
+            @Override
+            public void onResponse(Call<List<Pedido>> call, Response<List<Pedido>> response) {
+                if(response.isSuccessful()){
+                    listaPedidos.clear();
+                    listaPedidos.addAll(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Pedido>> call, Throwable t) {
+                Log.d("APP_2","fallo");
+            }
+        });
+    }
+
+    public ArrayList<Pedido> getListaPedidos(){
+        return listaPedidos;
     }
 }

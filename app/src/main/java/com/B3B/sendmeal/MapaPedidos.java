@@ -1,7 +1,10 @@
 package com.B3B.sendmeal;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
+import android.graphics.Color;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +20,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -56,6 +60,11 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
                 actualizarMarcadores();
             }
         });
+
+                /*
+            Cargo los pedidos en el repositorio
+         */
+        PedidoRepositoryServer.getInstance().listarPedidos();
     }
 
 
@@ -76,10 +85,7 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        /*
-            Cargo los pedidos en el repositorio
-         */
-        PedidoRepositoryServer.getInstance().listarPedidos();
+
         actualizarMarcadores();
     }
 
@@ -94,7 +100,33 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         //TODO implementar
         List<Pedido> lista = PedidoRepositoryServer.getInstance().getListaPedidos();
         mMap.clear();
-        for (Pedido p: lista) if(EstadoPedido.values()[p.getEstadoPedido()] == e)
-            mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng())));
+        for (Pedido p: lista) if(EstadoPedido.values()[p.getEstadoPedido()] == e){
+            switch (e){
+                case EN_ENVIO:
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+                    break;
+                case EN_PREPARACION:
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                    break;
+                case ENVIADO:
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+                    break;
+                case ENTREGADO:
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                    break;
+                case ACEPTADO:
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                    break;
+                default:
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                    break;
+            }
+        }
     }
 }

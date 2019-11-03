@@ -31,7 +31,7 @@ public class Pedido {
     private ArrayList<ItemsPedido> itemsPedido;
 
     public void Pedido(){
-
+        itemsPedido = new ArrayList<>();
     }
 
     public int getIdPedido() {
@@ -52,6 +52,10 @@ public class Pedido {
 
     public int getEstadoPedido() {
         return estadoPedido;
+    }
+
+    public EstadoPedido getEstadoPedidoEnum() {
+        return EstadoPedido.values()[estadoPedido];
     }
 
     public void setEstadoPedido(int estadoPedido) {
@@ -80,5 +84,12 @@ public class Pedido {
 
     public void setItemsPedido(ArrayList<ItemsPedido> itemsPedido) {
         this.itemsPedido = itemsPedido;
+    }
+
+    public Double getPrecio(){
+        Double result=0.0;
+        for (ItemsPedido i: itemsPedido){
+            result+=i.getPrecio();
+        } return result;
     }
 }

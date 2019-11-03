@@ -4,13 +4,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.B3B.sendmeal.dao.PedidoRepository;
 import com.B3B.sendmeal.dao.PedidoRepositoryServer;
@@ -22,6 +26,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -85,7 +90,35 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
+            @Override
+            public View getInfoWindow(Marker arg0) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+
+                LinearLayout info = new LinearLayout(getApplicationContext());
+                info.setOrientation(LinearLayout.VERTICAL);
+
+                TextView title = new TextView(getApplicationContext());
+                title.setTextColor(Color.BLACK);
+                title.setGravity(Gravity.CENTER);
+                title.setTypeface(null, Typeface.BOLD);
+                title.setText(marker.getTitle());
+
+                TextView snippet = new TextView(getApplicationContext());
+                snippet.setTextColor(Color.GRAY);
+                snippet.setText(marker.getSnippet());
+
+                info.addView(title);
+                info.addView(snippet);
+
+                return info;
+            }
+        });
         actualizarMarcadores();
     }
 
@@ -100,31 +133,27 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         //TODO implementar
         List<Pedido> lista = PedidoRepositoryServer.getInstance().getListaPedidos();
         mMap.clear();
-        for (Pedido p: lista) if(EstadoPedido.values()[p.getEstadoPedido()] == e){
+        for (Pedido p: lista) if(p.getEstadoPedidoEnum() == e){
+            Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
+                    .snippet("Id pedido: "+p.getIdPedido()+"\nEstado: "+p.getEstadoPedidoEnum()+"\nPrecio: "+p.getPrecio()));
             switch (e){
                 case EN_ENVIO:
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
                     break;
                 case EN_PREPARACION:
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                   marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
                     break;
                 case ENVIADO:
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
                     break;
                 case ENTREGADO:
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
                     break;
                 case ACEPTADO:
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                     break;
                 default:
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                     break;
             }
         }

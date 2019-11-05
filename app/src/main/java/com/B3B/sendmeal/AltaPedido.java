@@ -101,7 +101,7 @@ public class AltaPedido extends AppCompatActivity {
                 ArrayList<ItemsPedido> items = new ArrayList<ItemsPedido>();
                 items.add(itemsPedido);
                 pedido.setItemsPedido(items);
-
+                
                 PedidoRepository.getInstance(getApplicationContext()).crearPedido(pedido);
                 PedidoRepository.getInstance(getApplicationContext()).crearItemPedido(itemsPedido, pedido);
                 Log.d("ROOM", "ITEM PEDIDO CREADO");
@@ -160,6 +160,8 @@ public class AltaPedido extends AppCompatActivity {
         enviarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pedido.setEstadoPedido(2);
+                PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(pedido);
                 PedidoRepositoryServer.getInstance().crearPedido(pedido);
                 finish();
             }

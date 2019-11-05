@@ -33,5 +33,14 @@
       "precio": 270
     }
   ],
-  "pedidos": []
+  "pedidos": [
+    {
+      "estadoPedido": 2,
+      "fechaPedido": "Nov 5, 2019 1:25:36 PM",
+      "idPedido": 9922,
+      "lat": -31.44733792566807,
+      "lng": -60.9272813424468,
+      "id": 1
+    }
+  ]
 }

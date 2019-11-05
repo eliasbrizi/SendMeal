@@ -1,5 +1,7 @@
 package com.B3B.sendmeal.dao;
 
+import android.util.Log;
+
 import androidx.room.TypeConverter;
 
 import com.B3B.sendmeal.domain.Plato;
@@ -11,19 +13,8 @@ public class PlatoConverter {
             return null;
         }
         else{
-            /*
             PlatoRepository.getInstance().buscarPlatoPorID(id);
             return PlatoRepository.getInstance().getPlato();
-
-             */
-            Plato p = new Plato();
-            p.setNombre("Pizza");
-            p.setCalorias(4000);
-            p.setPrecio(300.00);
-            p.setID(2);
-            p.setDescripcion("Calabresa");
-            p.setOferta(false);
-            return p;
         }
     }
 

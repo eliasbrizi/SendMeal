@@ -30,6 +30,9 @@ public interface PlatoRest {
     @GET("platos/")
     Call<List<Plato>> buscarPlatoPorPrecios(@Query("precio_gte") Integer precioMinimo, @Query("precio_lte") Integer precioMaximo);
 
+    @GET("platos/")
+    Call<List<Plato>> buscarPlatoPorPrecioYNombre(@Query("precio_gte") Integer precioMinimo, @Query("precio_lte") Integer precioMaximo, @Query("nombre") String nombre);
+
     @PUT("platos/{ID}")
     Call<Plato> actualizarPlato(@Path("ID") Integer id, @Body Plato plato);
 

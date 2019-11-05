@@ -24,6 +24,7 @@ public class BuscarPlato extends AppCompatActivity {
 
         final EditText editPrecioMin = (EditText) findViewById(R.id.editMinBP);
         final EditText editPrecioMax = (EditText) findViewById(R.id.editMaxBP);
+        final EditText editNombre = (EditText) findViewById(R.id.editNombreBP);
 
         final Button btnBuscar = (Button) findViewById(R.id.buttonBuscarBP);
 
@@ -31,10 +32,18 @@ public class BuscarPlato extends AppCompatActivity {
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("falla","click");
-                PlatoRepository.getInstance().buscarPlatoPorPrecio(
-                        Integer.parseInt(editPrecioMin.getText().toString()),
-                        Integer.parseInt(editPrecioMax.getText().toString()));
+                if(editNombre.getText().toString().equals("")){
+                    PlatoRepository.getInstance().buscarPlatoPorPrecio(
+                            Integer.parseInt(editPrecioMin.getText().toString()),
+                            Integer.parseInt(editPrecioMax.getText().toString()));
+                }
+                else if(editPrecioMin.getText().toString().equals("") && editPrecioMax.getText().toString().equals("")){
+                    PlatoRepository.getInstance().buscarPlatoPorNombre(editNombre.getText().toString());
+                }
+                else{
+                    PlatoRepository.getInstance().buscarPlatoPorNombreYPrecio(editNombre.getText().toString(), Integer.parseInt(editPrecioMin.getText().toString()), Integer.parseInt(editPrecioMax.getText().toString()));
+                }
+
                 Intent i1 = new Intent(getApplicationContext(),ListaPlatos.class);
                 startActivity(i1);
             }

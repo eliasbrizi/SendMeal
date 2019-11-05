@@ -100,8 +100,12 @@ public class PlatoRepository{
         llamada.enqueue(new Callback<Plato>() {
             @Override
             public void onResponse(Call<Plato> call, Response<Plato> response) {
-                if(response.isSuccessful()) plato = response.body();
-                else plato = null;
+                if(response.isSuccessful()){
+                    plato = response.body();
+                }
+                else{
+                    plato = null;
+                }
             }
 
             @Override
@@ -131,6 +135,24 @@ public class PlatoRepository{
 
     public void buscarPlatoPorPrecio(Integer precioMinimo,Integer precioMaximo){
         Call<List<Plato>> llamada = this.platoRest.buscarPlatoPorPrecios(precioMinimo,precioMaximo);
+        llamada.enqueue(new Callback<List<Plato>>() {
+            @Override
+            public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
+                if(response.isSuccessful()){
+                    listaPlatos.clear();
+                    listaPlatos.addAll(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Plato>> call, Throwable t) {
+                Log.d("APP_2","fallo");
+            }
+        });
+    }
+
+    public void buscarPlatoPorNombreYPrecio(String nombre, Integer prMin, Integer prMax){
+        Call<List<Plato>> llamada = this.platoRest.buscarPlatoPorPrecioYNombre(prMin, prMax, nombre);
         llamada.enqueue(new Callback<List<Plato>>() {
             @Override
             public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {

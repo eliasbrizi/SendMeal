@@ -7,6 +7,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import com.B3B.sendmeal.dao.EstadoPedidoConverter;
 import com.B3B.sendmeal.dao.FechaConverter;
 
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ public class Pedido {
     @NonNull
     @ColumnInfo(name = "idpedido")
     private int idPedido;
-    @ColumnInfo(name = "estadopedido")
-    private int estadoPedido;
+    @TypeConverters(EstadoPedidoConverter.class)
+    private EstadoPedido estadoPedido;
     @ColumnInfo(name = "latitud")
     private double lat;
     @ColumnInfo(name = "longitud")
@@ -52,15 +53,11 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
     }
 
-    public int getEstadoPedido() {
+    public EstadoPedido getEstadoPedido() {
         return estadoPedido;
     }
 
-    public EstadoPedido getEstadoPedidoEnum() {
-        return EstadoPedido.values()[estadoPedido];
-    }
-
-    public void setEstadoPedido(int estadoPedido) {
+    public void setEstadoPedido(EstadoPedido estadoPedido) {
         this.estadoPedido = estadoPedido;
     }
 

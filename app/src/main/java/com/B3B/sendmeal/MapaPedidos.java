@@ -133,9 +133,9 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         //TODO implementar
         List<Pedido> lista = PedidoRepositoryServer.getInstance().getListaPedidos();
         mMap.clear();
-        for (Pedido p: lista) if(p.getEstadoPedidoEnum() == e){
+        for (Pedido p: lista) if(p.getEstadoPedido() == e){
             Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
-                    .snippet("Id pedido: "+p.getIdPedido()+"\nEstado: "+p.getEstadoPedidoEnum()+"\nPrecio: "+p.getPrecio()));
+                    .snippet("Id pedido: "+p.getIdPedido()+"\nEstado: "+p.getEstadoPedido()+"\nPrecio: "+p.getPrecio()));
             switch (e){
                 case EN_ENVIO:
                     marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));

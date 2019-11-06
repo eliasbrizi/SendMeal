@@ -36,43 +36,11 @@
   "pedidos": [
     {
       "estadoPedido": 2,
-      "fechaPedido": "Nov 6, 2019 12:04:02 PM",
-      "idPedido": 1871,
-      "lat": -31.453721343244226,
-      "lng": -60.92536389827728,
+      "fechaPedido": "Nov 5, 2019 1:25:36 PM",
+      "idPedido": 9922,
+      "lat": -31.44733792566807,
+      "lng": -60.9272813424468,
       "id": 1
-    },
-    {
-      "estadoPedido": 2,
-      "fechaPedido": "Nov 6, 2019 12:12:54 PM",
-      "idPedido": 5864,
-      "lat": -27.73688449365978,
-      "lng": 25.516035407781605,
-      "id": 2
-    },
-    {
-      "estadoPedido": 2,
-      "fechaPedido": "Nov 6, 2019 12:21:16 PM",
-      "idPedido": 4658,
-      "lat": -23.12532420802209,
-      "lng": 22.640767693519592,
-      "id": 3
-    },
-    {
-      "estadoPedido": 2,
-      "fechaPedido": "Nov 6, 2019 12:28:09 PM",
-      "idPedido": 5008,
-      "lat": -18.238081724285,
-      "lng": -45.79056266695261,
-      "id": 4
-    },
-    {
-      "estadoPedido": "ENVIADO",
-      "fechaPedido": "Nov 6, 2019 1:01:00 PM",
-      "idPedido": 4890,
-      "lat": 10.298641385000359,
-      "lng": 138.94055765122175,
-      "id": 5
     }
   ]
 }

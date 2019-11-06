@@ -42,7 +42,6 @@ public class PlatoRepository{
             _INSTANCE = new PlatoRepository();
             _INSTANCE.configurarRetrofit();
             _INSTANCE.listaPlatos = new ArrayList<>();
-            _INSTANCE.plato = new Plato();
         }
         return _INSTANCE;
     }
@@ -81,7 +80,7 @@ public class PlatoRepository{
             @Override
             public void onResponse(Call<Plato> call, Response<Plato> response) {
                 Log.d("APP_2","Despues que ejecuta"+ response.isSuccessful());
-                Log.d("APP_2","Codigo"+ response.code());
+                Log.d("APP_2","COdigo"+ response.code());
 
                 if(response.isSuccessful()){
                     Log.d("APP_2","EJECUTO");
@@ -97,7 +96,6 @@ public class PlatoRepository{
     }
 
     public void buscarPlatoPorID(final int id){
-        Log.d("ID BUSCADO", String.valueOf(id));
         Call<Plato> llamada = this.platoRest.buscarPlatoPorID(id);
         llamada.enqueue(new Callback<Plato>() {
             @Override

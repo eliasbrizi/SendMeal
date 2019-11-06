@@ -5,14 +5,14 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 
 import com.B3B.sendmeal.dao.FechaConverter;
-import com.B3B.sendmeal.dao.room.EstadoPedidoConverter;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import retrofit2.http.FieldMap;
 
 @Entity(tableName = "PEDIDO")
 public class Pedido {
@@ -21,8 +21,8 @@ public class Pedido {
     @NonNull
     @ColumnInfo(name = "idpedido")
     private int idPedido;
-    @TypeConverters(EstadoPedidoConverter.class)
-    private EstadoPedido estadoPedido;
+    @ColumnInfo(name = "estadopedido")
+    private int estadoPedido;
     @ColumnInfo(name = "latitud")
     private double lat;
     @ColumnInfo(name = "longitud")
@@ -52,11 +52,15 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
     }
 
-    public EstadoPedido getEstadoPedido() {
+    public int getEstadoPedido() {
         return estadoPedido;
     }
 
-    public void setEstadoPedido(EstadoPedido estadoPedido) {
+    public EstadoPedido getEstadoPedidoEnum() {
+        return EstadoPedido.values()[estadoPedido];
+    }
+
+    public void setEstadoPedido(int estadoPedido) {
         this.estadoPedido = estadoPedido;
     }
 

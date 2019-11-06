@@ -13,9 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.B3B.sendmeal.dao.PedidoRepository;
-import com.B3B.sendmeal.dao.rest.PedidoRepositoryServer;
+import com.B3B.sendmeal.dao.PedidoRepositoryServer;
 import com.B3B.sendmeal.dao.PlatoRepository;
-import com.B3B.sendmeal.domain.EstadoPedido;
 import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
 import com.B3B.sendmeal.domain.Plato;
@@ -87,7 +86,7 @@ public class AltaPedido extends AppCompatActivity {
 
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(idPedido);
-                pedido.setEstadoPedido(EstadoPedido.PENDIENTE);
+                pedido.setEstadoPedido(1);
                 pedido.setLng(10.0);
                 pedido.setLat(20.0);
                 pedido.setFechaPedido(new Date(System.currentTimeMillis()));
@@ -122,7 +121,7 @@ public class AltaPedido extends AppCompatActivity {
                 pedido.setFechaPedido(new Date(System.currentTimeMillis()));
                 pedido.setLat(10.0);
                 pedido.setLng(20.0);
-                pedido.setEstadoPedido(EstadoPedido.PENDIENTE);
+                pedido.setEstadoPedido(1);
 
                 ArrayList<ItemsPedido> items = (ArrayList) PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido);
                 if(items.isEmpty()){
@@ -161,7 +160,7 @@ public class AltaPedido extends AppCompatActivity {
         enviarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pedido.setEstadoPedido(EstadoPedido.ENVIADO);
+                pedido.setEstadoPedido(2);
                 PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(pedido);
                 PedidoRepositoryServer.getInstance().crearPedido(pedido);
                 finish();

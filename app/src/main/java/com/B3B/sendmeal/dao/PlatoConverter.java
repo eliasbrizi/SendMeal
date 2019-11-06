@@ -1,7 +1,5 @@
 package com.B3B.sendmeal.dao;
 
-import android.util.Log;
-
 import androidx.room.TypeConverter;
 
 import com.B3B.sendmeal.domain.Plato;

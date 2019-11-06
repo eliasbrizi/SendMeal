@@ -35,9 +35,10 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
 
     private GoogleMap mMap;
     private Spinner spnEstadoPedido;
-    private EstadoPedido[] adapter = {EstadoPedido.ACEPTADO,EstadoPedido.EN_ENVIO,
-                    EstadoPedido.EN_PREPARACION,EstadoPedido.ENTREGADO,
-                    EstadoPedido.ENVIADO,EstadoPedido.RECHAZADO};
+    private EstadoPedido[] adapter = {EstadoPedido.PENDIENTE, EstadoPedido.ACEPTADO,
+                    EstadoPedido.EN_ENVIO, EstadoPedido.RECHAZADO,
+                    EstadoPedido.EN_PREPARACION, EstadoPedido.ENTREGADO,
+                    EstadoPedido.ENVIADO, EstadoPedido.CANCELADO};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.B3B.sendmeal.dao.PedidoRepository;
 import com.B3B.sendmeal.dao.PedidoRepositoryServer;
 import com.B3B.sendmeal.dao.PlatoRepository;
+import com.B3B.sendmeal.domain.EstadoPedido;
 import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
 import com.B3B.sendmeal.domain.Plato;
@@ -29,7 +30,7 @@ public class AltaPedido extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    public static ArrayList<Plato> _PLATOS;
+    public static ArrayList<ItemsPedido> _ITEMS;
     private int idPedido;
     private Pedido pedido;
 
@@ -50,14 +51,14 @@ public class AltaPedido extends AppCompatActivity {
         final Button crearPedido = (Button) findViewById(R.id.btnCrearPedido);
         final Button enviarPedido = (Button) findViewById(R.id.btnEnviarPedido);
 
-        _PLATOS = new ArrayList<Plato>();
+        _ITEMS = new ArrayList<ItemsPedido>();
 
         int idPedaux = getIntent().getExtras().getInt("idPedido");
         if(idPedaux > 0){
             idPedido = idPedaux;
             List<ItemsPedido> items = PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido);
             for(ItemsPedido ip : items){
-                _PLATOS.add(ip.getPlatoItem());
+                _ITEMS.add(ip);
             }
         }
         else {
@@ -68,9 +69,15 @@ public class AltaPedido extends AppCompatActivity {
         PlatoRepository.getInstance().listarPlatos();
         List<Plato> aux = PlatoRepository.getInstance().getListaPlatos();
 
-        _PLATOS.add(aux.get(getIntent().getExtras().getInt("posicion")));
+        ItemsPedido ip = new ItemsPedido();
+        ip.setCantidad(getIntent().getExtras().getInt("cantidad"));
+        ip.setPlatoItem(aux.get(getIntent().getExtras().getInt("posicion")));
+        ip.setPrecio(aux.get(getIntent().getExtras().getInt("posicion")).getPrecio());
+        ip.setIdItem(0);
 
-        mAdapter = new PedidoViewAdapter(getApplicationContext(), _PLATOS, this, getIntent().getExtras().getInt("cantidad"));
+        _ITEMS.add(ip);
+
+        mAdapter = new PedidoViewAdapter(getApplicationContext(), _ITEMS, this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
 
@@ -86,7 +93,7 @@ public class AltaPedido extends AppCompatActivity {
 
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(idPedido);
-                pedido.setEstadoPedido(1);
+                pedido.setEstadoPedido(EstadoPedido.PENDIENTE);
                 pedido.setLng(10.0);
                 pedido.setLat(20.0);
                 pedido.setFechaPedido(new Date(System.currentTimeMillis()));
@@ -121,7 +128,7 @@ public class AltaPedido extends AppCompatActivity {
                 pedido.setFechaPedido(new Date(System.currentTimeMillis()));
                 pedido.setLat(10.0);
                 pedido.setLng(20.0);
-                pedido.setEstadoPedido(1);
+                pedido.setEstadoPedido(EstadoPedido.PENDIENTE);
 
                 ArrayList<ItemsPedido> items = (ArrayList) PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido);
                 if(items.isEmpty()){
@@ -129,15 +136,15 @@ public class AltaPedido extends AppCompatActivity {
                     item1.setIdItem(1);
                     item1.setIdPedido(idPedido);
                     item1.setCantidad(getIntent().getExtras().getInt("cantidad"));
-                    item1.setPlatoItem(_PLATOS.get(0));
-                    item1.setPrecio(_PLATOS.get(0).getPrecio());
+                    item1.setPlatoItem(_ITEMS.get(0).getPlatoItem());
+                    item1.setPrecio(_ITEMS.get(0).getPlatoItem().getPrecio());
                     items.add(item1);
                     pedido.setItemsPedido(items);
 
                     PedidoRepository.getInstance(getApplicationContext()).crearPedido(pedido);
                 }
                 else{
-                    Plato paux = _PLATOS.get(_PLATOS.size()-1);
+                    Plato paux = _ITEMS.get(_ITEMS.size()-1).getPlatoItem();
                     ItemsPedido item = new ItemsPedido();
                     item.setIdItem(items.size()+1);
                     item.setPrecio(paux.getPrecio());
@@ -160,10 +167,11 @@ public class AltaPedido extends AppCompatActivity {
         enviarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pedido.setEstadoPedido(2);
+                pedido.setEstadoPedido(EstadoPedido.ENVIADO);
                 PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(pedido);
                 PedidoRepositoryServer.getInstance().crearPedido(pedido);
-                finish();
+                Intent i1 = new Intent(getApplicationContext(),Home.class);
+                startActivity(i1);
             }
         });
     }

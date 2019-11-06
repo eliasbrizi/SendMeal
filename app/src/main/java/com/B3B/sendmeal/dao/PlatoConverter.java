@@ -11,8 +11,8 @@ public class PlatoConverter {
             return null;
         }
         else{
-            PlatoRepository.getInstance().buscarPlatoPorID(id);
-            return PlatoRepository.getInstance().getPlato();
+            PlatoRepository.getInstance().findPlatoByID(id);
+            return PlatoRepository.getInstance().getListaPlatos().get(0);
         }
     }
 

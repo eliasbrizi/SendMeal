@@ -24,6 +24,9 @@ public interface PlatoRest {
     @GET("platos/{id}")
     Call<Plato> buscarPlatoPorID(@Path("id") Integer id);
 
+    @GET("platos/{id}")
+    Call<List<Plato>> findPlatoByID(@Path("id") Integer id);
+
     @GET("platos/")
     Call<List<Plato>> buscarPlatoPorNombre(@Query("nombre") String nombre);
 

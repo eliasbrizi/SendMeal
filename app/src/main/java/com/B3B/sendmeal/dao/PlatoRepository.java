@@ -117,6 +117,25 @@ public class PlatoRepository{
         });
     }
 
+    public void findPlatoByID(final int id){
+        Call<List<Plato>> llamada = this.platoRest.findPlatoByID(id);
+        llamada.enqueue(new Callback<List<Plato>>() {
+            @Override
+            public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
+                if(response.isSuccessful()){
+                    listaPlatos.clear();
+                    listaPlatos.addAll(response.body());
+                    Log.d("RESPONSE","RESPUESTA EXITOSA");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Plato>> call, Throwable t) {
+                Log.d("BUSQUEDA PLATO","FALLO");
+            }
+        });
+    }
+
     public void buscarPlatoPorNombre(String nombre){
         Call<List<Plato>> llamada = this.platoRest.buscarPlatoPorNombre(nombre);
         llamada.enqueue(new Callback<List<Plato>>() {

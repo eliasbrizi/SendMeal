@@ -1,11 +1,8 @@
-package com.B3B.sendmeal.dao;
+package com.B3B.sendmeal.dao.rest;
 
 import android.util.Log;
 
-import com.B3B.sendmeal.dao.rest.PedidoRest;
-import com.B3B.sendmeal.dao.rest.PlatoRest;
 import com.B3B.sendmeal.domain.Pedido;
-import com.B3B.sendmeal.domain.Plato;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,13 +1,10 @@
 package com.B3B.sendmeal;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,8 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.B3B.sendmeal.dao.PedidoRepository;
-import com.B3B.sendmeal.dao.PedidoRepositoryServer;
+import com.B3B.sendmeal.dao.rest.PedidoRepositoryServer;
 import com.B3B.sendmeal.domain.EstadoPedido;
 import com.B3B.sendmeal.domain.Pedido;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -35,9 +31,10 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
 
     private GoogleMap mMap;
     private Spinner spnEstadoPedido;
-    private EstadoPedido[] adapter = {EstadoPedido.ACEPTADO,EstadoPedido.EN_ENVIO,
-                    EstadoPedido.EN_PREPARACION,EstadoPedido.ENTREGADO,
-                    EstadoPedido.ENVIADO,EstadoPedido.RECHAZADO};
+    private EstadoPedido[] adapter = {EstadoPedido.PENDIENTE,EstadoPedido.ENVIADO,
+                    EstadoPedido.ACEPTADO,EstadoPedido.RECHAZADO,
+                    EstadoPedido.EN_PREPARACION,EstadoPedido.EN_ENVIO,
+                    EstadoPedido.ENTREGADO, EstadoPedido.CANCELADO};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +63,9 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
             }
         });
 
-                /*
-            Cargo los pedidos en el repositorio
-         */
+        /*
+          Cargo los pedidos en el repositorio
+        */
         PedidoRepositoryServer.getInstance().listarPedidos();
     }
 
@@ -125,36 +122,38 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
     private void actualizarMarcadores(){
         List<Pedido> lista = PedidoRepositoryServer.getInstance().getListaPedidos();
         mMap.clear();
-        for (Pedido p: lista)
-        mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng())));
+        for (Pedido p: lista) {
+            mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(), p.getLng())));
+        }
     }
 
     private void actualizarMarcadores(EstadoPedido e){
-        //TODO implementar
         List<Pedido> lista = PedidoRepositoryServer.getInstance().getListaPedidos();
         mMap.clear();
-        for (Pedido p: lista) if(p.getEstadoPedidoEnum() == e){
-            Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
-                    .snippet("Id pedido: "+p.getIdPedido()+"\nEstado: "+p.getEstadoPedidoEnum()+"\nPrecio: "+p.getPrecio()));
-            switch (e){
-                case EN_ENVIO:
-                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
-                    break;
-                case EN_PREPARACION:
-                   marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-                    break;
-                case ENVIADO:
-                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
-                    break;
-                case ENTREGADO:
-                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
-                    break;
-                case ACEPTADO:
-                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                    break;
-                default:
-                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                    break;
+        for (Pedido p: lista) {
+            if (p.getEstadoPedido() == e) {
+                Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(), p.getLng()))
+                        .snippet("Id pedido: " + p.getIdPedido() + "\nEstado: " + p.getEstadoPedido() + "\nPrecio: " + p.getPrecio()));
+                switch (e) {
+                    case EN_ENVIO:
+                        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+                        break;
+                    case EN_PREPARACION:
+                        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                        break;
+                    case ENVIADO:
+                        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+                        break;
+                    case ENTREGADO:
+                        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                        break;
+                    case ACEPTADO:
+                        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                        break;
+                    default:
+                        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                        break;
+                }
             }
         }
     }

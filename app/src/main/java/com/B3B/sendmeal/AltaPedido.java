@@ -19,6 +19,7 @@ import com.B3B.sendmeal.domain.EstadoPedido;
 import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
 import com.B3B.sendmeal.domain.Plato;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -137,7 +138,6 @@ public class AltaPedido extends AppCompatActivity {
                 PlatoRepository.getInstance().listarPlatos();
                 itemsPed.addAll(PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido));
                 itemsPed.add(ip);
-                pedido.setItemsPedido(itemsPed);
                 if(idPedaux > 0){
                     PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(pedido);
                 }
@@ -146,10 +146,9 @@ public class AltaPedido extends AppCompatActivity {
                 }
                 PedidoRepository.getInstance(getApplicationContext()).crearItemPedido(ip, pedido);
 
-                Log.d("ROOM", "PEDIDO CREADO!");
-
                 enviarPedido.setEnabled(true);
                 Intent i1 = new Intent(getApplicationContext(),MapsActivity.class);
+                i1.putExtra("idPed", idPedido);
                 startActivityForResult(i1, 1);
             }
         });
@@ -157,16 +156,10 @@ public class AltaPedido extends AppCompatActivity {
         enviarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pedido.setEstadoPedido(EstadoPedido.ENVIADO);
-                PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(pedido);
-
+                ArrayList<ItemsPedido> itemsPedidos = (ArrayList) PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido);
+                pedido.setItemsPedido(itemsPedidos);
                 PedidoRepositoryServer.getInstance().crearPedido(pedido);
                 Log.d("SERVER","PEDIDO ENVIADO");
-                List<ItemsPedido> itemsPedidos = PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(pedido.getIdPedido());
-                Log.d("LONG", String.valueOf(itemsPedidos.size()));
-                for(ItemsPedido it : itemsPedidos){
-                    Log.d("ITEM",it.getPlatoItem().getNombre());
-                }
                 Intent i1 = new Intent(getApplicationContext(),Home.class);
                 startActivity(i1);
             }
@@ -177,15 +170,18 @@ public class AltaPedido extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent i1){
 
         if(requestCode == 1 && resultCode == 1){
+            idPedido = i1.getExtras().getInt("idPed");
             Pedido actual = PedidoRepository.getInstance(getApplicationContext()).buscarPedidoPorID(idPedido);
+
             actual.setLat(i1.getExtras().getDouble("latitud"));
             actual.setLng(i1.getExtras().getDouble("longitud"));
             PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(actual);
             pedido = actual;
-            Log.d("ROOM", "LAT: "+i1.getExtras().getDouble("latitud"));
-            Log.d("ROOM", "LNG: "+i1.getExtras().getDouble("longitud"));
-            Log.d("ROOM", "PEDIDO ACTUALIZADO");
-        } else {
+            Log.d("ROOM", "LAT: " + i1.getExtras().getDouble("latitud"));
+            Log.d("ROOM", "LNG: " + i1.getExtras().getDouble("longitud"));
+            Log.d("ROOM", "PEDIDO CREADO");
+        }
+        else {
             Log.d("Error", "Fallo onActivityResultMapas");
         }
     }

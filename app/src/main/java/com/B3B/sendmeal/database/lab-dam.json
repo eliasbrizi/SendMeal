@@ -43,12 +43,42 @@
   ],
   "pedidos": [
     {
-      "estadoPedido": "ENVIADO",
-      "fechaPedido": "Nov 7, 2019 5:39:21 PM",
-      "idPedido": 1448,
-      "lat": -29.61103000737258,
-      "lng": 117.38185577094555,
-      "id": 1
+      "estadoPedido": "PENDIENTE",
+      "fechaPedido": "Nov 7, 2019 6:43:30 PM",
+      "idPedido": 5681,
+      "itemsPedido": [
+        {
+          "cantidad": 1,
+          "idItem": 1,
+          "idPedido": 5681,
+          "platoItem": {
+            "calorias": 4750,
+            "descripcion": "Provenzal",
+            "id": 3,
+            "nombre": "Pizza",
+            "oferta": false,
+            "precio": 350
+          },
+          "precio": 350
+        },
+        {
+          "cantidad": 2,
+          "idItem": 2,
+          "idPedido": 5681,
+          "platoItem": {
+            "calorias": 5000,
+            "descripcion": "Comun",
+            "id": 2,
+            "nombre": "Matambre",
+            "oferta": false,
+            "precio": 500
+          },
+          "precio": 500
+        }
+      ],
+      "lat": 12.007786376828012,
+      "lng": 115.1041567325592,
+      "id": 3
     }
   ]
 }

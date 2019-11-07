@@ -55,6 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent i1 = new Intent();
         i1.putExtra("latitud", point.latitude);
         i1.putExtra("longitud", point.longitude);
+        i1.putExtra("idPed", getIntent().getExtras().getInt("idPed"));
         setResult(1, i1);
         finish();
     }

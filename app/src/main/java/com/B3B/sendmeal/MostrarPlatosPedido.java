@@ -75,8 +75,6 @@ Lista de platos
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        PlatoRepository.getInstance().buscarPlatoPorID(getIntent().getExtras().getInt("idPlato"));
-
                         int cantidadPedido = Integer.valueOf(campoCantidad.getText().toString());
                         Intent i1 = new Intent(getApplicationContext(), AltaPedido.class);
                         i1.putExtra("posicion", position);

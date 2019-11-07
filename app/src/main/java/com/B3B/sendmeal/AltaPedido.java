@@ -134,6 +134,7 @@ public class AltaPedido extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ArrayList<ItemsPedido> itemsPed = new ArrayList<ItemsPedido>();
+                PlatoRepository.getInstance().listarPlatos();
                 itemsPed.addAll(PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido));
                 itemsPed.add(ip);
                 pedido.setItemsPedido(itemsPed);

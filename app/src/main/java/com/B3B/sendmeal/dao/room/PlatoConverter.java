@@ -1,24 +1,23 @@
 package com.B3B.sendmeal.dao.room;
 
-import android.content.Intent;
-import android.util.Log;
-
 import androidx.room.TypeConverter;
 
 import com.B3B.sendmeal.dao.PlatoRepository;
 import com.B3B.sendmeal.domain.Plato;
 
+import java.util.ArrayList;
+
 public class PlatoConverter {
     @TypeConverter
     public static Plato fromID(int id){
-        PlatoRepository.getInstance().buscarPlatoPorID(id);
-        Plato p = PlatoRepository.getInstance().getPlato(); //aca esta el error de lista siempre repite
-        if(id < 0){
-            return null;
+        ArrayList<Plato> platos = (ArrayList) PlatoRepository.getInstance().getListaPlatos();
+        Plato p = new Plato();
+        for(Plato plato : platos){
+            if(plato.getID() == id){
+                p = plato;
+            }
         }
-        else{
-            return p;
-        }
+        return p;
     }
 
     @TypeConverter

@@ -11,7 +11,7 @@ import com.B3B.sendmeal.dao.room.PlatoConverter;
 
 @Entity(tableName = "ITEMSPEDIDO", primaryKeys = {"iditem","idpedido"},
         foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "idpedido", childColumns = "idpedido",
-                onDelete = ForeignKey.NO_ACTION))
+                onDelete = ForeignKey.NO_ACTION), indices = @Index("idpedido"))
 public class ItemsPedido {
     @ColumnInfo(name = "iditem")
     private int idItem;

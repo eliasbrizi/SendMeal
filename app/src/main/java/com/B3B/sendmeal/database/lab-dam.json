@@ -41,5 +41,14 @@
       "precio": 125
     }
   ],
-  "pedidos": []
+  "pedidos": [
+    {
+      "estadoPedido": "ENVIADO",
+      "fechaPedido": "Nov 7, 2019 5:39:21 PM",
+      "idPedido": 1448,
+      "lat": -29.61103000737258,
+      "lng": 117.38185577094555,
+      "id": 1
+    }
+  ]
 }

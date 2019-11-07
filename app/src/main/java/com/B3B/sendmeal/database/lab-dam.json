@@ -41,5 +41,68 @@
       "precio": 125
     }
   ],
-  "pedidos": []
+  "pedidos": [
+    {
+      "estadoPedido": "PENDIENTE",
+      "fechaPedido": "Nov 7, 2019 9:18:43 PM",
+      "idPedido": 8658,
+      "itemsPedido": [
+        {
+          "cantidad": 2,
+          "idItem": 1,
+          "idPedido": 8658,
+          "platoItem": {
+            "calorias": 5000,
+            "descripcion": "Comun",
+            "id": 2,
+            "nombre": "Matambre",
+            "oferta": false,
+            "precio": 500
+          },
+          "precio": 500
+        },
+        {
+          "cantidad": 2,
+          "idItem": 2,
+          "idPedido": 8658,
+          "platoItem": {
+            "calorias": 3200,
+            "descripcion": "Con o sin Cheddar ",
+            "id": 5,
+            "nombre": "Papas Fritas",
+            "oferta": false,
+            "precio": 125
+          },
+          "precio": 125
+        }
+      ],
+      "lat": -31.4537007504287,
+      "lng": -60.92538736760616,
+      "id": 1
+    },
+    {
+      "estadoPedido": "PENDIENTE",
+      "fechaPedido": "Nov 7, 2019 9:23:20 PM",
+      "idPedido": 1123,
+      "itemsPedido": [
+        {
+          "cantidad": 1,
+          "idItem": 1,
+          "idPedido": 1123,
+          "platoItem": {
+            "calorias": 4750,
+            "descripcion": "Provenzal",
+            "id": 3,
+            "nombre": "Pizza",
+            "oferta": false,
+            "precio": 350
+          },
+          "precio": 350
+        }
+      ],
+      "lat": 42.20274821605164,
+      "lng": -90.90926416218281,
+      "id": 2
+    }
+  ]
 }

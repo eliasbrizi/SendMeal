@@ -53,7 +53,19 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
         return imagenPlato;
     }
 
-    public void setImagenPlato() {
-        this.imagenPlato.setImageResource(R.drawable.costillita);
+    public void setImagenPlato(String nombrePlato) {
+        switch (nombrePlato){
+            case "Milanesa": this.imagenPlato.setImageResource(R.drawable.milanesa);
+            break;
+            case "Papas Fritas": this.imagenPlato.setImageResource(R.drawable.papas);
+            break;
+            case "Hamburguesa": this.imagenPlato.setImageResource(R.drawable.hamburguesa);
+            break;
+            case "Pizza": this.imagenPlato.setImageResource(R.drawable.pizza);
+            break;
+            case "Matambre": this.imagenPlato.setImageResource(R.drawable.matambre);
+            break;
+            default: this.imagenPlato.setImageResource(R.drawable.costillita);
+        }
     }
 }

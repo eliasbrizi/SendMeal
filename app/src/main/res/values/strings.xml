@@ -86,5 +86,6 @@
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCuYHwH_F4qzlVLJYDJWIR5FZWS_eN5loA</string>
     <string name="title_activity_mapa_pedidos">Map</string>
+    <string name="title_activity_maps2">Map</string>
 
 </resources>

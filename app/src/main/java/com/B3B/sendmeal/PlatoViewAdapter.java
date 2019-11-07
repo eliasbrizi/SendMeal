@@ -42,7 +42,7 @@ public class PlatoViewAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         Cargar imagen
          */
         //TODO
-        holder.setImagenPlato();
+        holder.setImagenPlato(pl.getNombre());
 
         holder.imagenPlato.setOnClickListener(new View.OnClickListener() {
             @Override

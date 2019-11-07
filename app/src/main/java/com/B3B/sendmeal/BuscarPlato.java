@@ -11,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.B3B.sendmeal.dao.PlatoRepository;
+import com.B3B.sendmeal.domain.Plato;
 
 public class BuscarPlato extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,7 @@ public class BuscarPlato extends AppCompatActivity {
             }
         });
 
+
+
     }
-
-
 }

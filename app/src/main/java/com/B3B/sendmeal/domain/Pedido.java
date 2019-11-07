@@ -13,8 +13,6 @@ import com.B3B.sendmeal.dao.FechaConverter;
 import java.util.ArrayList;
 import java.util.Date;
 
-import retrofit2.http.FieldMap;
-
 @Entity(tableName = "PEDIDO")
 public class Pedido {
 
@@ -91,4 +89,5 @@ public class Pedido {
             result+=i.getPrecio();
         } return result;
     }
+
 }

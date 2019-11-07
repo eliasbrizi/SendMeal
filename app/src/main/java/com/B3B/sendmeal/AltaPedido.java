@@ -115,6 +115,7 @@ public class AltaPedido extends AppCompatActivity {
 
                 Intent i1 = new Intent(getApplicationContext(), MostrarPlatosPedido.class);
                 i1.putExtra("idPedido", idPedido);
+                i1.putExtra("idPlato", p.getID());
                 startActivity(i1);
             }
         });

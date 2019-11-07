@@ -1,5 +1,6 @@
 package com.B3B.sendmeal;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,8 +11,16 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.B3B.sendmeal.dao.PedidoRepository;
 import com.B3B.sendmeal.dao.PlatoRepository;
+import com.B3B.sendmeal.domain.EstadoPedido;
+import com.B3B.sendmeal.domain.ItemsPedido;
+import com.B3B.sendmeal.domain.Pedido;
 import com.B3B.sendmeal.domain.Plato;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class BuscarPlato extends AppCompatActivity {
 

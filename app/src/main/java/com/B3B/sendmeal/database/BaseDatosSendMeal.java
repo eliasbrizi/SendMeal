@@ -4,9 +4,9 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import com.B3B.sendmeal.dao.EstadoPedidoConverter;
-import com.B3B.sendmeal.dao.FechaConverter;
-import com.B3B.sendmeal.dao.PlatoConverter;
+import com.B3B.sendmeal.dao.room.EstadoPedidoConverter;
+import com.B3B.sendmeal.dao.room.FechaConverter;
+import com.B3B.sendmeal.dao.room.PlatoConverter;
 import com.B3B.sendmeal.dao.room.ItemsPedidoDao;
 import com.B3B.sendmeal.dao.room.PedidoDao;
 import com.B3B.sendmeal.domain.ItemsPedido;

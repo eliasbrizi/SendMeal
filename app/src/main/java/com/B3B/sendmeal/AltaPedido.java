@@ -33,6 +33,7 @@ public class AltaPedido extends AppCompatActivity {
     public static ArrayList<ItemsPedido> _ITEMS;
     private int idPedido;
     private Pedido pedido;
+    private ItemsPedido ip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,30 +51,49 @@ public class AltaPedido extends AppCompatActivity {
         final Button agregarPlatoPedido = (Button) findViewById(R.id.btnAgregarComida);
         final Button crearPedido = (Button) findViewById(R.id.btnCrearPedido);
         final Button enviarPedido = (Button) findViewById(R.id.btnEnviarPedido);
+        enviarPedido.setEnabled(false);
 
         _ITEMS = new ArrayList<ItemsPedido>();
+        List<ItemsPedido> items = new ArrayList<ItemsPedido>();
+        final int idPedaux = getIntent().getExtras().getInt("idPedido");
 
-        int idPedaux = getIntent().getExtras().getInt("idPedido");
         if(idPedaux > 0){
             idPedido = idPedaux;
-            List<ItemsPedido> items = PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido);
-            for(ItemsPedido ip : items){
-                _ITEMS.add(ip);
+            pedido = PedidoRepository.getInstance(getApplicationContext()).buscarPedidoPorID(idPedido);
+            items.addAll(PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido));
+            for(ItemsPedido itemsPedido : items){
+                _ITEMS.add(itemsPedido);
             }
         }
         else {
             Random r = new Random();
             idPedido = r.nextInt(10000) + 1;
+            pedido = new Pedido();
+            pedido.setIdPedido(idPedido);
         }
 
-        PlatoRepository.getInstance().listarPlatos();
-        List<Plato> aux = PlatoRepository.getInstance().getListaPlatos();
+        pedido.setEstadoPedido(EstadoPedido.PENDIENTE);
+        pedido.setLng(10.0);
+        pedido.setLat(20.0);
+        pedido.setFechaPedido(new Date(System.currentTimeMillis()));
+        pedido.setItemsPedido((ArrayList) items);
 
-        ItemsPedido ip = new ItemsPedido();
+        PlatoRepository.getInstance().listarPlatos();
+        List<Plato> auxPlato = PlatoRepository.getInstance().getListaPlatos();
+
+        ip = new ItemsPedido();
         ip.setCantidad(getIntent().getExtras().getInt("cantidad"));
-        ip.setPlatoItem(aux.get(getIntent().getExtras().getInt("posicion")));
-        ip.setPrecio(aux.get(getIntent().getExtras().getInt("posicion")).getPrecio());
-        ip.setIdItem(0);
+        ip.setPlatoItem(auxPlato.get(getIntent().getExtras().getInt("posicion")));
+        ip.setPrecio(auxPlato.get(getIntent().getExtras().getInt("posicion")).getPrecio());
+        ip.setIdPedido(idPedido);
+        if(idPedaux > 0){
+            List<ItemsPedido> itemsPed = PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido);
+            int idItem = itemsPed.get(itemsPed.size()-1).getIdItem()+1;
+            ip.setIdItem(idItem);
+        }
+        else{
+            ip.setIdItem(1);
+        }
 
         _ITEMS.add(ip);
 
@@ -84,33 +104,23 @@ public class AltaPedido extends AppCompatActivity {
         agregarPlatoPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //insertar item en room
-                Random r = new Random();
-                int idIt = r.nextInt(10000) + 1;
-
+                //Necesario para Room
                 List<Plato> platoList = PlatoRepository.getInstance().getListaPlatos();
                 Plato p = platoList.get(getIntent().getExtras().getInt("posicion"));
 
-                Pedido pedido = new Pedido();
-                pedido.setIdPedido(idPedido);
-                pedido.setEstadoPedido(EstadoPedido.PENDIENTE);
-                pedido.setLng(10.0);
-                pedido.setLat(20.0);
-                pedido.setFechaPedido(new Date(System.currentTimeMillis()));
+                //insertar item en room
+                List<ItemsPedido> items = new ArrayList<ItemsPedido>();
+                items.addAll(PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido));
+                items.add(ip);
+                pedido.setItemsPedido((ArrayList) items);
 
-                ItemsPedido itemsPedido = new ItemsPedido();
-                itemsPedido.setPrecio(p.getPrecio());
-                itemsPedido.setPlatoItem(p);
-                itemsPedido.setCantidad(getIntent().getExtras().getInt("cantidad"));
-                itemsPedido.setIdItem(idIt);
-                itemsPedido.setIdPedido(pedido.getIdPedido());
-
-                ArrayList<ItemsPedido> items = new ArrayList<ItemsPedido>();
-                items.add(itemsPedido);
-                pedido.setItemsPedido(items);
-                
-                PedidoRepository.getInstance(getApplicationContext()).crearPedido(pedido);
-                PedidoRepository.getInstance(getApplicationContext()).crearItemPedido(itemsPedido, pedido);
+                if(idPedaux > 0){
+                    PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(pedido);
+                }
+                else{
+                    PedidoRepository.getInstance(getApplicationContext()).crearPedido(pedido);
+                }
+                PedidoRepository.getInstance(getApplicationContext()).crearItemPedido(ip, pedido);
                 Log.d("ROOM", "ITEM PEDIDO CREADO");
 
                 Intent i1 = new Intent(getApplicationContext(), MostrarPlatosPedido.class);
@@ -123,43 +133,21 @@ public class AltaPedido extends AppCompatActivity {
         crearPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                pedido = new Pedido();
-                pedido.setIdPedido(idPedido);
-                pedido.setFechaPedido(new Date(System.currentTimeMillis()));
-                pedido.setLat(10.0);
-                pedido.setLng(20.0);
-                pedido.setEstadoPedido(EstadoPedido.PENDIENTE);
-
-                ArrayList<ItemsPedido> items = (ArrayList) PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido);
-                if(items.isEmpty()){
-                    ItemsPedido item1 = new ItemsPedido();
-                    item1.setIdItem(1);
-                    item1.setIdPedido(idPedido);
-                    item1.setCantidad(getIntent().getExtras().getInt("cantidad"));
-                    item1.setPlatoItem(_ITEMS.get(0).getPlatoItem());
-                    item1.setPrecio(_ITEMS.get(0).getPlatoItem().getPrecio());
-                    items.add(item1);
-                    pedido.setItemsPedido(items);
-
-                    PedidoRepository.getInstance(getApplicationContext()).crearPedido(pedido);
-                }
-                else{
-                    Plato paux = _ITEMS.get(_ITEMS.size()-1).getPlatoItem();
-                    ItemsPedido item = new ItemsPedido();
-                    item.setIdItem(items.size()+1);
-                    item.setPrecio(paux.getPrecio());
-                    item.setPlatoItem(paux);
-                    item.setCantidad(getIntent().getExtras().getInt("cantidad"));
-                    item.setIdPedido(idPedido);
-                    PedidoRepository.getInstance(getApplicationContext()).crearItemPedido(item,pedido);
-                    items.add(item);
-                    pedido.setItemsPedido(items);
-
+                ArrayList<ItemsPedido> itemsPed = new ArrayList<ItemsPedido>();
+                itemsPed.addAll(PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(idPedido));
+                itemsPed.add(ip);
+                pedido.setItemsPedido(itemsPed);
+                if(idPedaux > 0){
                     PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(pedido);
                 }
+                else{
+                    PedidoRepository.getInstance(getApplicationContext()).crearPedido(pedido);
+                }
+                PedidoRepository.getInstance(getApplicationContext()).crearItemPedido(ip, pedido);
+
                 Log.d("ROOM", "PEDIDO CREADO!");
 
+                enviarPedido.setEnabled(true);
                 Intent i1 = new Intent(getApplicationContext(),MapsActivity.class);
                 startActivityForResult(i1, 1);
             }
@@ -170,7 +158,14 @@ public class AltaPedido extends AppCompatActivity {
             public void onClick(View view) {
                 pedido.setEstadoPedido(EstadoPedido.ENVIADO);
                 PedidoRepository.getInstance(getApplicationContext()).actualizarPedido(pedido);
+
                 PedidoRepositoryServer.getInstance().crearPedido(pedido);
+                Log.d("SERVER","PEDIDO ENVIADO");
+                List<ItemsPedido> itemsPedidos = PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(pedido.getIdPedido());
+                Log.d("LONG", String.valueOf(itemsPedidos.size()));
+                for(ItemsPedido it : itemsPedidos){
+                    Log.d("ITEM",it.getPlatoItem().getNombre());
+                }
                 Intent i1 = new Intent(getApplicationContext(),Home.class);
                 startActivity(i1);
             }
@@ -179,6 +174,7 @@ public class AltaPedido extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent i1){
+
         if(requestCode == 1 && resultCode == 1){
             Pedido actual = PedidoRepository.getInstance(getApplicationContext()).buscarPedidoPorID(idPedido);
             actual.setLat(i1.getExtras().getDouble("latitud"));

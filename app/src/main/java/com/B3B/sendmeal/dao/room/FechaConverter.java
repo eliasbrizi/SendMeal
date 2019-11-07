@@ -1,4 +1,4 @@
-package com.B3B.sendmeal.dao;
+package com.B3B.sendmeal.dao.room;
 
 import androidx.room.TypeConverter;
 

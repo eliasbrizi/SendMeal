@@ -13,14 +13,14 @@ import com.B3B.sendmeal.domain.Pedido;
 public interface PedidoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void insertarPedido(Pedido p);
+    void insertarPedido(Pedido p);
 
     @Update
-    public void actualizarPedido(Pedido p);
+    void actualizarPedido(Pedido p);
 
     @Delete
-    public void borrarPedido(Pedido p);
+    void borrarPedido(Pedido p);
 
     @Query("SELECT * FROM PEDIDO WHERE idpedido = :id")
-    public Pedido getPedidoByID(int id);
+    Pedido getPedidoByID(int id);
 }

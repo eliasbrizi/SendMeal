@@ -3,8 +3,10 @@ package com.B3B.sendmeal.dao;
 import com.B3B.sendmeal.dao.rest.PlatoRest;
 import com.B3B.sendmeal.domain.Plato;
 
+import android.os.StrictMode;
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -56,7 +58,6 @@ public class PlatoRepository{
     }
 
     public void listarPlatos(/*final Handler h*/){
-
         Call<List<Plato>> llamada = this.platoRest.listarTodos();
         llamada.enqueue(new Callback<List<Plato>>() {
             @Override

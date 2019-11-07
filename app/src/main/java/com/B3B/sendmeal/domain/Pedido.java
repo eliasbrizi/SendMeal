@@ -7,8 +7,8 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.B3B.sendmeal.dao.EstadoPedidoConverter;
-import com.B3B.sendmeal.dao.FechaConverter;
+import com.B3B.sendmeal.dao.room.EstadoPedidoConverter;
+import com.B3B.sendmeal.dao.room.FechaConverter;
 
 import java.util.ArrayList;
 import java.util.Date;

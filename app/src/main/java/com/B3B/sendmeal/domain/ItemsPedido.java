@@ -4,18 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.TypeConverters;
 
-import com.B3B.sendmeal.dao.PlatoConverter;
+import com.B3B.sendmeal.dao.room.PlatoConverter;
 
 @Entity(tableName = "ITEMSPEDIDO", primaryKeys = {"iditem","idpedido"},
         foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "idpedido", childColumns = "idpedido",
-                onDelete = ForeignKey.NO_ACTION), indices = {@Index("idpedido")})
+                onDelete = ForeignKey.NO_ACTION))
 public class ItemsPedido {
-
-    @NonNull
     @ColumnInfo(name = "iditem")
     private int idItem;
     @ColumnInfo(name = "idpedido")

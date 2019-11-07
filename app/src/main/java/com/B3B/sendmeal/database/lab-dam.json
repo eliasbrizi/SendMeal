@@ -31,16 +31,15 @@
       "nombre": "Hamburguesa",
       "oferta": false,
       "precio": 270
+    },
+    {
+      "calorias": 3200,
+      "descripcion": "Con o sin Cheddar ",
+      "id": 5,
+      "nombre": "Papas Fritas",
+      "oferta": false,
+      "precio": 125
     }
   ],
-  "pedidos": [
-    {
-      "estadoPedido": "ENVIADO",
-      "fechaPedido": "Nov 7, 2019 3:16:16 AM",
-      "idPedido": 1198,
-      "lat": 20.98848296350966,
-      "lng": 118.98860726505518,
-      "id": 1
-    }
-  ]
+  "pedidos": []
 }

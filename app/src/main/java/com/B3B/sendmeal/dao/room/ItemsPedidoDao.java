@@ -17,19 +17,19 @@ import java.util.List;
 public interface ItemsPedidoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void insertarItemsPedido(ItemsPedido ip, Pedido p);
+    void insertarItemsPedido(ItemsPedido ip, Pedido p);
 
     @Update
-    public void actualizarItemsPedido(ItemsPedido ip, Pedido p);
+    void actualizarItemsPedido(ItemsPedido ip, Pedido p);
 
     @Delete
-    public void borrarItemsPedido(ItemsPedido ip, Pedido p);
+    void borrarItemsPedido(ItemsPedido ip, Pedido p);
 
     @Query("SELECT * FROM ITEMSPEDIDO WHERE idpedido = :id")
-    public List<ItemsPedido> getItemsPedidoByIdPedido(int id);
+    List<ItemsPedido> getItemsPedidoByIdPedido(int id);
 
     @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT * FROM ITEMSPEDIDO, PEDIDO WHERE ITEMSPEDIDO.idpedido = PEDIDO.idpedido AND PEDIDO.idpedido = :idped AND platoItem = :idPlato")
-    public ItemsPedido getItemPedidoByPlato(int idPlato, int idped);
+    ItemsPedido getItemPedidoByPlato(int idPlato, int idped);
 
 }

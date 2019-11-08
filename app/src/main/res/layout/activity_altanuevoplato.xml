@@ -70,6 +70,12 @@
         android:inputType="number" />
 
     <Button
+        android:id="@+id/btnAgregarFoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tomarFoto" />
+
+    <Button
         android:id="@+id/buttonGuardarPlato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

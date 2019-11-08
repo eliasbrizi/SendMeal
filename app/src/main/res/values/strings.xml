@@ -44,6 +44,7 @@
     <string name="descripcionANP">Descripción</string>
     <string name="precioANP">Precio</string>
     <string name="caloriasANP">Calorías</string>
+    <string name="tomarFoto">Tomar foto</string>
     <string name="guardarNuevoPlatoANP">Guardar Plato</string>
     <string name="platoCreado">El plato se ha creado con éxito</string>
 

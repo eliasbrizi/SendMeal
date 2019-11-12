@@ -25,13 +25,15 @@
         android:usesCleartextTraffic="true">
 
         <provider
-            android:name="android.content."
-            android:authorities="com.tizi.quanzi"
+            android:authorities="com.B3B.sendmeal.android.fileprovider"
+            android:name="androidx.core.content.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource=""/>
+                android:resource="@xml/file_path">
+            </meta-data>
+
         </provider>
 
         <!--
@@ -56,6 +58,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file_path "res/values/google_maps_api.xml").

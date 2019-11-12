@@ -81,7 +81,7 @@
       "id": 1
     },
     {
-      "estadoPedido": "PENDIENTE",
+      "estadoPedido": "ACEPTADO",
       "fechaPedido": "Nov 7, 2019 9:23:20 PM",
       "idPedido": 1123,
       "itemsPedido": [
@@ -103,6 +103,44 @@
       "lat": 42.20274821605164,
       "lng": -90.90926416218281,
       "id": 2
+    },
+    {
+      "estadoPedido": "PENDIENTE",
+      "fechaPedido": "Nov 8, 2019 2:37:27 PM",
+      "idPedido": 8473,
+      "itemsPedido": [
+        {
+          "cantidad": 2,
+          "idItem": 1,
+          "idPedido": 8473,
+          "platoItem": {
+            "calorias": 3000,
+            "descripcion": "Done carne",
+            "id": 4,
+            "nombre": "Hamburguesa",
+            "oferta": false,
+            "precio": 270
+          },
+          "precio": 270
+        },
+        {
+          "cantidad": 2,
+          "idItem": 2,
+          "idPedido": 8473,
+          "platoItem": {
+            "calorias": 3200,
+            "descripcion": "Con o sin Cheddar ",
+            "id": 5,
+            "nombre": "Papas Fritas",
+            "oferta": false,
+            "precio": 125
+          },
+          "precio": 125
+        }
+      ],
+      "lat": -21.27451384523422,
+      "lng": 141.64931450039148,
+      "id": 3
     }
   ]
 }

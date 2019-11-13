@@ -7,9 +7,10 @@ public class Plato {
     private Double precio;
     private String nombre;
     private String descripcion;
-    private  Boolean oferta;
+    private Boolean oferta;
+    private String fotoBase64;
 
-    /**
+    /*
      * Crea un plato con
      * @param i
      * @param cal calorias
@@ -77,5 +78,13 @@ public class Plato {
 
     public void setOferta(Boolean oferta) {
         this.oferta = oferta;
+    }
+
+    public String getFotoBase64() {
+        return fotoBase64;
+    }
+
+    public void setFotoBase64(String fotoBase64) {
+        this.fotoBase64 = fotoBase64;
     }
 }

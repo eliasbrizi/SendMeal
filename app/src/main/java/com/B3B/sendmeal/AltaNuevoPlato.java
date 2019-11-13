@@ -2,10 +2,13 @@ package com.B3B.sendmeal;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,8 +23,16 @@ import androidx.core.content.FileProvider;
 import com.B3B.sendmeal.dao.PlatoRepository;
 import com.B3B.sendmeal.domain.Plato;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,7 +40,7 @@ public class AltaNuevoPlato extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_IMAGE_SAVE = 2;
     static String pathFoto;
-    static ImageView fotoPlato;
+    static String fotoEnBase64 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +57,8 @@ public class AltaNuevoPlato extends AppCompatActivity {
         final EditText editDescripcionPlato = (EditText) findViewById(R.id.editDescripcionANP);
         final EditText editPrecio = (EditText) findViewById(R.id.editPrecioANP);
         final EditText editCalorias = (EditText) findViewById(R.id.editCaloriasANP);
-        fotoPlato = (ImageView) findViewById(R.id.imageViewFotoPlato);
+
+        final ImageView fotoPlato = (ImageView) findViewById(R.id.fotoPlato);
 
         final Button btnTomarFomar = (Button) findViewById(R.id.btnAgregarFoto);
         final Button btnGuardarPlato = (Button) findViewById(R.id.buttonGuardarPlato);
@@ -74,6 +86,7 @@ public class AltaNuevoPlato extends AppCompatActivity {
         btnGuardarPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 if (editCalorias.getText().toString().equals("") ||
                     editDescripcionPlato.getText().toString().equals("") ||
                     editIdPlato.getText().toString().equals("") ||
@@ -86,8 +99,33 @@ public class AltaNuevoPlato extends AppCompatActivity {
                             Double.parseDouble(editPrecio.getText().toString()),
                             editTituloPlato.getText().toString(),
                             editDescripcionPlato.getText().toString());
+                    pl.setFotoBase64(fotoEnBase64);
                     PlatoRepository.getInstance().crearPlato(pl);
                     Toast.makeText(getApplicationContext(),R.string.platoCreado,Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), Home.class);
+                    startActivity(intent);
+                }
+                 */
+                byte[] bytesDecodeados = Base64.decode(fotoEnBase64, Base64.DEFAULT);
+                try {
+                    File direc = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                    File image = File.createTempFile("image", ".jpg", direc);
+
+                    OutputStream stream = new FileOutputStream(image.getAbsoluteFile());
+                    stream.write(bytesDecodeados);
+                    Path destino = Paths.get(image.getAbsolutePath());
+                    Files.write(destino, bytesDecodeados);
+
+                    InputStream stream1 = new ByteArrayInputStream(fotoEnBase64.getBytes());
+                    Bitmap bitmap = BitmapFactory.decodeStream(stream1);
+                    fotoPlato.setImageBitmap(bitmap);
+
+                } catch (FileNotFoundException ex) {
+                    Log.d("EXCEPCION", "NO ENCONTRO LA FOTO");
+                    ex.printStackTrace();
+                } catch (IOException ex){
+                    Log.d("EXCEPCION", "NO PUDO ABRIR LA FOTO");
+                    ex.printStackTrace();
                 }
             }
         });
@@ -96,22 +134,10 @@ public class AltaNuevoPlato extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(REQUEST_IMAGE_CAPTURE == requestCode && resultCode == RESULT_OK){
-
-        }
         if(REQUEST_IMAGE_SAVE == requestCode && resultCode == RESULT_OK){
             File file = new File(pathFoto);
-            Bitmap bitmap = null;
-            try{
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.fromFile(file));
-            }
-            catch (IOException ex){
-                ex.printStackTrace();
-            }
-            if(bitmap != null){
-                fotoPlato.setImageBitmap(bitmap);
-                Log.d("FOTO","SETEADA");
-            }
+            byte[] bytesFoto = new byte[(int) file.length()];
+            fotoEnBase64 = Base64.encodeToString(bytesFoto, Base64.DEFAULT);
         }
     }
 

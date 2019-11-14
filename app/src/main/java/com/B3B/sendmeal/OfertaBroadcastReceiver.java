@@ -11,6 +11,8 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.B3B.sendmeal.dao.PlatoRepository;
+
 public class OfertaBroadcastReceiver extends BroadcastReceiver {
     public static final String OFERTA = "On Sale";
 
@@ -25,6 +27,7 @@ public class OfertaBroadcastReceiver extends BroadcastReceiver {
         destinoNotificacion.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, destinoNotificacion, 0);
 
+        PlatoRepository.getInstance().listarPlatos();
         createNotificationChannel();
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL1)

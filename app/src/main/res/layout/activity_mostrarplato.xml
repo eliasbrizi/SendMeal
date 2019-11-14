@@ -8,10 +8,9 @@
     <include layout="@layout/back_toolbar"/>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imagenPlatoMostrarPlato"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_height="240dp" />
 
     <TextView
         android:id="@+id/textIdMostrarPlato"

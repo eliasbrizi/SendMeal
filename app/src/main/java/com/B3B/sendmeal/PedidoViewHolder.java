@@ -82,4 +82,6 @@ public class PedidoViewHolder extends RecyclerView.ViewHolder {
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytesDecodeados, 0, bytesDecodeados.length);
         imagenPlato.setImageBitmap(bitmap);
     }
+
+
 }

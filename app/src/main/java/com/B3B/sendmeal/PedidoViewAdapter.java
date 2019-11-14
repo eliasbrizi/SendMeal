@@ -52,14 +52,14 @@ public class PedidoViewAdapter extends RecyclerView.Adapter<PedidoViewHolder>{
         holder.editarPlatoPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                altaPedido.edicionPedido(position);
             }
         });
 
         holder.eliminarPlatoPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                altaPedido.showDialogEliminar(position);
             }
         });
     }

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.B3B.sendmeal.dao.rest.PedidoRest;
 import com.B3B.sendmeal.dao.rest.PlatoRest;
+import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
 import com.B3B.sendmeal.domain.Plato;
 
@@ -86,6 +87,40 @@ public class PedidoRepositoryServer {
             @Override
             public void onFailure(Call<List<Pedido>> call, Throwable t) {
                 Log.d("APP_2","fallo");
+            }
+        });
+    }
+
+    public void borrarPedido (final Pedido pedido/*, final Handler h*/){
+        Call<Void> llamada = this.pedidoRest.eliminarPedido(pedido.getIdPedido());
+        llamada.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Log.d("EXITO", "PEDIDO ELIMINADO");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("ERROR","PEDIDO NO BORRADO"+t.getMessage());
+            }
+        });
+    }
+
+    public void borrarItemPedido (final Pedido pedido/*, final Handler h*/){
+        Call<Pedido> llamada = this.pedidoRest.actualizarPedido(pedido.getIdPedido(), pedido);
+        llamada.enqueue(new Callback<Pedido>() {
+            @Override
+            public void onResponse(Call<Pedido> call, Response<Pedido> response) {
+                if(response.isSuccessful()){
+                   Log.d("EXITO", "PLATO ELIMINADO DEL PEDIDO");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Pedido> call, Throwable t) {
+                Log.d("ERROR", "PLATO NO ELIMINADO DEL PEDIDO");
             }
         });
     }

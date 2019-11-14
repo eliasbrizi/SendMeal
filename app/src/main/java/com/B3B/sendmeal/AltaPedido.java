@@ -1,5 +1,7 @@
 package com.B3B.sendmeal;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -184,5 +186,39 @@ public class AltaPedido extends AppCompatActivity {
         else {
             Log.d("Error", "Fallo onActivityResultMapas");
         }
+    }
+
+    public void showDialogEliminar(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.dialogoQuitarPlatoPedido).setTitle(R.string.tituloDialogo)
+                .setPositiveButton("Si",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                ItemsPedido itemBorrar = _ITEMS.get(position);
+                                _ITEMS.remove(position);
+                                Pedido pedido = PedidoRepository.getInstance(getApplicationContext()).buscarPedidoPorID(itemBorrar.getIdPedido());
+                                List<ItemsPedido> items = PedidoRepository.getInstance(getApplicationContext()).buscarItemsPedidoPorIdPedido(pedido.getIdPedido());
+
+                                if(_ITEMS.isEmpty()){
+                                    PedidoRepository.getInstance(getApplicationContext()).borrarPedido(pedido);
+                                    PedidoRepositoryServer.getInstance().borrarPedido(pedido);
+                                }
+                                else{
+                                    PedidoRepositoryServer.getInstance().borrarItemPedido(pedido);
+                                }
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void edicionPedido(final int position){
+        //VER QUE SE VA A PODER MODIFICAR
     }
 }

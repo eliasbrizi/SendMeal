@@ -75,6 +75,7 @@
     <string name="txtBtnCrearPedido">Crear pedido</string>
     <string name="txtBtnEnviarPedido">Enviar pedido</string>
     <string name="txtBtnAgregarPedido">Agregar al pedido</string>
+    <string name="dialogoQuitarPlatoPedido">¿Desea quitar el plato del pedido?</string>
 
     <!-- Notificaciones -->
     <string name="nombreCanal">Ofertas</string>

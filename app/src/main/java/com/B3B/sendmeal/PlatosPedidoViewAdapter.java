@@ -39,8 +39,12 @@ public class PlatosPedidoViewAdapter extends RecyclerView.Adapter<PlatosPedidoVi
         /*
         Cargar imagen
          */
-        //TODO
-        holder.setImagenPlato();
+        if(pl.getFotoBase64() == null) {
+            holder.setImagenPlato(pl.getNombre());
+        }
+        else{
+            holder.setImagePlato(pl.getFotoBase64());
+        }
 
         holder.agregarPlato.setOnClickListener(new View.OnClickListener() {
             @Override

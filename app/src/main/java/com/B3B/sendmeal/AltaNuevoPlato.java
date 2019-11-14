@@ -43,6 +43,7 @@ public class AltaNuevoPlato extends AppCompatActivity {
     static final int REQUEST_IMAGE_SAVE = 2;
     static String pathFoto;
     static String fotoEnBase64 = null;
+    static ImageView fotoPlato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class AltaNuevoPlato extends AppCompatActivity {
         final EditText editPrecio = (EditText) findViewById(R.id.editPrecioANP);
         final EditText editCalorias = (EditText) findViewById(R.id.editCaloriasANP);
 
-        final ImageView fotoPlato = (ImageView) findViewById(R.id.fotoPlato);
+        fotoPlato = (ImageView) findViewById(R.id.fotoPlato);
 
         final Button btnTomarFomar = (Button) findViewById(R.id.btnAgregarFoto);
         final Button btnGuardarPlato = (Button) findViewById(R.id.buttonGuardarPlato);
@@ -106,10 +107,6 @@ public class AltaNuevoPlato extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), Home.class);
                     startActivity(intent);
                 }
-                //ESTO COPIAR PARA EL LISTA PLATOS Y DEMAS
-                byte[] bytesDecodeados = Base64.decode(fotoEnBase64, Base64.DEFAULT);
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytesDecodeados, 0, bytesDecodeados.length);
-                fotoPlato.setImageBitmap(bitmap);
             }
         });
 
@@ -124,6 +121,8 @@ public class AltaNuevoPlato extends AppCompatActivity {
                 byte[] bytesFoto = new byte[(int) file.length()];
                 fis.read(bytesFoto);
                 fotoEnBase64 = Base64.encodeToString(bytesFoto, Base64.DEFAULT);
+                Bitmap b = BitmapFactory.decodeByteArray(bytesFoto, 0, bytesFoto.length);
+                fotoPlato.setImageBitmap(b);
             }
             catch (FileNotFoundException ex){
                 ex.printStackTrace();

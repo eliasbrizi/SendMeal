@@ -1,5 +1,8 @@
 package com.B3B.sendmeal;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -46,7 +49,25 @@ public class PlatosPedidoViewHolder extends RecyclerView.ViewHolder {
         return imagenPlato;
     }
 
-    public void setImagenPlato() {
-        this.imagenPlato.setImageResource(R.drawable.costillita);
+    public void setImagenPlato(String nombrePlato) {
+        switch (nombrePlato){
+            case "Milanesa": this.imagenPlato.setImageResource(R.drawable.milanesa);
+                break;
+            case "Papas Fritas": this.imagenPlato.setImageResource(R.drawable.papas);
+                break;
+            case "Hamburguesa": this.imagenPlato.setImageResource(R.drawable.hamburguesa);
+                break;
+            case "Pizza": this.imagenPlato.setImageResource(R.drawable.pizza);
+                break;
+            case "Matambre": this.imagenPlato.setImageResource(R.drawable.matambre);
+                break;
+            default: this.imagenPlato.setImageResource(R.drawable.costillita);
+        }
+    }
+
+    public void setImagePlato(String fotoBase64){
+        byte[] bytesDecodeados = Base64.decode(fotoBase64, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytesDecodeados, 0, bytesDecodeados.length);
+        imagenPlato.setImageBitmap(bitmap);
     }
 }

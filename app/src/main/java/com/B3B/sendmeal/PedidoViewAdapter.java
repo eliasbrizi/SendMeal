@@ -33,7 +33,7 @@ public class PedidoViewAdapter extends RecyclerView.Adapter<PedidoViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PedidoViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final PedidoViewHolder holder, final int position) {
         final Plato pl = items.get(position).getPlatoItem();
         holder.setNombrePlato(pl.getNombre());
         holder.setPrecioPlato(pl.getPrecio().toString());
@@ -49,10 +49,13 @@ public class PedidoViewAdapter extends RecyclerView.Adapter<PedidoViewHolder>{
         }
 
 
-        holder.editarPlatoPedido.setOnClickListener(new View.OnClickListener() {
+        holder.editarCantidadPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                altaPedido.edicionPedido(position);
+                int cantidad = altaPedido.edicionPedido(position);
+                if(cantidad != 0){
+                    holder.setCantidadPlato(String.valueOf(cantidad));
+                }
             }
         });
 

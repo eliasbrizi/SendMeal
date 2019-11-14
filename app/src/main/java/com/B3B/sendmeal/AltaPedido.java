@@ -5,8 +5,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +30,7 @@ import java.util.List;
 import java.util.Random;
 
 public class AltaPedido extends AppCompatActivity {
-
+    private int cantidad;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -218,7 +220,40 @@ public class AltaPedido extends AppCompatActivity {
         dialog.show();
     }
 
-    public void edicionPedido(final int position){
-        //VER QUE SE VA A PODER MODIFICAR
+    public int edicionPedido(final int position){
+        cantidad = 0;
+        LayoutInflater inflater = LayoutInflater.from(this);
+        final View dialogoView = inflater.inflate(R.layout.dialog_cantidad,null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        final EditText campoCantidad = (EditText) dialogoView.findViewById(R.id.txtCantidadDialog);
+
+        builder.setView(dialogoView).setTitle("Cantidad")
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        cantidad = Integer.valueOf(campoCantidad.getText().toString());
+                        Pedido pedAux = PedidoRepository.getInstance(getApplicationContext()).buscarPedidoPorID(idPedido);
+                        if(pedAux == null){
+                            ip.setCantidad(cantidad);
+                        }
+                        else{
+                            ItemsPedido item = _ITEMS.get(position);
+                            item.setCantidad(cantidad);
+                            PedidoRepository.getInstance(getApplicationContext()).actualizarItemPedido(item, pedAux);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+        return cantidad;
     }
 }

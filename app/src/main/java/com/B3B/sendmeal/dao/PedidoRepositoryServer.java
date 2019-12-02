@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.B3B.sendmeal.dao.rest.PedidoRest;
 import com.B3B.sendmeal.dao.rest.PlatoRest;
+import com.B3B.sendmeal.domain.EstadoPedido;
 import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
 import com.B3B.sendmeal.domain.Plato;
@@ -126,6 +127,25 @@ public class PedidoRepositoryServer {
     }
 
     public List<Pedido> getListaPedidos(){
+        return listaPedidos;
+    }
+
+    public List<Pedido> getListaPedidosEstado(EstadoPedido estadoPedido) {
+        Call<List<Pedido>> llamada = this.pedidoRest.listarPedidosEnEstado(estadoPedido);
+        llamada.enqueue(new Callback<List<Pedido>>() {
+            @Override
+            public void onResponse(Call<List<Pedido>> call, Response<List<Pedido>> response) {
+                if(response.isSuccessful()){
+                    listaPedidos.clear();
+                    listaPedidos.addAll(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Pedido>> call, Throwable t) {
+                Log.d("APP_2","fallo");
+            }
+        });
         return listaPedidos;
     }
 }

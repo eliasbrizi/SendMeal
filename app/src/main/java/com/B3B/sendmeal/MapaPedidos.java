@@ -1,13 +1,10 @@
 package com.B3B.sendmeal;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.B3B.sendmeal.dao.PedidoRepository;
 import com.B3B.sendmeal.dao.PedidoRepositoryServer;
 import com.B3B.sendmeal.domain.EstadoPedido;
 import com.B3B.sendmeal.domain.Pedido;
@@ -28,6 +24,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.List;
 
@@ -134,12 +131,14 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         //TODO implementar
         List<Pedido> lista = PedidoRepositoryServer.getInstance().getListaPedidos();
         mMap.clear();
+        PolylineOptions poly = new PolylineOptions();
         for (Pedido p: lista) if(p.getEstadoPedido() == e){
             Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLat(),p.getLng()))
                     .snippet("Id pedido: "+p.getIdPedido()+"\nEstado: "+p.getEstadoPedido()+"\nPrecio: "+p.getPrecio()));
             switch (e){
                 case EN_ENVIO:
                     marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+                    poly.add(new LatLng(p.getLat(),p.getLng())).color(Color.YELLOW);
                     break;
                 case EN_PREPARACION:
                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
@@ -158,5 +157,6 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
                     break;
             }
         }
+        mMap.addPolyline(poly);
     }
 }

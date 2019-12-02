@@ -1,5 +1,6 @@
 package com.B3B.sendmeal.dao.rest;
 
+import com.B3B.sendmeal.domain.EstadoPedido;
 import com.B3B.sendmeal.domain.Pedido;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface PedidoRest {
 
@@ -23,10 +25,12 @@ public interface PedidoRest {
     @GET("pedidos/{id}")
     Call<Pedido> buscarPlatoPorID(@Path("id") Integer id);
 
+    @GET("pedidos")
+    Call<List<Pedido>> listarPedidosEnEstado(@Query("estadoPedido") EstadoPedido estadoPedido);
+
     @PUT("pedidos/{id}")
     Call<Pedido> actualizarPedido(@Path("id") Integer id, @Body Pedido pedido);
 
     @DELETE("pedidos/{id}")
     Call<Void> eliminarPedido(@Path("id") Integer id);
-
 }

@@ -36,6 +36,8 @@
 
         </provider>
 
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/icono_notify"/>
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/colorAccent"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file_path "res/values/google_maps_api.xml").
@@ -99,6 +101,11 @@
 
         <service android:name=".OfertaIntentService" />
 
+        <service android:name=".MyFirebaseMessagingService" android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

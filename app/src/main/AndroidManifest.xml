@@ -99,6 +99,10 @@
             android:parentActivityName=".ListaPlatos" />
         <activity android:name=".MostrarPlatosPedido" />
 
+        <activity
+            android:name=".DetallesPedido"
+            android:parentActivityName=".Home" />
+
         <service android:name=".OfertaIntentService" />
 
         <service android:name=".MyFirebaseMessagingService" android:exported="false">

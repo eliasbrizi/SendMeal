@@ -22,10 +22,10 @@ public interface PedidoRest {
     @GET("pedidos/")
     Call<List<Pedido>> listarTodos();
 
-    @GET("pedidos/{id}")
-    Call<Pedido> buscarPlatoPorID(@Path("id") Integer id);
+    @GET("pedidos/")
+    Call<List<Pedido>> getPedido(@Query("idPedido") Integer id);
 
-    @GET("pedidos")
+    @GET("pedidos/")
     Call<List<Pedido>> listarPedidosEnEstado(@Query("estadoPedido") EstadoPedido estadoPedido);
 
     @PUT("pedidos/{id}")

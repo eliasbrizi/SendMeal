@@ -64,6 +64,7 @@ Lista de platos
         mAdapter.notifyDataSetChanged();
     }
 
+
     public void agregarComidaAPedido(final int position){
         LayoutInflater inflater = LayoutInflater.from(this);
         final View dialogoView = inflater.inflate(R.layout.dialog_cantidad,null);

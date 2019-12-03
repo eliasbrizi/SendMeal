@@ -9,6 +9,7 @@ import com.B3B.sendmeal.domain.ItemsPedido;
 import com.B3B.sendmeal.domain.Pedido;
 import com.B3B.sendmeal.domain.Plato;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +24,16 @@ public class PedidoRepositoryServer {
     private static PedidoRepositoryServer _INSTANCE;
     public static String _SERVER = "http://10.0.2.2:5000/";
     /*
+
+     */
+    private List<Pedido> listaPedidos;
+    private Pedido pedido;
+    /*
     Retrofit
      */
     private Retrofit rf;
     private PedidoRest pedidoRest;
-    /*
 
-     */
-    private List<Pedido> listaPedidos;
 
     private PedidoRepositoryServer(){}
 
@@ -147,5 +150,27 @@ public class PedidoRepositoryServer {
             }
         });
         return listaPedidos;
+    }
+
+    public Pedido getPedido(int idPedido) {
+        Call<List<Pedido>> llamada = this.pedidoRest.getPedido(idPedido);
+        llamada.enqueue(new Callback<List<Pedido>>() {
+            @Override
+            public void onResponse(Call<List<Pedido>> call, Response<List<Pedido>> response) {
+                if(response.isSuccessful()){
+                    pedido = (response.body()).get(0);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Pedido>> call, Throwable t) {
+                Log.d("APP_2","fallo");
+            }
+        });
+        return pedido;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
     }
 }

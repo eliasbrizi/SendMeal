@@ -40,12 +40,12 @@ public class DetallesPedido extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mostrarplatospedido);
+        setContentView(R.layout.activity_detallespedido);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarBack);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerMostrarPlatosPedido);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerDetallesPedido);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -53,16 +53,16 @@ public class DetallesPedido extends AppCompatActivity {
         idPedido = getIntent().getExtras().getInt("idPedido");
         Log.d("A VER",""+idPedido);
         //TODO no anda nada
-        Pedido pedido = PedidoRepositoryServer.getInstance().getPedido();
+        final Pedido pedido = PedidoRepositoryServer.getInstance().getPedido();
         /*
         Detalles del pedido
          */
-/*        final EditText editID = (EditText) findViewById(R.id.editIDPedidoDetPedido);
+        final EditText editID = (EditText) findViewById(R.id.editIDDetPedido);
         final EditText editEstado = (EditText)findViewById(R.id.editEstadoPedidoDetPedido);
         final EditText editCosto = (EditText) findViewById(R.id.editCostoDetPedido);
-        editID.setText(pedido.getIdPedido());
+        editID.setText(String.valueOf(pedido.getIdPedido()));
         editEstado.setText(pedido.getEstadoPedido().toString());
-        editCosto.setText("not yet implemented");*/
+        editCosto.setText("not yet implemented");
 
         /*
         Recycler

@@ -12,7 +12,7 @@ import com.B3B.sendmeal.domain.Plato;
 
 import java.util.List;
 
-public class PlatosDetallePedidoViewAdapter extends RecyclerView.Adapter<PlatosPedidoViewHolder>{
+public class PlatosDetallePedidoViewAdapter extends RecyclerView.Adapter<PlatosDetallePedidoViewHolder>{
     private List<Plato> platos;
     private Context contexto;
 
@@ -23,14 +23,14 @@ public class PlatosDetallePedidoViewAdapter extends RecyclerView.Adapter<PlatosP
 
     @NonNull
     @Override
-    public PlatosPedidoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.fila_mostrarplatopedido, parent, false);
-        PlatosPedidoViewHolder vh = new PlatosPedidoViewHolder(v);
+    public PlatosDetallePedidoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.fila_mostrarplatodetallepedido, parent, false);
+        PlatosDetallePedidoViewHolder vh = new PlatosDetallePedidoViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlatosPedidoViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull PlatosDetallePedidoViewHolder holder, final int position) {
         final Plato pl = platos.get(position);
         holder.setNombrePlato(pl.getNombre());
         holder.setPrecioPlato(pl.getPrecio().toString());
